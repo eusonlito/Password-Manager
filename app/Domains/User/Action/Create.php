@@ -30,7 +30,6 @@ class Create extends ActionAbstract
     {
         $this->data['name'] = trim($this->data['name']);
         $this->data['email'] = strtolower($this->data['email']);
-        $this->data['password'] = Hash::make($this->data['password']);
         $this->data['certificate'] = $this->data['certificate'] ?: null;
         $this->data['password_enabled'] ??= 1;
         $this->data['tfa_secret'] = TFA::generateSecretKey();
@@ -39,6 +38,10 @@ class Create extends ActionAbstract
         $this->data['admin'] ??= 0;
         $this->data['enabled'] ??= 1;
         $this->data['teams'] = array_filter($this->data['teams']);
+
+        if ($this->data['password']) {
+            $this->data['password'] = Hash::make($this->data['password']);
+        }
     }
 
     /**

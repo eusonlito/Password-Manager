@@ -52,6 +52,12 @@ return [
             'options' => [],
             'log' => env('DB_LOG', false),
         ],
+
+        'test' => [
+            'driver' => 'sqlite',
+            'database' => ':memory:',
+            'foreign_key_constraints' => env('DB_FOREIGN_KEYS', true),
+        ],
     ],
 
     /*

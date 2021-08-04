@@ -3,19 +3,19 @@
 namespace App\Domains\Shared\Test;
 
 use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Contracts\Console\Kernel;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\TestCase;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Testing\Fakes\MailFake;
 use Faker\Factory as FactoryFaker;
 use Faker\Generator as GeneratorFaker;
+use App\Domains\Shared\Model\ModelAbstract;
 use App\Domains\User\Model\User as UserModel;
 use Database\Seeders\Database as DatabaseSeed;
+use Tests\TestsAbstract;
+use Tests\CreatesApplication;
 
-abstract class TestAbstract extends TestCase
+abstract class TestAbstract extends TestsAbstract
 {
-    use RefreshDatabase;
+    use CreatesApplication;
 
     /**
      * @var string
@@ -28,18 +28,9 @@ abstract class TestAbstract extends TestCase
     protected GeneratorFaker $faker;
 
     /**
-     * Creates the application.
-     *
-     * @return \Illuminate\Foundation\Application
+     * @var \Illuminate\Contracts\Auth\Authenticatable
      */
-    public function createApplication()
-    {
-        $app = require __DIR__.'/../../../../bootstrap/app.php';
-
-        $app->make(Kernel::class)->bootstrap();
-
-        return $app;
-    }
+    protected Authenticatable $auth;
 
     /**
      * @param \Illuminate\Contracts\Auth\Authenticatable $user = null
@@ -48,7 +39,9 @@ abstract class TestAbstract extends TestCase
      */
     protected function auth(Authenticatable $user = null): self
     {
-        parent::actingAs($user ?: $this->user());
+        $this->auth = $user ?: $this->user();
+
+        parent::actingAs($this->auth);
 
         return $this;
     }
@@ -79,6 +72,16 @@ abstract class TestAbstract extends TestCase
 
     /**
      * @param string $class
+     *
+     * @return \App\Domains\Shared\Model\ModelAbstract
+     */
+    protected function factoryMake(string $class): ModelAbstract
+    {
+        return $class::factory()->make();
+    }
+
+    /**
+     * @param string $class
      * @param array $whitelist
      * @param string|bool $action = ''
      *
@@ -86,7 +89,7 @@ abstract class TestAbstract extends TestCase
      */
     protected function factoryWhitelist(string $class, array $whitelist, $action = ''): array
     {
-        return $this->whitelist($class::factory()->make()->toArray(), $whitelist, $action);
+        return $this->whitelist($this->factoryMake($class)->toArray(), $whitelist, $action);
     }
 
     /**

@@ -19,21 +19,23 @@
 
     <testsuites>
         <testsuite name="Feature">
+            <file>./app/Domains/User/Test/Feature/Create.php</file>
+            <file>./app/Domains/User/Test/Feature/AuthCertificate.php</file>
         </testsuite>
     </testsuites>
 
     <php>
         <server name="APP_DEBUG" value="0" />
-        <server name="DEBUGBAR_ENABLED" value="0" />
         <server name="APP_ENV" value="testing" />
+        <server name="APP_LOCALE" value="es" />
         <server name="BCRYPT_ROUNDS" value="4" />
         <server name="CACHE_DRIVER" value="array" />
         <server name="DB_CONNECTION" value="test" />
-        <server name="DROPBOX_CACHE_EXPIRE" value="0" />
+        <server name="DB_DATABASE" value=":memory:" />
+        <server name="DEBUGBAR_ENABLED" value="0" />
         <server name="MAIL_DRIVER" value="array" />
         <server name="QUEUE_CONNECTION" value="sync" />
         <server name="SESSION_DRIVER" value="array" />
         <server name="TEST_ENABLED" value="1" />
-        <server name="TWITTER_TIMELINE_LIMIT" value="1" />
     </php>
 </phpunit>

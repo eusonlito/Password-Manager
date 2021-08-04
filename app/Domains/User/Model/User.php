@@ -4,16 +4,18 @@ namespace App\Domains\User\Model;
 
 use Illuminate\Auth\Authenticatable as AuthenticatableTrait;
 use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use App\Domains\Team\Model\Team as TeamModel;
 use App\Domains\Team\Model\TeamUser as TeamUserModel;
 use App\Domains\Shared\Model\ModelAbstract;
 use App\Domains\User\Model\Builder\User as Builder;
+use App\Domains\User\Test\Factory\User as TestFactory;
 
 class User extends ModelAbstract implements Authenticatable
 {
-    use AuthenticatableTrait;
+    use AuthenticatableTrait, HasFactory;
 
     /**
      * @var string
@@ -54,6 +56,14 @@ class User extends ModelAbstract implements Authenticatable
     public function newEloquentBuilder($q)
     {
         return new Builder($q);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Factories\Factory
+     */
+    protected static function newFactory()
+    {
+        return TestFactory::new();
     }
 
     /**

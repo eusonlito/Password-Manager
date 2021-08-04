@@ -3,7 +3,6 @@
 namespace App\Domains\Shared\Test\Feature;
 
 use App\Domains\Shared\Test\TestAbstract;
-use App\Domains\User\Model\User as UserModel;
 
 abstract class FeatureAbstract extends TestAbstract
 {
@@ -36,18 +35,5 @@ abstract class FeatureAbstract extends TestAbstract
     protected function action(string $name = ''): array
     {
         return ['_action' => $name ?: $this->action];
-    }
-
-    /**
-     * @param bool $confirm
-     * @param \App\Domains\User\Model\User $user = null
-     *
-     * @return void
-     */
-    protected function userConfirm(bool $confirm, UserModel $user = null): void
-    {
-        $user = $user ?: $this->user();
-        $user->confirmed_at = $confirm ? date('Y-m-d H:i:s') : null;
-        $user->save();
     }
 }
