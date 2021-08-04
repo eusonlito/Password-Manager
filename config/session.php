@@ -1,7 +1,5 @@
 <?php
 
-use Illuminate\Support\Str;
-
 return [
 
     /*
@@ -46,7 +44,7 @@ return [
     |
     */
 
-    'encrypt' => true,
+    'encrypt' => (bool)env('SESSION_ENCRYPT', false),
 
     /*
     |--------------------------------------------------------------------------
