@@ -78,7 +78,7 @@ return [
     |
     */
 
-    'locale' => 'es',
+    'locale' => env('APP_LOCALE', 'es'),
     'locales' => ['es', 'en'],
     'locale_system' => ['es' => 'es_ES.UTF-8', 'en' => 'en_US.UTF-8'],
 
