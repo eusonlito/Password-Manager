@@ -1,0 +1,13 @@
+/node_modules
+/public/hot
+/public/storage
+/resources/views/assets/node_modules
+/storage/*.key
+/vendor
+
+.env
+.phpunit.result.cache
+.php_cs.cache
+.php-cs-fixer.cache
+
+*.sh

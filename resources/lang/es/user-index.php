@@ -1,0 +1,15 @@
+<?php return [
+    'admin' => 'Admin',
+    'certificate' => 'Certificado',
+    'create' => 'Crear',
+    'email' => 'Email',
+    'enabled' => 'Activo',
+    'filter' => 'Filtrar Usuarios...',
+    'id' => 'ID',
+    'meta-title' => 'Usuarios',
+    'name' => 'Nombre',
+    'password_enabled' => 'Contraseña',
+    'readonly' => 'Sólo Lectura',
+    'teams' => 'Equipos',
+    'tfa_enabled' => '2FA',
+];

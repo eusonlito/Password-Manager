@@ -1,0 +1,24 @@
+parameters:
+    paths:
+        - app
+
+    level: 5
+
+    ignoreErrors:
+        - '#Access to an undefined property App\\Domains\\.*\\Model\\.*::#'
+        - '#Access to an undefined property App\\Domains\\Shared\\Action\\ActionFactoryAbstract::#'
+        - '#Access to an undefined property Illuminate\\Contracts\\Auth\\Authenticatable::#'
+        - '#Access to an undefined property App\\Domains\\Shared\\.*::\$row#'
+        - '#Call to an undefined method App\\Domains\\Shared\\Action\\ActionFactoryAbstract::#'
+        - '#Call to an undefined method App\\Domains\\Shared\\Validate\\ValidateFactoryAbstract::#'
+        - '#Call to an undefined method Illuminate\\Contracts\\Auth\\Authenticatable::#'
+        - '#Call to an undefined static method App\\Domains\\.*\\Model\\.*::#'
+        - '#but returns Illuminate\\Database\\Query\\Builder#'
+        - '#expects App\\Domains\\Shared\\Model\\ModelAbstract\|null, Illuminate\\Contracts\\Auth\\Authenticatable\|null given#'
+        - '#expects App\\Domains\\User\\Model\\User, Illuminate\\Contracts\\Auth\\Authenticatable\|null given#'
+        - '#should return Illuminate\\View\\View but returns Illuminate\\Contracts\\View\\Factory\|Illuminate\\Contracts\\View\\View#'
+        - '#should return Illuminate\\View\\View\|null but returns Illuminate\\Contracts\\View\\Factory\|Illuminate\\Contracts\\View\\View#'
+        - '#\(App\\Domains\\User\\Model\\User\|null\) does not accept Illuminate\\Contracts\\Auth\\Authenticatable\|null#'
+
+    checkMissingIterableValueType: false
+

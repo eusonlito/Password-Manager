@@ -1,0 +1,125 @@
+{
+    "name": "eusonlito/password-manager",
+    "type": "project",
+    "description": "Password Manager",
+    "license": "MIT",
+    "require": {
+        "php": "^8.0",
+        "bacon/bacon-qr-code": "master-dev",
+        "composer/composer": "^2.0",
+        "doctrine/dbal": "^3.0",
+        "eusonlito/disposable-email-validator": "^0.1",
+        "eusonlito/laravel-meta": "^3.1",
+        "eusonlito/laravel-packer": "^2.2",
+        "friendsofphp/php-cs-fixer": "^3.0",
+        "laravel/framework": "^8.52",
+        "laravel/helpers": "^1.2",
+        "pragmarx/google2fa-qrcode": "master-dev",
+        "predis/predis": "^1.1",
+        "sentry/sentry-laravel": "^2.0"
+    },
+    "require-dev": {
+        "barryvdh/laravel-debugbar": "^3.2",
+        "brianium/paratest": "^6.2",
+        "facade/ignition": "^2.3",
+        "fakerphp/faker": "^1.13",
+        "mockery/mockery": "^1.4.2",
+        "nunomaduro/collision": "^5.3",
+        "nunomaduro/phpinsights": "^2.0",
+        "phpstan/phpstan": "^0.12.75",
+        "phpunit/phpunit": "^9.3"
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true
+    },
+    "autoload": {
+        "classmap": [
+            "database/migrations"
+        ],
+        "psr-4": {
+            "App\\": "app/",
+            "Database\\": "database/"
+        },
+        "files": [
+            "app/Services/Helper/functions.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "scripts": {
+        "pre-install-cmd": [
+            "@composer dump-autoload",
+            "@composer artisan-cache-clear --ansi"
+        ],
+
+        "post-install-cmd": [
+            "@composer artisan-cache --ansi",
+            "@php artisan queue:restart --ansi"
+        ],
+
+        "pre-update-cmd": [
+            "@composer artisan-cache-clear --ansi"
+        ],
+
+        "post-update-cmd": [
+            "@php ./vendor/bin/php-cs-fixer fix --ansi --quiet",
+            "@php artisan maintenance:opcache:preload"
+        ],
+
+        "post-autoload-dump": [
+            "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
+            "@php artisan package:discover --ansi"
+        ],
+
+        "post-root-package-install": [
+            "@php -r \"is_file('.env') || copy('.env.example', '.env');\"",
+            "@composer install --no-scripts"
+        ],
+
+        "post-create-project-cmd": [
+            "@php artisan key:generate --ansi"
+        ],
+
+        "artisan-cache-clear": [
+            "@php artisan optimize:clear --ansi"
+        ],
+
+        "artisan-cache": [
+            "@php artisan optimize --ansi",
+            "@php artisan view:cache --ansi"
+        ],
+
+        "env-version": [
+            "sed -i 's/CACHE_VERSION=.*/CACHE_VERSION='$(head -c 16 /dev/urandom | md5sum | head -c 32)'/' .env"
+        ],
+
+        "deploy": [
+            "git checkout .",
+            "git pull",
+            "@composer env-version --ansi",
+            "@composer install --no-dev --optimize-autoloader --classmap-authoritative --ansi",
+            "@php artisan migrate --force --ansi",
+            "@php ./vendor/bin/php-cs-fixer fix --ansi --quiet",
+            "@php artisan maintenance:opcache:preload"
+        ],
+
+        "quality": [
+            "@php artisan insights -v --ansi",
+            "@php ./vendor/bin/phpstan analyse app --ansi"
+        ],
+
+        "translation": [
+            "@php artisan translation:fix --ansi",
+            "@php artisan translation:fill --ansi",
+            "@php artisan translation:clean --ansi",
+            "git checkout resources/lang/*/validation.php"
+        ]
+    }
+}
