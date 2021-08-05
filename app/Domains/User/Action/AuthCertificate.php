@@ -19,15 +19,23 @@ class AuthCertificate extends ActionAbstract
      */
     public function handle(): Model
     {
+        $this->checkIp();
         $this->certificate();
         $this->row();
-        $this->check();
         $this->login();
         $this->auth();
         $this->success();
         $this->session();
 
         return $this->row;
+    }
+
+    /**
+     * @return void
+     */
+    protected function checkIp(): void
+    {
+        $this->factory('IpLock')->action()->check();
     }
 
     /**
@@ -48,22 +56,6 @@ class AuthCertificate extends ActionAbstract
     protected function row(): void
     {
         $this->row = Model::byCertificate($this->certificate)->enabled()->firstOr(fn () => $this->fail());
-    }
-
-    /**
-     * @return void
-     */
-    protected function check(): void
-    {
-        $this->checkIp();
-    }
-
-    /**
-     * @return void
-     */
-    protected function checkIp(): void
-    {
-        $this->factory('IpLock')->action()->check();
     }
 
     /**

@@ -13,21 +13,13 @@ class AuthApi extends ActionAbstract
      */
     public function handle(): Model
     {
-        $this->check();
+        $this->checkIp();
         $this->row();
         $this->login();
         $this->auth();
         $this->success();
 
         return $this->row;
-    }
-
-    /**
-     * @return void
-     */
-    protected function check(): void
-    {
-        $this->checkIp();
     }
 
     /**

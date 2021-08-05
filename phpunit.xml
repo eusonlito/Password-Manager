@@ -19,9 +19,10 @@
 
     <testsuites>
         <testsuite name="Feature">
-            <file>./app/Domains/User/Test/Feature/Create.php</file>
             <file>./app/Domains/User/Test/Feature/AuthCertificate.php</file>
+            <file>./app/Domains/User/Test/Feature/AuthCredentials.php</file>
             <file>./app/Domains/User/Test/Feature/AuthTFA.php</file>
+            <file>./app/Domains/User/Test/Feature/Create.php</file>
         </testsuite>
     </testsuites>
 
@@ -29,6 +30,7 @@
         <server name="APP_DEBUG" value="0" />
         <server name="APP_ENV" value="testing" />
         <server name="APP_LOCALE" value="es" />
+        <server name="AUTH_CHECK_ALLOWED" value="3" />
         <server name="BCRYPT_ROUNDS" value="4" />
         <server name="CACHE_DRIVER" value="array" />
         <server name="DB_CONNECTION" value="test" />

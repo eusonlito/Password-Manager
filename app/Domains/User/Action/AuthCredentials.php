@@ -14,6 +14,7 @@ class AuthCredentials extends ActionAbstract
      */
     public function handle(): Model
     {
+        $this->checkIp();
         $this->row();
         $this->check();
         $this->login();
@@ -22,6 +23,14 @@ class AuthCredentials extends ActionAbstract
         $this->session();
 
         return $this->row;
+    }
+
+    /**
+     * @return void
+     */
+    protected function checkIp(): void
+    {
+        $this->factory('IpLock')->action()->check();
     }
 
     /**
@@ -37,16 +46,7 @@ class AuthCredentials extends ActionAbstract
      */
     protected function check(): void
     {
-        $this->checkIp();
         $this->checkPassword();
-    }
-
-    /**
-     * @return void
-     */
-    protected function checkIp(): void
-    {
-        $this->factory('IpLock')->action()->check();
     }
 
     /**
