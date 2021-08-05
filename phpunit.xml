@@ -26,6 +26,7 @@
             <file>./app/Domains/User/Test/Feature/Disabled.php</file>
             <file>./app/Domains/User/Test/Feature/Index.php</file>
             <file>./app/Domains/User/Test/Feature/Logout.php</file>
+            <file>./app/Domains/User/Test/Feature/Profile.php</file>
         </testsuite>
     </testsuites>
 

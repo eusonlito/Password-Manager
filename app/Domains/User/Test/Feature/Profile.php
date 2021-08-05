@@ -4,17 +4,17 @@ namespace App\Domains\User\Test\Feature;
 
 use App\Domains\User\Model\User as Model;
 
-class Create extends FeatureAbstract
+class Profile extends FeatureAbstract
 {
     /**
      * @var string
      */
-    protected string $route = 'user.create';
+    protected string $route = 'user.profile';
 
     /**
      * @var string
      */
-    protected string $action = 'create';
+    protected string $action = 'profile';
 
     /**
      * @var array
@@ -22,13 +22,12 @@ class Create extends FeatureAbstract
     protected array $validation = [
         'name' => ['bail', 'required'],
         'email' => ['bail', 'required', 'email:filter'],
-        'certificate' => ['bail', 'required_without:password', 'nullable'],
-        'password' => ['bail', 'required_with:password_enabled', 'min:8'],
-        'password_enabled' => ['bail', 'nullable', 'boolean'],
-        'readonly' => ['bail', 'nullable', 'boolean'],
-        'admin' => ['bail', 'nullable', 'boolean'],
-        'enabled' => ['bail', 'nullable', 'boolean'],
-        'teams' => ['bail', 'array'],
+        'certificate' => ['bail', 'nullable'],
+        'password' => ['bail', 'min:8'],
+        'password_enabled' => ['bail', 'boolean'],
+        'password_current' => ['bail', 'required', 'current_password'],
+        'api_key' => ['bail', 'nullable', 'uuid'],
+        'tfa_enabled' => ['bail', 'boolean'],
     ];
 
     /**
@@ -54,35 +53,13 @@ class Create extends FeatureAbstract
     /**
      * @return void
      */
-    public function testGetNotAdminFail(): void
-    {
-        $this->authUserAdmin(false);
-
-        $this->get($this->route())
-            ->assertStatus(302);
-    }
-
-    /**
-     * @return void
-     */
-    public function testPostNotAdminFail(): void
-    {
-        $this->authUserAdmin(false);
-
-        $this->post($this->route())
-            ->assertStatus(302);
-    }
-
-    /**
-     * @return void
-     */
     public function testGetSuccess(): void
     {
-        $this->authUserAdmin();
+        $this->authUser();
 
         $this->get($this->route())
             ->assertStatus(200)
-            ->assertViewIs('domains.user.create');
+            ->assertViewIs('domains.user.profile');
     }
 
     /**
@@ -90,11 +67,11 @@ class Create extends FeatureAbstract
      */
     public function testPostEmptySuccess(): void
     {
-        $this->authUserAdmin();
+        $this->authUser();
 
         $this->post($this->route())
             ->assertStatus(200)
-            ->assertViewIs('domains.user.create');
+            ->assertViewIs('domains.user.profile');
     }
 
     /**
@@ -102,7 +79,7 @@ class Create extends FeatureAbstract
      */
     public function testPostEmptyWithActionFail(): void
     {
-        $this->authUserAdmin();
+        $this->authUser();
 
         $this->post($this->route(), $this->action())
             ->assertStatus(422)
@@ -115,15 +92,15 @@ class Create extends FeatureAbstract
      */
     public function testPostEmptyFail(): void
     {
-        $this->authUserAdmin();
+        $this->authUser();
 
-        $this->post($this->route(), $this->factoryWhitelist(Model::class, ['email', 'password']))
+        $this->post($this->route(), $this->factoryWhitelist(Model::class, ['email']))
             ->assertStatus(422)
             ->assertDontSee('validation.')
             ->assertDontSee('validator.')
             ->assertSee('El campo name es requerido');
 
-        $this->post($this->route(), $this->factoryWhitelist(Model::class, ['name', 'password']))
+        $this->post($this->route(), $this->factoryWhitelist(Model::class, ['name']))
             ->assertStatus(422)
             ->assertDontSee('validation.')
             ->assertDontSee('validator.')
@@ -133,7 +110,7 @@ class Create extends FeatureAbstract
             ->assertStatus(422)
             ->assertDontSee('validation.')
             ->assertDontSee('validator.')
-            ->assertSee('El campo certificate es requerido cuando password no está presente');
+            ->assertSee('El campo password current es requerido');
     }
 
     /**
@@ -141,12 +118,13 @@ class Create extends FeatureAbstract
      */
     public function testPostEmailFail(): void
     {
-        $this->authUserAdmin();
+        $user = $this->authUser();
 
-        $data = $this->factoryWhitelist(Model::class, ['name', 'password']);
+        $data = $user->toArray();
         $data['email'] = uniqid();
+        $data['password_current'] = $user->email;
 
-        $this->post($this->route(), $data)
+        $this->post($this->route(), $data + $this->action())
             ->assertStatus(422)
             ->assertDontSee('validation.')
             ->assertDontSee('validator.')
@@ -158,40 +136,45 @@ class Create extends FeatureAbstract
      */
     public function testPostPasswordFail(): void
     {
-        $this->authUserAdmin();
+        $user = $this->authUser();
 
-        $data = $this->factoryWhitelist(Model::class, ['name', 'email']);
+        $data = $user->toArray();
         $data['password'] = '123';
+        $data['password_current'] = $user->email;
 
-        $this->post($this->route(), $data)
+        $this->post($this->route(), $data + $this->action())
             ->assertStatus(422)
             ->assertDontSee('validation.')
             ->assertDontSee('validator.')
             ->assertSee('El campo password debe tener al menos 8 caracteres');
 
-        $this->post($this->route(), $this->factoryWhitelist(Model::class, ['name', 'email', 'password_enabled']))
-            ->assertStatus(422)
-            ->assertDontSee('validation.')
-            ->assertDontSee('validator.')
-            ->assertSee('El campo certificate es requerido cuando password no está presente');
+        $data['certificate'] = '';
+        $data['password'] = '';
+        $data['password_enabled'] = '';
 
-        $this->post($this->route(), $this->factoryWhitelist(Model::class, ['name', 'email', 'certificate', 'password_enabled']))
+        $this->post($this->route(), $data + $this->action())
             ->assertStatus(422)
             ->assertDontSee('validation.')
             ->assertDontSee('validator.')
-            ->assertSee('El campo password es requerido cuando password enabled está presente');
+            ->assertSee('No se puede desactivar el acceso por contraseña si no se ha definido un certificado');
     }
 
     /**
      * @return void
      */
-    public function testPostWithoutActionSuccess(): void
+    public function testPostApiKeyFail(): void
     {
-        $this->authUserAdmin();
+        $user = $this->authUser();
 
-        $this->post($this->route(), $this->factoryWhitelist(Model::class, ['name', 'email', 'password'], false))
-            ->assertStatus(200)
-            ->assertViewIs('domains.user.create');
+        $data = $user->toArray();
+        $data['api_key'] = uniqid();
+        $data['password_current'] = $user->email;
+
+        $this->post($this->route(), $data + $this->action())
+            ->assertStatus(422)
+            ->assertDontSee('validation.')
+            ->assertDontSee('validator.')
+            ->assertSee('El api key debe ser un UUID valido');
     }
 
     /**
@@ -199,31 +182,24 @@ class Create extends FeatureAbstract
      */
     public function testPostSuccess(): void
     {
-        $this->authUserAdmin();
+        $user = $this->authUser();
 
         $data = $this->factoryMake(Model::class)->toArray();
-        $data['password'] = uniqid();
+        $data['password'] = $data['email'];
+        $data['password_current'] = $user->email;
 
         $this->followingRedirects()
             ->post($this->route(), $data + $this->action())
             ->assertStatus(200)
-            ->assertSee('El usuario ha sido creado correctamente')
-            ->assertSee($data['name']);
+            ->assertSee('Tu perfil ha sido actualizado correctmente');
 
-        $user = $this->userLast();
+        $user = $this->user();
 
         $this->assertEquals($user->name, $data['name']);
         $this->assertEquals($user->email, $data['email']);
+        $this->assertEquals($user->certificate, $data['certificate']);
+        $this->assertEquals($user->api_key, $data['api_key']);
         $this->assertEquals($user->password_enabled, $data['password_enabled']);
-        $this->assertEquals($user->admin, $data['admin']);
-        $this->assertEquals($user->readonly, $data['readonly']);
-        $this->assertEquals($user->enabled, $data['enabled']);
-
-        $this->post($this->route(), $data + $this->action())
-            ->assertStatus(422)
-            ->assertDontSee('validation.')
-            ->assertDontSee('validator.')
-            ->assertSee('Ya existe otro usuario con ese mismo email');
 
         $this->get(route('user.logout'))
             ->assertStatus(302)
@@ -246,12 +222,17 @@ class Create extends FeatureAbstract
     /**
      * @return void
      */
-    public function testPostCertificateNoPasswordSuccess(): void
+    public function testPostEmailExistsFail(): void
     {
-        $this->authUserAdmin();
+        $user = $this->authUser();
 
-        $this->post($this->route(), $this->factoryWhitelist(Model::class, ['name', 'email', 'certificate']))
-            ->assertStatus(302)
-            ->assertRedirect(route('user.update.team', $this->userLast()->id));
+        $data = $this->factoryCreate(Model::class)->toArray();
+        $data['password_current'] = $user->email;
+
+        $this->post($this->route(), $data + $this->action())
+            ->assertStatus(422)
+            ->assertDontSee('validation.')
+            ->assertDontSee('validator.')
+            ->assertSee('Ya existe otro usuario con ese mismo email');
     }
 }

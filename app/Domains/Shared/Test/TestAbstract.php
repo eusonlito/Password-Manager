@@ -51,7 +51,7 @@ abstract class TestAbstract extends TestsAbstract
      */
     protected function user(): UserModel
     {
-        return UserModel::orderBy('id', 'ASC')->first() ?: UserModel::factory()->create();
+        return UserModel::orderBy('id', 'ASC')->first() ?: $this->factoryCreate(UserModel::class);
     }
 
     /**
@@ -59,7 +59,7 @@ abstract class TestAbstract extends TestsAbstract
      */
     protected function userLast(): UserModel
     {
-        return UserModel::orderBy('id', 'DESC')->first() ?: UserModel::factory()->create();
+        return UserModel::orderBy('id', 'DESC')->first() ?: $this->factoryCreate(UserModel::class);
     }
 
     /**
@@ -68,6 +68,16 @@ abstract class TestAbstract extends TestsAbstract
     protected function faker(): GeneratorFaker
     {
         return $this->faker ??= FactoryFaker::create('es_ES');
+    }
+
+    /**
+     * @param string $class
+     *
+     * @return \App\Domains\Shared\Model\ModelAbstract
+     */
+    protected function factoryCreate(string $class): ModelAbstract
+    {
+        return $class::factory()->create();
     }
 
     /**
