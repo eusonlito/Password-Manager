@@ -21,6 +21,7 @@
         <testsuite name="Feature">
             <file>./app/Domains/User/Test/Feature/Create.php</file>
             <file>./app/Domains/User/Test/Feature/AuthCertificate.php</file>
+            <file>./app/Domains/User/Test/Feature/AuthTFA.php</file>
         </testsuite>
     </testsuites>
 

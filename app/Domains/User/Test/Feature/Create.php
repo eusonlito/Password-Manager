@@ -56,7 +56,7 @@ class Create extends FeatureAbstract
      */
     public function testGetNotAdminFail(): void
     {
-        $this->authNotAdmin();
+        $this->authUserAdmin(false);
 
         $this->get($this->route())
             ->assertStatus(302);
@@ -67,7 +67,7 @@ class Create extends FeatureAbstract
      */
     public function testPostNotAdminFail(): void
     {
-        $this->authNotAdmin();
+        $this->authUserAdmin(false);
 
         $this->post($this->route())
             ->assertStatus(302);
@@ -78,7 +78,7 @@ class Create extends FeatureAbstract
      */
     public function testGetSuccess(): void
     {
-        $this->authAdmin();
+        $this->authUserAdmin();
 
         $this->get($this->route())
             ->assertStatus(200)
@@ -90,7 +90,7 @@ class Create extends FeatureAbstract
      */
     public function testPostEmptySuccess(): void
     {
-        $this->authAdmin();
+        $this->authUserAdmin();
 
         $this->post($this->route())
             ->assertStatus(200)
@@ -102,7 +102,7 @@ class Create extends FeatureAbstract
      */
     public function testPostEmptyWithActionFail(): void
     {
-        $this->authAdmin();
+        $this->authUserAdmin();
 
         $this->post($this->route(), $this->action())
             ->assertStatus(422)
@@ -115,7 +115,7 @@ class Create extends FeatureAbstract
      */
     public function testPostEmptyFail(): void
     {
-        $this->authAdmin();
+        $this->authUserAdmin();
 
         $this->post($this->route(), $this->factoryWhitelist(Model::class, ['email', 'password']))
             ->assertStatus(422)
@@ -141,7 +141,7 @@ class Create extends FeatureAbstract
      */
     public function testPostEmailFail(): void
     {
-        $this->authAdmin();
+        $this->authUserAdmin();
 
         $data = $this->factoryWhitelist(Model::class, ['name', 'password']);
         $data['email'] = uniqid();
@@ -158,7 +158,7 @@ class Create extends FeatureAbstract
      */
     public function testPostPasswordFail(): void
     {
-        $this->authAdmin();
+        $this->authUserAdmin();
 
         $data = $this->factoryWhitelist(Model::class, ['name', 'email']);
         $data['password'] = '123';
@@ -187,7 +187,7 @@ class Create extends FeatureAbstract
      */
     public function testPostSuccess(): void
     {
-        $this->authAdmin();
+        $this->authUserAdmin();
 
         $data = $this->factoryMake(Model::class)->toArray() + $this->action();
         $data['password'] = uniqid();
@@ -219,7 +219,7 @@ class Create extends FeatureAbstract
      */
     public function testPostSuccessCertificateNoPassword(): void
     {
-        $this->authAdmin();
+        $this->authUserAdmin();
 
         $this->post($this->route(), $this->factoryWhitelist(Model::class, ['name', 'email', 'certificate']))
             ->assertStatus(302)
@@ -231,7 +231,7 @@ class Create extends FeatureAbstract
      */
     public function testPostWithoutActionSuccess(): void
     {
-        $this->authAdmin();
+        $this->authUserAdmin();
 
         $this->post($this->route(), $this->factoryWhitelist(Model::class, ['name', 'email', 'password'], false))
             ->assertStatus(200)
