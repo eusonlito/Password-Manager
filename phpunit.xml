@@ -23,6 +23,9 @@
             <file>./app/Domains/User/Test/Feature/AuthCredentials.php</file>
             <file>./app/Domains/User/Test/Feature/AuthTFA.php</file>
             <file>./app/Domains/User/Test/Feature/Create.php</file>
+            <file>./app/Domains/User/Test/Feature/Disabled.php</file>
+            <file>./app/Domains/User/Test/Feature/Index.php</file>
+            <file>./app/Domains/User/Test/Feature/Logout.php</file>
         </testsuite>
     </testsuites>
 

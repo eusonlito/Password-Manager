@@ -185,6 +185,18 @@ class Create extends FeatureAbstract
     /**
      * @return void
      */
+    public function testPostWithoutActionSuccess(): void
+    {
+        $this->authUserAdmin();
+
+        $this->post($this->route(), $this->factoryWhitelist(Model::class, ['name', 'email', 'password'], false))
+            ->assertStatus(200)
+            ->assertViewIs('domains.user.create');
+    }
+
+    /**
+     * @return void
+     */
     public function testPostSuccess(): void
     {
         $this->authUserAdmin();
@@ -217,24 +229,12 @@ class Create extends FeatureAbstract
     /**
      * @return void
      */
-    public function testPostSuccessCertificateNoPassword(): void
+    public function testPostCertificateNoPasswordSuccess(): void
     {
         $this->authUserAdmin();
 
         $this->post($this->route(), $this->factoryWhitelist(Model::class, ['name', 'email', 'certificate']))
             ->assertStatus(302)
             ->assertRedirect(route('user.update.team', $this->userLast()->id));
-    }
-
-    /**
-     * @return void
-     */
-    public function testPostWithoutActionSuccess(): void
-    {
-        $this->authUserAdmin();
-
-        $this->post($this->route(), $this->factoryWhitelist(Model::class, ['name', 'email', 'password'], false))
-            ->assertStatus(200)
-            ->assertViewIs('domains.user.create');
     }
 }

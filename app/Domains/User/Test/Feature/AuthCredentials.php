@@ -17,6 +17,14 @@ class AuthCredentials extends FeatureAbstract
     protected string $action = 'authCredentials';
 
     /**
+     * @var array
+     */
+    protected array $validation = [
+        'email' => ['bail', 'required', 'email:filter'],
+        'password' => ['bail', 'required'],
+    ];
+
+    /**
      * @return void
      */
     public function testGetSuccess(): void
@@ -105,6 +113,22 @@ class AuthCredentials extends FeatureAbstract
     {
         $user = $this->user();
         $user->password_enabled = false;
+        $user->save();
+
+        $this->post($this->route(), ['email' => $user->email, 'password' => $user->email] + $this->action())
+            ->assertStatus(401)
+            ->assertDontSee('validation.')
+            ->assertDontSee('validator.')
+            ->assertSee('Error de autenticación');
+    }
+
+    /**
+     * @return void
+     */
+    public function testPostDisabledFail(): void
+    {
+        $user = $this->user();
+        $user->enabled = false;
         $user->save();
 
         $this->post($this->route(), ['email' => $user->email, 'password' => $user->email] + $this->action())
