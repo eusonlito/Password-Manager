@@ -28,10 +28,9 @@ This project has an extension for Google Chrome that you can download at https:/
 ### Requirements
 
 - Apache2 (nginx does not support authentication with certificate limited to certain routes)
-- PHP 8.0 or higher (php-curl php-imagick php-mbstring php-mysql php-redis php-zip)
+- PHP 8.0 or higher (php-curl php-imagick php-mbstring php-mysql php-zip)
 - MySQL 8.0
 - ImageMagick
-- Redis
 
 If PHP 8 is not the default PHP version on your system you must use the binary prefix to exeucte `composer` and `artisan`, for example:
 

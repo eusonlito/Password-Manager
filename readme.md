@@ -28,10 +28,9 @@ Este proyecto dispone de una extensión para Google Chrome que puedes descargar 
 ### Requisitos
 
 - Apache2 (nginx no soporta autenticación con certificado limitado a ciertas rutas)
-- PHP 8.0 o superior (php-curl php-imagick php-mbstring php-mysql php-redis php-zip)
+- PHP 8.0 o superior (php-curl php-imagick php-mbstring php-mysql php-zip)
 - MySQL 8.0
 - ImageMagick
-- Redis
 
 Recuerda que si PHP 8 no es la versión por defecto del sistema, siempre debes usar el prefijo de versión, tanto para `composer` como para `artisan`, por ejemplo:
 
