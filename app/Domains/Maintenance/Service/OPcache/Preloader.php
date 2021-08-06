@@ -164,7 +164,11 @@ class Preloader
         }
 
         foreach ($this->ignores as $ignore) {
-            if (strpos($name, $ignore) === 0) {
+            if (strpos($ignore, '/') === 0) {
+                if (preg_match($ignore, $name) !== 0) {
+                    return true;
+                }
+            } elseif (strpos($name, $ignore) === 0) {
                 return true;
             }
         }

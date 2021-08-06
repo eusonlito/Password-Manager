@@ -25,12 +25,14 @@ class OpcachePreload extends ActionAbstract
                 base_path('vendor/laravel'),
             )
             ->ignore(
-                'App\Domains\Shared\Test',
                 'Illuminate\Http\Testing',
                 'Illuminate\Filesystem\Cache',
                 'Illuminate\Foundation\Testing',
                 'Illuminate\Testing',
                 'PHPUnit',
+                'Tests',
+
+                '/App\\\Domains\\\[^\\\]+\\\Test/',
             )
             ->load()
             ->log();
