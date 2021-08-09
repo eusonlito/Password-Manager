@@ -29,6 +29,7 @@
             <file>./app/Domains/User/Test/Feature/Profile.php</file>
             <file>./app/Domains/User/Test/Feature/ProfileCertificate.php</file>
             <file>./app/Domains/User/Test/Feature/Update.php</file>
+            <file>./app/Domains/User/Test/Feature/UpdateApp.php</file>
         </testsuite>
     </testsuites>
 

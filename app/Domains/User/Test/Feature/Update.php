@@ -194,6 +194,32 @@ class Update extends FeatureAbstract
     /**
      * @return void
      */
+    public function testPostSelfFail(): void
+    {
+        $data = $this->authUserAdmin()->toArray();
+
+        $this->post($this->route(null, $data['id']), ['enabled' => false] + $data + $this->action())
+            ->assertStatus(422)
+            ->assertDontSee('validation.')
+            ->assertDontSee('validator.')
+            ->assertSee('No es posible desactivar a tu propio usuario');
+
+        $this->post($this->route(null, $data['id']), ['admin' => false] + $data + $this->action())
+            ->assertStatus(422)
+            ->assertDontSee('validation.')
+            ->assertDontSee('validator.')
+            ->assertSee('No es posible desactivar la opción de administrador de tu propio usuario');
+
+        $this->post($this->route(null, $data['id']), ['readonly' => true] + $data + $this->action())
+            ->assertStatus(422)
+            ->assertDontSee('validation.')
+            ->assertDontSee('validator.')
+            ->assertSee('No es posible marcar la opción de sólo lectura para tu propio usuario');
+    }
+
+    /**
+     * @return void
+     */
     public function testPostSuccess(): void
     {
         $this->authUserAdmin();

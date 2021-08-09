@@ -6,7 +6,7 @@
     'email' => 'Email',
     'enabled' => 'Enabled',
     'error' => [
-        'admin-own' => 'It is not possible to disable as admin your own user',
+        'admin-own' => 'It is not possible to disable administrator option on your own user',
         'certificate-exists' => 'Another user with that same certificate already exists',
         'certificate-password-empty' => 'You cannot turn off password access if a certificate is not defined',
         'email-exists' => 'There is already another user with that same email',

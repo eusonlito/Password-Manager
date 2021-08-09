@@ -6,7 +6,7 @@
     'email' => 'Email',
     'enabled' => 'Activo',
     'error' => [
-        'admin-own' => 'No es posible desactivar la opción de usuario de tu propio usuario',
+        'admin-own' => 'No es posible desactivar la opción de administrador de tu propio usuario',
         'certificate-exists' => 'Ya existe otro usuario con ese mismo certificado',
         'certificate-password-empty' => 'No se puede desactivar el acceso por contraseña si no se ha definido un certificado',
         'email-exists' => 'Ya existe otro usuario con ese mismo email',
