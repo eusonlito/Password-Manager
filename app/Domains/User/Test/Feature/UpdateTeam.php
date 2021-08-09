@@ -30,7 +30,7 @@ class UpdateTeam extends FeatureAbstract
      */
     public function testGetUnauthorizedFail(): void
     {
-        $this->get($this->route(null, 1))
+        $this->get($this->route(null, $this->factoryCreate(Model::class)->id))
             ->assertStatus(302)
             ->assertRedirect(route('user.auth.credentials'));
     }
@@ -40,7 +40,7 @@ class UpdateTeam extends FeatureAbstract
      */
     public function testPostUnauthorizedFail(): void
     {
-        $this->post($this->route(null, 1))
+        $this->post($this->route(null, $this->factoryCreate(Model::class)->id))
             ->assertStatus(302)
             ->assertRedirect(route('user.auth.credentials'));
     }

@@ -30,7 +30,7 @@ class UpdateBoolean extends FeatureAbstract
      */
     public function testGetUnauthorizedFail(): void
     {
-        $this->get($this->route(null, 1, 'enabled'))
+        $this->get($this->route(null, $this->factoryCreate(Model::class)->id, 'enabled'))
             ->assertStatus(405);
     }
 
@@ -39,7 +39,7 @@ class UpdateBoolean extends FeatureAbstract
      */
     public function testPostUnauthorizedFail(): void
     {
-        $this->post($this->route(null, 1, 'enabled'))
+        $this->post($this->route(null, $this->factoryCreate(Model::class)->id, 'enabled'))
             ->assertStatus(302)
             ->assertRedirect(route('user.auth.credentials'));
     }
