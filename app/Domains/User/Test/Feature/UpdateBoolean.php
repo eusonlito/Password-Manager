@@ -99,22 +99,22 @@ class UpdateBoolean extends FeatureAbstract
      */
     public function testPostSelfFail(): void
     {
-        $user = $this->authUserAdmin();
+        $row = $this->authUserAdmin();
 
-        $this->postJson($this->route(null, $user->id, 'enabled'))
+        $this->postJson($this->route(null, $row->id, 'enabled'))
             ->assertStatus(422)
             ->assertJson(['message' => 'No es posible desactivar a tu propio usuario']);
 
-        $this->postJson($this->route(null, $user->id, 'admin'))
+        $this->postJson($this->route(null, $row->id, 'admin'))
             ->assertStatus(422)
             ->assertJson(['message' => 'No es posible desactivar la opción de administrador de tu propio usuario']);
 
-        $this->postJson($this->route(null, $user->id, 'readonly'))
+        $this->postJson($this->route(null, $row->id, 'readonly'))
             ->assertStatus(422)
             ->assertJson(['message' => 'No es posible marcar la opción de sólo lectura para tu propio usuario']);
 
         try {
-            $this->post($this->route(null, $user->id, 'enabled'))
+            $this->post($this->route(null, $row->id, 'enabled'))
                 ->assertStatus(422)
                 ->assertJson(['message' => 'No es posible desactivar a tu propio usuario']);
         } catch (ValidatorException $e) {
@@ -122,7 +122,7 @@ class UpdateBoolean extends FeatureAbstract
         }
 
         try {
-            $this->post($this->route(null, $user->id, 'admin'))
+            $this->post($this->route(null, $row->id, 'admin'))
                 ->assertStatus(422)
                 ->assertJson(['message' => 'No es posible desactivar la opción de administrador de tu propio usuario']);
         } catch (ValidatorException $e) {
@@ -130,7 +130,7 @@ class UpdateBoolean extends FeatureAbstract
         }
 
         try {
-            $this->post($this->route(null, $user->id, 'readonly'))
+            $this->post($this->route(null, $row->id, 'readonly'))
                 ->assertStatus(422)
                 ->assertJson(['message' => 'No es posible marcar la opción de sólo lectura para tu propio usuario']);
         } catch (ValidatorException $e) {
@@ -145,14 +145,14 @@ class UpdateBoolean extends FeatureAbstract
     {
         $this->authUserAdmin();
 
-        $user = $this->factoryCreate(Model::class);
+        $row = $this->factoryCreate(Model::class);
 
-        $user->admin = true;
-        $user->readonly = true;
-        $user->enabled = true;
-        $user->save();
+        $row->admin = true;
+        $row->readonly = true;
+        $row->enabled = true;
+        $row->save();
 
-        $this->post($this->route(null, $user->id, 'admin'))
+        $this->post($this->route(null, $row->id, 'admin'))
             ->assertStatus(200)
             ->assertJson([
                 'admin' => false,
@@ -160,13 +160,13 @@ class UpdateBoolean extends FeatureAbstract
                 'enabled' => true,
             ]);
 
-        $user = $this->userLast();
+        $row = $this->userLast();
 
-        $this->assertEquals($user->admin, false);
-        $this->assertEquals($user->readonly, true);
-        $this->assertEquals($user->enabled, true);
+        $this->assertEquals($row->admin, false);
+        $this->assertEquals($row->readonly, true);
+        $this->assertEquals($row->enabled, true);
 
-        $this->post($this->route(null, $user->id, 'readonly'))
+        $this->post($this->route(null, $row->id, 'readonly'))
             ->assertStatus(200)
             ->assertJson([
                 'admin' => false,
@@ -174,13 +174,13 @@ class UpdateBoolean extends FeatureAbstract
                 'enabled' => true,
             ]);
 
-        $user = $this->userLast();
+        $row = $this->userLast();
 
-        $this->assertEquals($user->admin, false);
-        $this->assertEquals($user->readonly, false);
-        $this->assertEquals($user->enabled, true);
+        $this->assertEquals($row->admin, false);
+        $this->assertEquals($row->readonly, false);
+        $this->assertEquals($row->enabled, true);
 
-        $this->post($this->route(null, $user->id, 'enabled'))
+        $this->post($this->route(null, $row->id, 'enabled'))
             ->assertStatus(200)
             ->assertJson([
                 'admin' => false,
@@ -188,10 +188,10 @@ class UpdateBoolean extends FeatureAbstract
                 'enabled' => false,
             ]);
 
-        $user = $this->userLast();
+        $row = $this->userLast();
 
-        $this->assertEquals($user->admin, false);
-        $this->assertEquals($user->readonly, false);
-        $this->assertEquals($user->enabled, false);
+        $this->assertEquals($row->admin, false);
+        $this->assertEquals($row->readonly, false);
+        $this->assertEquals($row->enabled, false);
     }
 }
