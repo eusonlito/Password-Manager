@@ -118,11 +118,11 @@ class Profile extends FeatureAbstract
      */
     public function testPostEmailFail(): void
     {
-        $user = $this->authUser();
+        $row = $this->authUser();
 
-        $data = $user->toArray();
+        $data = $row->toArray();
         $data['email'] = uniqid();
-        $data['password_current'] = $user->email;
+        $data['password_current'] = $row->email;
 
         $this->post($this->route(), $data + $this->action())
             ->assertStatus(422)
@@ -136,11 +136,11 @@ class Profile extends FeatureAbstract
      */
     public function testPostPasswordFail(): void
     {
-        $user = $this->authUser();
+        $row = $this->authUser();
 
-        $data = $user->toArray();
+        $data = $row->toArray();
         $data['password'] = '123';
-        $data['password_current'] = $user->email;
+        $data['password_current'] = $row->email;
 
         $this->post($this->route(), $data + $this->action())
             ->assertStatus(422)
@@ -164,11 +164,11 @@ class Profile extends FeatureAbstract
      */
     public function testPostApiKeyFail(): void
     {
-        $user = $this->authUser();
+        $row = $this->authUser();
 
-        $data = $user->toArray();
+        $data = $row->toArray();
         $data['api_key'] = uniqid();
-        $data['password_current'] = $user->email;
+        $data['password_current'] = $row->email;
 
         $this->post($this->route(), $data + $this->action())
             ->assertStatus(422)
@@ -182,24 +182,24 @@ class Profile extends FeatureAbstract
      */
     public function testPostSuccess(): void
     {
-        $user = $this->authUser();
+        $row = $this->authUser();
 
         $data = $this->factoryMake(Model::class)->toArray();
         $data['password'] = $data['email'];
-        $data['password_current'] = $user->email;
+        $data['password_current'] = $row->email;
 
         $this->followingRedirects()
             ->post($this->route(), $data + $this->action())
             ->assertStatus(200)
             ->assertSee('Tu perfil ha sido actualizado correctmente');
 
-        $user = $this->user();
+        $row = $this->user();
 
-        $this->assertEquals($user->name, $data['name']);
-        $this->assertEquals($user->email, $data['email']);
-        $this->assertEquals($user->certificate, $data['certificate']);
-        $this->assertEquals($user->api_key, $data['api_key']);
-        $this->assertEquals($user->password_enabled, $data['password_enabled']);
+        $this->assertEquals($row->name, $data['name']);
+        $this->assertEquals($row->email, $data['email']);
+        $this->assertEquals($row->certificate, $data['certificate']);
+        $this->assertEquals($row->api_key, $data['api_key']);
+        $this->assertEquals($row->password_enabled, $data['password_enabled']);
 
         $this->get(route('user.logout'))
             ->assertStatus(302)
@@ -224,11 +224,11 @@ class Profile extends FeatureAbstract
      */
     public function testPostEmailExistsFail(): void
     {
-        $user = $this->authUser();
+        $row = $this->authUser();
 
         $data = $this->factoryCreate(Model::class)->toArray();
-        $data['certificate'] = $user->certificate;
-        $data['password_current'] = $user->email;
+        $data['certificate'] = $row->certificate;
+        $data['password_current'] = $row->email;
 
         $this->post($this->route(), $data + $this->action())
             ->assertStatus(422)
@@ -237,8 +237,8 @@ class Profile extends FeatureAbstract
             ->assertSee('Ya existe otro usuario con ese mismo email');
 
         $data = $this->factoryCreate(Model::class)->toArray();
-        $data['email'] = $user->email;
-        $data['password_current'] = $user->email;
+        $data['email'] = $row->email;
+        $data['password_current'] = $row->email;
 
         $this->post($this->route(), $data + $this->action())
             ->assertStatus(422)

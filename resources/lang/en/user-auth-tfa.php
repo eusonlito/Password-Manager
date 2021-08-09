@@ -1,6 +1,6 @@
 <?php return [
-    'back' => 'return',
+    'back' => 'Back',
     'code' => 'Google Authenticator Code',
-    'login' => 'enter',
+    'login' => 'Login',
     'meta-title' => 'Two-Factor Authentication',
 ];

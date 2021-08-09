@@ -111,11 +111,11 @@ class AuthCredentials extends FeatureAbstract
      */
     public function testPostPasswordDisabledFail(): void
     {
-        $user = $this->user();
-        $user->password_enabled = false;
-        $user->save();
+        $row = $this->user();
+        $row->password_enabled = false;
+        $row->save();
 
-        $this->post($this->route(), ['email' => $user->email, 'password' => $user->email] + $this->action())
+        $this->post($this->route(), ['email' => $row->email, 'password' => $row->email] + $this->action())
             ->assertStatus(401)
             ->assertDontSee('validation.')
             ->assertDontSee('validator.')
@@ -127,11 +127,11 @@ class AuthCredentials extends FeatureAbstract
      */
     public function testPostDisabledFail(): void
     {
-        $user = $this->user();
-        $user->enabled = false;
-        $user->save();
+        $row = $this->user();
+        $row->enabled = false;
+        $row->save();
 
-        $this->post($this->route(), ['email' => $user->email, 'password' => $user->email] + $this->action())
+        $this->post($this->route(), ['email' => $row->email, 'password' => $row->email] + $this->action())
             ->assertStatus(401)
             ->assertDontSee('validation.')
             ->assertDontSee('validator.')
@@ -143,11 +143,11 @@ class AuthCredentials extends FeatureAbstract
      */
     public function testPostSuccess(): void
     {
-        $user = $this->user();
-        $user->password_enabled = true;
-        $user->save();
+        $row = $this->user();
+        $row->password_enabled = true;
+        $row->save();
 
-        $this->post($this->route(), ['email' => $user->email, 'password' => $user->email] + $this->action())
+        $this->post($this->route(), ['email' => $row->email, 'password' => $row->email] + $this->action())
             ->assertStatus(302)
             ->assertRedirect(route('dashboard.index'));
     }

@@ -2,14 +2,18 @@
 
 namespace App\Domains\Team\Model;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use App\Domains\Shared\Model\ModelAbstract;
 use App\Domains\Team\Model\Builder\Team as Builder;
+use App\Domains\Team\Test\Factory\Team as TestFactory;
 use App\Domains\User\Model\User as UserModel;
 
 class Team extends ModelAbstract
 {
+    use HasFactory;
+
     /**
      * @var string
      */
@@ -40,6 +44,14 @@ class Team extends ModelAbstract
     public function newEloquentBuilder($q)
     {
         return new Builder($q);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Factories\Factory
+     */
+    protected static function newFactory()
+    {
+        return TestFactory::new();
     }
 
     /**

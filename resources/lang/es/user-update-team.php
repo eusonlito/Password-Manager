@@ -1,4 +1,7 @@
 <?php return [
+    'error' => [
+        'team_ids-empty' => 'No se ha indicado ningún equipo',
+    ],
     'filter' => 'Filtrar Equipos...',
     'name' => 'Nombre',
     'related' => 'Relacionado',

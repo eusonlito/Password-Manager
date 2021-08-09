@@ -1,7 +1,7 @@
 <?php return [
-    'close' => 'close',
+    'close' => 'Close',
     'copied' => 'Copied!',
-    'copy' => 'copy',
+    'copy' => 'Copy',
     'error' => [
         'method-not-allowed' => 'Method Not Allowed',
         'not-found' => 'Not Found',
@@ -9,11 +9,11 @@
         'query' => 'System Error',
         'system' => 'System Error',
     ],
-    'generate' => 'generate',
+    'generate' => 'Generate',
     'meta' => [
         'title' => '',
     ],
-    'show' => 'show',
-    'view' => 'see',
-    'visit' => 'visit',
+    'show' => 'Show',
+    'view' => 'View',
+    'visit' => 'Visit',
 ];

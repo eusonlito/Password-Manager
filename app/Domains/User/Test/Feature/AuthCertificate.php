@@ -50,11 +50,11 @@ class AuthCertificate extends FeatureAbstract
      */
     public function testPostDisabledFail(): void
     {
-        $user = $this->user();
-        $user->enabled = false;
-        $user->save();
+        $row = $this->user();
+        $row->enabled = false;
+        $row->save();
 
-        $this->withServerVariables(['SSL_CLIENT_S_DN' => '/serialNumber='.$user->certificate])
+        $this->withServerVariables(['SSL_CLIENT_S_DN' => '/serialNumber='.$row->certificate])
             ->post($this->route(), $this->action())
             ->assertStatus(302)
             ->assertRedirect(route('user.auth.credentials'));

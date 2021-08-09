@@ -55,9 +55,9 @@ class Update extends FeatureAbstract
      */
     public function testGetNoAdminFail(): void
     {
-        $user = $this->authUserAdmin(false);
+        $row = $this->authUserAdmin(false);
 
-        $this->get($this->route(null, $user->id))
+        $this->get($this->route(null, $row->id))
             ->assertStatus(302)
             ->assertRedirect(route('dashboard.index'));
     }
@@ -67,9 +67,9 @@ class Update extends FeatureAbstract
      */
     public function testPostNoAdminFail(): void
     {
-        $user = $this->authUserAdmin(false);
+        $row = $this->authUserAdmin(false);
 
-        $this->post($this->route(null, $user->id))
+        $this->post($this->route(null, $row->id))
             ->assertStatus(302)
             ->assertRedirect(route('dashboard.index'));
     }
@@ -235,19 +235,19 @@ class Update extends FeatureAbstract
             ->assertSee('Los datos del usuario han sido actualizados correctamente')
             ->assertSee($data['name']);
 
-        $user = $this->userLast();
+        $row = $this->userLast();
 
-        $this->assertEquals($user->name, $data['name']);
-        $this->assertEquals($user->email, $data['email']);
-        $this->assertEquals($user->password_enabled, $data['password_enabled']);
-        $this->assertEquals($user->certificate, $data['certificate']);
-        $this->assertEquals($user->admin, $data['admin']);
-        $this->assertEquals($user->readonly, $data['readonly']);
-        $this->assertEquals($user->enabled, $data['enabled']);
+        $this->assertEquals($row->name, $data['name']);
+        $this->assertEquals($row->email, $data['email']);
+        $this->assertEquals($row->password_enabled, $data['password_enabled']);
+        $this->assertEquals($row->certificate, $data['certificate']);
+        $this->assertEquals($row->admin, $data['admin']);
+        $this->assertEquals($row->readonly, $data['readonly']);
+        $this->assertEquals($row->enabled, $data['enabled']);
 
         $new = $this->factoryCreate(Model::class);
         $data['email'] = $new->email;
-        $data['certificate'] = $user->certificate;
+        $data['certificate'] = $row->certificate;
 
         $this->post($this->route(null, $id), $data + $this->action())
             ->assertStatus(422)
@@ -256,7 +256,7 @@ class Update extends FeatureAbstract
             ->assertSee('Ya existe otro usuario con ese mismo email');
 
         $new = $this->factoryCreate(Model::class);
-        $data['email'] = $user->email;
+        $data['email'] = $row->email;
         $data['certificate'] = $new->certificate;
 
         $this->post($this->route(null, $id), $data + $this->action())

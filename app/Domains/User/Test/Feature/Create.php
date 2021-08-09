@@ -210,19 +210,19 @@ class Create extends FeatureAbstract
             ->assertSee('El usuario ha sido creado correctamente')
             ->assertSee($data['name']);
 
-        $user = $this->userLast();
+        $row = $this->userLast();
 
-        $this->assertEquals($user->name, $data['name']);
-        $this->assertEquals($user->email, $data['email']);
-        $this->assertEquals($user->password_enabled, $data['password_enabled']);
-        $this->assertEquals($user->certificate, $data['certificate']);
-        $this->assertEquals($user->admin, $data['admin']);
-        $this->assertEquals($user->readonly, $data['readonly']);
-        $this->assertEquals($user->enabled, $data['enabled']);
+        $this->assertEquals($row->name, $data['name']);
+        $this->assertEquals($row->email, $data['email']);
+        $this->assertEquals($row->password_enabled, $data['password_enabled']);
+        $this->assertEquals($row->certificate, $data['certificate']);
+        $this->assertEquals($row->admin, $data['admin']);
+        $this->assertEquals($row->readonly, $data['readonly']);
+        $this->assertEquals($row->enabled, $data['enabled']);
 
         $new = $this->factoryMake(Model::class)->toArray();
         $new['password'] = uniqid();
-        $new['email'] = $user->email;
+        $new['email'] = $row->email;
 
         $this->post($this->route(), $new + $this->action())
             ->assertStatus(422)
@@ -232,7 +232,7 @@ class Create extends FeatureAbstract
 
         $new = $this->factoryMake(Model::class)->toArray();
         $new['password'] = uniqid();
-        $new['certificate'] = $user->certificate;
+        $new['certificate'] = $row->certificate;
 
         $this->post($this->route(), $new + $this->action())
             ->assertStatus(422)

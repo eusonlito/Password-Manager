@@ -36,9 +36,9 @@ class UpdateApp extends FeatureAbstract
      */
     public function testGetNoAdminFail(): void
     {
-        $user = $this->authUserAdmin(false);
+        $row = $this->authUserAdmin(false);
 
-        $this->get($this->route(null, $user->id))
+        $this->get($this->route(null, $row->id))
             ->assertStatus(302)
             ->assertRedirect(route('dashboard.index'));
     }
@@ -48,9 +48,9 @@ class UpdateApp extends FeatureAbstract
      */
     public function testPostNoAdminFail(): void
     {
-        $user = $this->authUserAdmin(false);
+        $row = $this->authUserAdmin(false);
 
-        $this->post($this->route(null, $user->id))
+        $this->post($this->route(null, $row->id))
             ->assertStatus(302)
             ->assertRedirect(route('dashboard.index'));
     }

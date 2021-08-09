@@ -1,4 +1,7 @@
 <?php return [
+    'error' => [
+        'team_ids-empty' => 'You have not selected any team',
+    ],
     'filter' => 'Filter Teams...',
     'name' => 'Name',
     'related' => 'Related',
