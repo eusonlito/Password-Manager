@@ -83,6 +83,23 @@ class ProfileCertificate extends FeatureAbstract
     /**
      * @return void
      */
+    public function testPostFail(): void
+    {
+        $this->authUser();
+
+        $this->followingRedirects()
+            ->withServerVariables(['SSL_CLIENT_S_DN' => '/serialNumber='.$this->factoryCreate(Model::class)->certificate])
+            ->post($this->route())
+            ->assertStatus(200)
+            ->assertViewIs('domains.user.profile')
+            ->assertDontSee('validation.')
+            ->assertDontSee('validator.')
+            ->assertSee('Ya existe otro usuario con este mismo certificado');
+    }
+
+    /**
+     * @return void
+     */
     public function testGetSuccess(): void
     {
         $this->authUser();
@@ -90,6 +107,23 @@ class ProfileCertificate extends FeatureAbstract
         $this->followingRedirects()
             ->withServerVariables(['SSL_CLIENT_S_DN' => '/serialNumber='.$this->factoryMake(Model::class)->certificate])
             ->get($this->route())
+            ->assertStatus(200)
+            ->assertViewIs('domains.user.profile')
+            ->assertDontSee('validation.')
+            ->assertDontSee('validator.')
+            ->assertSee('El certificado se ha actualizado correctamente');
+    }
+
+    /**
+     * @return void
+     */
+    public function testPostSuccess(): void
+    {
+        $this->authUser();
+
+        $this->followingRedirects()
+            ->withServerVariables(['SSL_CLIENT_S_DN' => '/serialNumber='.$this->factoryMake(Model::class)->certificate])
+            ->post($this->route())
             ->assertStatus(200)
             ->assertViewIs('domains.user.profile')
             ->assertDontSee('validation.')

@@ -28,6 +28,7 @@
             <file>./app/Domains/User/Test/Feature/Logout.php</file>
             <file>./app/Domains/User/Test/Feature/Profile.php</file>
             <file>./app/Domains/User/Test/Feature/ProfileCertificate.php</file>
+            <file>./app/Domains/User/Test/Feature/Update.php</file>
         </testsuite>
     </testsuites>
 

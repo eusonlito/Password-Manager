@@ -17,12 +17,12 @@ abstract class FeatureAbstract extends TestAbstract
     protected string $action;
 
     /**
-     * @param string $name = ''
+     * @param ?string $name = null
      * @param mixed ...$params
      *
      * @return string
      */
-    protected function route(string $name = '', ...$params): string
+    protected function route(?string $name = null, ...$params): string
     {
         return (string)route($this->route.($name ? ('.'.$name) : ''), $params);
     }
