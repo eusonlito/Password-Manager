@@ -38,8 +38,27 @@ class ProfileCertificate extends ActionAbstract
      */
     protected function check(): void
     {
+        $this->checkCertificate();
+        $this->checkExists();
+    }
+
+    /**
+     * @return void
+     */
+    protected function checkCertificate(): void
+    {
         if (empty($this->certificate)) {
             throw new ValidatorException(__('user-profile-certificate.error.not-loaded'));
+        }
+    }
+
+    /**
+     * @return void
+     */
+    protected function checkExists(): void
+    {
+        if (Model::byIdNot($this->row->id)->byCertificate($this->certificate)->count()) {
+            throw new ValidatorException(__('user-profile-certificate.error.exists'));
         }
     }
 

@@ -215,15 +215,30 @@ class Create extends FeatureAbstract
         $this->assertEquals($user->name, $data['name']);
         $this->assertEquals($user->email, $data['email']);
         $this->assertEquals($user->password_enabled, $data['password_enabled']);
+        $this->assertEquals($user->certificate, $data['certificate']);
         $this->assertEquals($user->admin, $data['admin']);
         $this->assertEquals($user->readonly, $data['readonly']);
         $this->assertEquals($user->enabled, $data['enabled']);
 
-        $this->post($this->route(), $data + $this->action())
+        $new = $this->factoryMake(Model::class)->toArray();
+        $new['password'] = uniqid();
+        $new['email'] = $user->email;
+
+        $this->post($this->route(), $new + $this->action())
             ->assertStatus(422)
             ->assertDontSee('validation.')
             ->assertDontSee('validator.')
             ->assertSee('Ya existe otro usuario con ese mismo email');
+
+        $new = $this->factoryMake(Model::class)->toArray();
+        $new['password'] = uniqid();
+        $new['certificate'] = $user->certificate;
+
+        $this->post($this->route(), $new + $this->action())
+            ->assertStatus(422)
+            ->assertDontSee('validation.')
+            ->assertDontSee('validator.')
+            ->assertSee('Ya existe otro usuario con ese mismo certificado');
 
         $this->get(route('user.logout'))
             ->assertStatus(302)

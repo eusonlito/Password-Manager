@@ -227,6 +227,7 @@ class Profile extends FeatureAbstract
         $user = $this->authUser();
 
         $data = $this->factoryCreate(Model::class)->toArray();
+        $data['certificate'] = $user->certificate;
         $data['password_current'] = $user->email;
 
         $this->post($this->route(), $data + $this->action())
@@ -234,5 +235,15 @@ class Profile extends FeatureAbstract
             ->assertDontSee('validation.')
             ->assertDontSee('validator.')
             ->assertSee('Ya existe otro usuario con ese mismo email');
+
+        $data = $this->factoryCreate(Model::class)->toArray();
+        $data['email'] = $user->email;
+        $data['password_current'] = $user->email;
+
+        $this->post($this->route(), $data + $this->action())
+            ->assertStatus(422)
+            ->assertDontSee('validation.')
+            ->assertDontSee('validator.')
+            ->assertSee('Ya existe otro usuario con este mismo certificado');
     }
 }
