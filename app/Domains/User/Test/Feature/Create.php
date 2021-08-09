@@ -3,6 +3,8 @@
 namespace App\Domains\User\Test\Feature;
 
 use App\Domains\User\Model\User as Model;
+use App\Domains\Team\Model\Team as TeamModel;
+use App\Domains\Team\Model\TeamUser as TeamUserModel;
 
 class Create extends FeatureAbstract
 {
@@ -256,6 +258,33 @@ class Create extends FeatureAbstract
             ->post(route('user.auth.certificate'), $this->action('authCertificate'))
             ->assertStatus(302)
             ->assertRedirect(route('dashboard.index'));
+    }
+
+    /**
+     * @return void
+     */
+    public function testPostTeamsSuccess(): void
+    {
+        $this->authUserAdmin();
+
+        $team = $this->factoryCreate(TeamModel::class);
+
+        $data = $this->factoryMake(Model::class)->toArray();
+        $data['password'] = uniqid();
+        $data['teams'] = [$team->id];
+
+        $this->followingRedirects()
+            ->post($this->route(), $data + $this->action())
+            ->assertStatus(200)
+            ->assertSee('El usuario ha sido creado correctamente')
+            ->assertSee($data['name']);
+
+        $this->assertEquals(TeamUserModel::count(), 1);
+
+        $relation = TeamUserModel::first();
+
+        $this->assertEquals($relation->team_id, $team->id);
+        $this->assertEquals($relation->user_id, $this->userLast()->id);
     }
 
     /**
