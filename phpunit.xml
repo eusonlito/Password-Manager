@@ -19,17 +19,7 @@
 
     <testsuites>
         <testsuite name="Feature">
-            <file>./app/Domains/User/Test/Feature/AuthCertificate.php</file>
-            <file>./app/Domains/User/Test/Feature/AuthCredentials.php</file>
-            <file>./app/Domains/User/Test/Feature/AuthTFA.php</file>
-            <file>./app/Domains/User/Test/Feature/Create.php</file>
-            <file>./app/Domains/User/Test/Feature/Disabled.php</file>
-            <file>./app/Domains/User/Test/Feature/Index.php</file>
-            <file>./app/Domains/User/Test/Feature/Logout.php</file>
-            <file>./app/Domains/User/Test/Feature/Profile.php</file>
-            <file>./app/Domains/User/Test/Feature/ProfileCertificate.php</file>
-            <file>./app/Domains/User/Test/Feature/Update.php</file>
-            <file>./app/Domains/User/Test/Feature/UpdateApp.php</file>
+            <directory suffix=".php">./app/Domains/User/Test/Feature</directory>
         </testsuite>
     </testsuites>
 
