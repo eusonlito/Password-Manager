@@ -8,6 +8,7 @@ use Illuminate\Support\Testing\Fakes\MailFake;
 use Faker\Factory as FactoryFaker;
 use Faker\Generator as GeneratorFaker;
 use App\Domains\Shared\Model\ModelAbstract;
+use App\Domains\Shared\Traits\Factory;
 use App\Domains\User\Model\User as UserModel;
 use Database\Seeders\Database as DatabaseSeed;
 use Tests\TestsAbstract;
@@ -16,6 +17,7 @@ use Tests\CreatesApplication;
 abstract class TestAbstract extends TestsAbstract
 {
     use CreatesApplication;
+    use Factory;
 
     /**
      * @var string
@@ -28,9 +30,9 @@ abstract class TestAbstract extends TestsAbstract
     protected GeneratorFaker $faker;
 
     /**
-     * @var \Illuminate\Contracts\Auth\Authenticatable
+     * @var ?\Illuminate\Contracts\Auth\Authenticatable
      */
-    protected Authenticatable $auth;
+    protected ?Authenticatable $auth = null;
 
     /**
      * @param \Illuminate\Contracts\Auth\Authenticatable $user = null

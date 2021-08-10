@@ -22,6 +22,10 @@
             <directory suffix=".php">./app/Domains/Team/Test/Feature</directory>
             <directory suffix=".php">./app/Domains/User/Test/Feature</directory>
         </testsuite>
+
+        <testsuite name="Unit">
+            <directory suffix=".php">./app/Domains/Tag/Test/Unit</directory>
+        </testsuite>
     </testsuites>
 
     <php>

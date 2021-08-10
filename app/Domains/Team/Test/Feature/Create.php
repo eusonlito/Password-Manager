@@ -20,8 +20,8 @@ class Create extends FeatureAbstract
      * @var array
      */
     protected array $validation = [
-            'name' => ['bail', 'required', 'string'],
-            'default' => ['bail', 'boolean'],
+        'name' => ['bail', 'required', 'string'],
+        'default' => ['bail', 'boolean'],
     ];
 
     /**

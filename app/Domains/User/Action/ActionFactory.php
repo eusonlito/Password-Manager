@@ -69,14 +69,6 @@ class ActionFactory extends ActionFactoryAbstract
     }
 
     /**
-     * @return \App\Domains\User\Model\User
-     */
-    public function session(): Model
-    {
-        return $this->actionHandle(Session::class);
-    }
-
-    /**
      * @return bool
      */
     public function sessionTFA(): bool

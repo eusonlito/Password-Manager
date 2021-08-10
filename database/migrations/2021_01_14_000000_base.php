@@ -85,6 +85,27 @@ return new class extends MigrationAbstract {
             $this->timestamps($table);
         });
 
+        Schema::create('tag', function (Blueprint $table) {
+            $table->id();
+
+            $table->string('code')->unique();
+            $table->string('name');
+
+            $table->string('remote_provider')->nullable()->index();
+            $table->string('remote_id')->nullable()->index();
+
+            $this->timestamps($table);
+        });
+
+        Schema::create('tag_app', function (Blueprint $table) {
+            $table->id();
+
+            $this->timestamps($table);
+
+            $table->unsignedBigInteger('app_id');
+            $table->unsignedBigInteger('tag_id');
+        });
+
         Schema::create('team', function (Blueprint $table) {
             $table->id();
 
@@ -115,27 +136,6 @@ return new class extends MigrationAbstract {
 
             $table->unsignedBigInteger('team_id');
             $table->unsignedBigInteger('user_id');
-        });
-
-        Schema::create('tag', function (Blueprint $table) {
-            $table->id();
-
-            $table->string('code')->unique();
-            $table->string('name');
-
-            $table->string('remote_provider')->nullable()->index();
-            $table->string('remote_id')->nullable()->index();
-
-            $this->timestamps($table);
-        });
-
-        Schema::create('tag_app', function (Blueprint $table) {
-            $table->id();
-
-            $this->timestamps($table);
-
-            $table->unsignedBigInteger('app_id');
-            $table->unsignedBigInteger('tag_id');
         });
 
         Schema::create('user', function (Blueprint $table) {
@@ -186,6 +186,13 @@ return new class extends MigrationAbstract {
             $this->foreignOnDeleteSetNull($table, 'user');
         });
 
+        Schema::table('tag_app', function (Blueprint $table) {
+            $table->unique(['app_id', 'tag_id']);
+
+            $this->foreignOnDeleteCascade($table, 'app');
+            $this->foreignOnDeleteCascade($table, 'tag');
+        });
+
         Schema::table('team_app', function (Blueprint $table) {
             $table->unique(['app_id', 'team_id']);
 
@@ -198,13 +205,6 @@ return new class extends MigrationAbstract {
 
             $this->foreignOnDeleteCascade($table, 'team');
             $this->foreignOnDeleteCascade($table, 'user');
-        });
-
-        Schema::table('tag_app', function (Blueprint $table) {
-            $table->unique(['app_id', 'tag_id']);
-
-            $this->foreignOnDeleteCascade($table, 'app');
-            $this->foreignOnDeleteCascade($table, 'tag');
         });
 
         Schema::table('user_session', function (Blueprint $table) {
