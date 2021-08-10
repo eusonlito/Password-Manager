@@ -1,28 +1,28 @@
 <?php declare(strict_types=1);
 
-namespace App\Domains\User\Test\Feature;
+namespace App\Domains\Team\Test\Feature;
 
-use App\Domains\Team\Model\Team as TeamModel;
-use App\Domains\Team\Model\TeamUser as TeamUserModel;
-use App\Domains\User\Model\User as Model;
+use App\Domains\Team\Model\Team as Model;
+use App\Domains\Team\Model\TeamApp as TeamAppModel;
+use App\Domains\App\Model\App as AppModel;
 
-class UpdateTeam extends FeatureAbstract
+class UpdateApp extends FeatureAbstract
 {
     /**
      * @var string
      */
-    protected string $route = 'user.update.team';
+    protected string $route = 'team.update.app';
 
     /**
      * @var string
      */
-    protected string $action = 'updateTeam';
+    protected string $action = 'updateApp';
 
     /**
      * @var array
      */
     protected array $validation = [
-        'team_ids' => ['bail', 'array', 'required'],
+        'app_ids' => ['bail', 'array'],
     ];
 
     /**
@@ -74,7 +74,19 @@ class UpdateTeam extends FeatureAbstract
 
         $this->get($this->route(null, $this->factoryCreate(Model::class)->id))
             ->assertStatus(200)
-            ->assertViewIs('domains.user.update-team');
+            ->assertViewIs('domains.team.update-app');
+    }
+
+    /**
+     * @return void
+     */
+    public function testPostEmptyNoActionSuccess(): void
+    {
+        $this->authUserAdmin();
+
+        $this->post($this->route(null, $this->factoryCreate(Model::class)->id))
+            ->assertStatus(200)
+            ->assertViewIs('domains.team.update-app');
     }
 
     /**
@@ -84,23 +96,10 @@ class UpdateTeam extends FeatureAbstract
     {
         $this->authUserAdmin();
 
-        $this->post($this->route(null, $this->factoryCreate(Model::class)->id))
+        $this->followingRedirects()
+            ->post($this->route(null, $this->factoryCreate(Model::class)->id), $this->action())
             ->assertStatus(200)
-            ->assertViewIs('domains.user.update-team');
-    }
-
-    /**
-     * @return void
-     */
-    public function testPostEmptyFail(): void
-    {
-        $this->authUserAdmin();
-
-        $this->post($this->route(null, $this->factoryCreate(Model::class)->id), $this->action())
-            ->assertStatus(422)
-            ->assertDontSee('validation.')
-            ->assertDontSee('validator.')
-            ->assertSee('El campo team ids es requerido.');
+            ->assertSee('Las aplicaciones se han relacionado correctamente');
     }
 
     /**
@@ -110,17 +109,11 @@ class UpdateTeam extends FeatureAbstract
     {
         $this->authUserAdmin();
 
-        $this->post($this->route(null, $this->factoryCreate(Model::class)->id), ['team_ids' => 1] + $this->action())
+        $this->post($this->route(null, $this->factoryCreate(Model::class)->id), ['app_ids' => 1] + $this->action())
             ->assertStatus(422)
             ->assertDontSee('validation.')
             ->assertDontSee('validator.')
-            ->assertSee('El campo team ids debe ser un array.');
-
-        $this->post($this->route(null, $this->factoryCreate(Model::class)->id), ['team_ids' => [1]] + $this->action())
-            ->assertStatus(422)
-            ->assertDontSee('validation.')
-            ->assertDontSee('validator.')
-            ->assertSee('No se ha indicado ningún equipo');
+            ->assertSee('El campo app ids debe ser un array.');
     }
 
     /**
@@ -128,26 +121,40 @@ class UpdateTeam extends FeatureAbstract
      */
     public function testPostSuccess(): void
     {
-        $this->authUserAdmin();
+        $user = $this->authUserAdmin();
 
         $row = $this->factoryCreate(Model::class);
-        $team = $this->factoryCreate(TeamModel::class);
+        $app = $this->factoryCreate(AppModel::class);
 
         $this->get($this->route(null, $row->id))
             ->assertStatus(200)
-            ->assertSee($team->name);
+            ->assertDontSee($app->name);
+
+        $app->user_id = $user->id;
+        $app->save();
+
+        $this->get($this->route(null, $row->id))
+            ->assertStatus(200)
+            ->assertDontSee($app->name);
+
+        $app->shared = true;
+        $app->save();
+
+        $this->get($this->route(null, $row->id))
+            ->assertStatus(200)
+            ->assertSee($app->name);
 
         $this->followingRedirects()
-            ->post($this->route(null, $row->id), ['team_ids' => [$team->id]] + $this->action())
+            ->post($this->route(null, $row->id), ['app_ids' => [$app->id]] + $this->action())
             ->assertStatus(200)
-            ->assertSee('La relación con los equipos se ha guardado correctamente')
-            ->assertSee($team->name);
+            ->assertSee('Las aplicaciones se han relacionado correctamente')
+            ->assertSee($app->name);
 
-        $this->assertEquals(TeamUserModel::count(), 1);
+        $this->assertEquals(TeamAppModel::count(), 1);
 
-        $relation = TeamUserModel::first();
+        $relation = TeamAppModel::first();
 
-        $this->assertEquals($relation->team_id, $team->id);
-        $this->assertEquals($relation->user_id, $row->id);
+        $this->assertEquals($relation->app_id, $app->id);
+        $this->assertEquals($relation->team_id, $row->id);
     }
 }

@@ -63,6 +63,16 @@ abstract class TestAbstract extends TestsAbstract
     }
 
     /**
+     * @param string $class
+     *
+     * @return \App\Domains\Shared\Model\ModelAbstract
+     */
+    protected function rowLast(string $class): ModelAbstract
+    {
+        return $class::orderBy('id', 'DESC')->first() ?: $class::factory()->create();
+    }
+
+    /**
      * @return \Faker\Generator
      */
     protected function faker(): GeneratorFaker

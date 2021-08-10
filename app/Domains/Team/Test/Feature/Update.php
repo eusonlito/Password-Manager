@@ -1,28 +1,27 @@
 <?php declare(strict_types=1);
 
-namespace App\Domains\User\Test\Feature;
+namespace App\Domains\Team\Test\Feature;
 
-use App\Domains\Team\Model\Team as TeamModel;
-use App\Domains\Team\Model\TeamUser as TeamUserModel;
-use App\Domains\User\Model\User as Model;
+use App\Domains\Team\Model\Team as Model;
 
-class UpdateTeam extends FeatureAbstract
+class Update extends FeatureAbstract
 {
     /**
      * @var string
      */
-    protected string $route = 'user.update.team';
+    protected string $route = 'team.update';
 
     /**
      * @var string
      */
-    protected string $action = 'updateTeam';
+    protected string $action = 'update';
 
     /**
      * @var array
      */
     protected array $validation = [
-        'team_ids' => ['bail', 'array', 'required'],
+            'name' => ['bail', 'required', 'string'],
+            'default' => ['bail', 'boolean'],
     ];
 
     /**
@@ -50,7 +49,9 @@ class UpdateTeam extends FeatureAbstract
      */
     public function testGetNoAdminFail(): void
     {
-        $this->get($this->route(null, $this->authUserAdmin(false)->id))
+        $this->authUserAdmin(false);
+
+        $this->get($this->route(null, $this->factoryCreate(Model::class)->id))
             ->assertStatus(302)
             ->assertRedirect(route('dashboard.index'));
     }
@@ -60,7 +61,9 @@ class UpdateTeam extends FeatureAbstract
      */
     public function testPostNoAdminFail(): void
     {
-        $this->post($this->route(null, $this->authUserAdmin(false)->id))
+        $this->authUserAdmin(false);
+
+        $this->post($this->route(null, $this->factoryCreate(Model::class)->id))
             ->assertStatus(302)
             ->assertRedirect(route('dashboard.index'));
     }
@@ -74,7 +77,7 @@ class UpdateTeam extends FeatureAbstract
 
         $this->get($this->route(null, $this->factoryCreate(Model::class)->id))
             ->assertStatus(200)
-            ->assertViewIs('domains.user.update-team');
+            ->assertViewIs('domains.team.update');
     }
 
     /**
@@ -86,41 +89,34 @@ class UpdateTeam extends FeatureAbstract
 
         $this->post($this->route(null, $this->factoryCreate(Model::class)->id))
             ->assertStatus(200)
-            ->assertViewIs('domains.user.update-team');
+            ->assertViewIs('domains.team.update');
     }
 
     /**
      * @return void
      */
-    public function testPostEmptyFail(): void
+    public function testPostEmptyWithActionFail(): void
     {
         $this->authUserAdmin();
 
         $this->post($this->route(null, $this->factoryCreate(Model::class)->id), $this->action())
             ->assertStatus(422)
             ->assertDontSee('validation.')
-            ->assertDontSee('validator.')
-            ->assertSee('El campo team ids es requerido.');
+            ->assertDontSee('validator.');
     }
 
     /**
      * @return void
      */
-    public function testPostInvalidFail(): void
+    public function testPostWithoutActionSuccess(): void
     {
         $this->authUserAdmin();
 
-        $this->post($this->route(null, $this->factoryCreate(Model::class)->id), ['team_ids' => 1] + $this->action())
-            ->assertStatus(422)
-            ->assertDontSee('validation.')
-            ->assertDontSee('validator.')
-            ->assertSee('El campo team ids debe ser un array.');
+        $id = $this->factoryCreate(Model::class)->id;
 
-        $this->post($this->route(null, $this->factoryCreate(Model::class)->id), ['team_ids' => [1]] + $this->action())
-            ->assertStatus(422)
-            ->assertDontSee('validation.')
-            ->assertDontSee('validator.')
-            ->assertSee('No se ha indicado ningún equipo');
+        $this->post($this->route(null, $id), $this->factoryWhitelist(Model::class, ['name'], false))
+            ->assertStatus(200)
+            ->assertViewIs('domains.team.update');
     }
 
     /**
@@ -130,24 +126,17 @@ class UpdateTeam extends FeatureAbstract
     {
         $this->authUserAdmin();
 
-        $row = $this->factoryCreate(Model::class);
-        $team = $this->factoryCreate(TeamModel::class);
-
-        $this->get($this->route(null, $row->id))
-            ->assertStatus(200)
-            ->assertSee($team->name);
+        $data = $this->factoryMake(Model::class)->toArray();
 
         $this->followingRedirects()
-            ->post($this->route(null, $row->id), ['team_ids' => [$team->id]] + $this->action())
+            ->post($this->route(null, $this->factoryCreate(Model::class)->id), $data + $this->action())
             ->assertStatus(200)
-            ->assertSee('La relación con los equipos se ha guardado correctamente')
-            ->assertSee($team->name);
+            ->assertSee('El equipo se ha actualizado correctamente')
+            ->assertSee($data['name']);
 
-        $this->assertEquals(TeamUserModel::count(), 1);
+        $row = $this->rowLast(Model::class);
 
-        $relation = TeamUserModel::first();
-
-        $this->assertEquals($relation->team_id, $team->id);
-        $this->assertEquals($relation->user_id, $row->id);
+        $this->assertEquals($row->name, $data['name']);
+        $this->assertEquals($row->default, $data['default']);
     }
 }

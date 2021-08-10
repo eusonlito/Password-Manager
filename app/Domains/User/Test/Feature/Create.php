@@ -2,9 +2,9 @@
 
 namespace App\Domains\User\Test\Feature;
 
-use App\Domains\User\Model\User as Model;
 use App\Domains\Team\Model\Team as TeamModel;
 use App\Domains\Team\Model\TeamUser as TeamUserModel;
+use App\Domains\User\Model\User as Model;
 
 class Create extends FeatureAbstract
 {

@@ -2,8 +2,6 @@
 
 namespace App\Domains\User\Test\Feature;
 
-use App\Domains\User\Model\User as Model;
-
 class Index extends FeatureAbstract
 {
     /**

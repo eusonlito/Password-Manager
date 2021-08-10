@@ -39,7 +39,7 @@ return [
         'web' => [
             'driver' => 'session',
             'provider' => 'users',
-        ]
+        ],
     ],
 
     /*
@@ -63,7 +63,7 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\Domains\User\Model\User::class,
-        ]
+        ],
     ],
 
     /*
@@ -85,7 +85,7 @@ return [
     */
 
     'tfa' => [
-         'enabled' => (bool)env('AUTH_TFA_ENABLED')
+         'enabled' => (bool)env('AUTH_TFA_ENABLED'),
      ],
 
     /*
@@ -95,7 +95,7 @@ return [
     */
 
     'certificate' => [
-         'enabled' => (bool)env('AUTH_CERTIFICATE_ENABLED')
+         'enabled' => (bool)env('AUTH_CERTIFICATE_ENABLED'),
      ],
 
     /*

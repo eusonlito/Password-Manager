@@ -4,18 +4,22 @@ namespace App\Domains\App\Model;
 
 use stdClass;
 use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Support\Facades\Crypt;
-use App\Domains\App\Service\Type\Type as TypeService;
 use App\Domains\App\Model\Builder\App as Builder;
-use App\Domains\Team\Model\Team as TeamModel;
-use App\Domains\Team\Model\TeamApp as TeamAppModel;
+use App\Domains\App\Service\Type\Type as TypeService;
+use App\Domains\App\Test\Factory\App as TestFactory;
 use App\Domains\Shared\Model\ModelAbstract;
 use App\Domains\Tag\Model\Tag as TagModel;
 use App\Domains\Tag\Model\TagApp as TagAppModel;
+use App\Domains\Team\Model\Team as TeamModel;
+use App\Domains\Team\Model\TeamApp as TeamAppModel;
 
 class App extends ModelAbstract
 {
+    use HasFactory;
+
     /**
      * @var string
      */
@@ -57,6 +61,14 @@ class App extends ModelAbstract
     public function newEloquentBuilder($q)
     {
         return new Builder($q);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Factories\Factory
+     */
+    protected static function newFactory()
+    {
+        return TestFactory::new();
     }
 
     /**

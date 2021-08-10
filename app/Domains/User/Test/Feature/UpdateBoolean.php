@@ -193,5 +193,47 @@ class UpdateBoolean extends FeatureAbstract
         $this->assertEquals($row->admin, false);
         $this->assertEquals($row->readonly, false);
         $this->assertEquals($row->enabled, false);
+
+        $this->post($this->route(null, $row->id, 'admin'))
+            ->assertStatus(200)
+            ->assertJson([
+                'admin' => true,
+                'readonly' => false,
+                'enabled' => false,
+            ]);
+
+        $row = $this->userLast();
+
+        $this->assertEquals($row->admin, true);
+        $this->assertEquals($row->readonly, false);
+        $this->assertEquals($row->enabled, false);
+
+        $this->post($this->route(null, $row->id, 'readonly'))
+            ->assertStatus(200)
+            ->assertJson([
+                'admin' => true,
+                'readonly' => true,
+                'enabled' => false,
+            ]);
+
+        $row = $this->userLast();
+
+        $this->assertEquals($row->admin, true);
+        $this->assertEquals($row->readonly, true);
+        $this->assertEquals($row->enabled, false);
+
+        $this->post($this->route(null, $row->id, 'enabled'))
+            ->assertStatus(200)
+            ->assertJson([
+                'admin' => true,
+                'readonly' => true,
+                'enabled' => true,
+            ]);
+
+        $row = $this->userLast();
+
+        $this->assertEquals($row->admin, true);
+        $this->assertEquals($row->readonly, true);
+        $this->assertEquals($row->enabled, true);
     }
 }

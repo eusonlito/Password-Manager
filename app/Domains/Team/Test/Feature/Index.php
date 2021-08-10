@@ -1,13 +1,13 @@
 <?php declare(strict_types=1);
 
-namespace App\Domains\User\Test\Feature;
+namespace App\Domains\Team\Test\Feature;
 
-class Logout extends FeatureAbstract
+class Index extends FeatureAbstract
 {
     /**
      * @var string
      */
-    protected string $route = 'user.logout';
+    protected string $route = 'team.index';
 
     /**
      * @return void
@@ -31,25 +31,35 @@ class Logout extends FeatureAbstract
     /**
      * @return void
      */
-    public function testGetSuccess(): void
+    public function testGetNotAdminFail(): void
     {
-        $this->authUserAdmin();
+        $this->authUserAdmin(false);
 
         $this->get($this->route())
-            ->assertStatus(302)
-            ->assertRedirect(route('user.auth.credentials'));
+            ->assertStatus(302);
     }
 
     /**
      * @return void
      */
-    public function testPostDisabledSuccess(): void
+    public function testPostNotAdminFail(): void
     {
-        $this->authUser(['enabled' => false]);
+        $this->authUserAdmin(false);
+
+        $this->post($this->route())
+            ->assertStatus(405);
+    }
+
+    /**
+     * @return void
+     */
+    public function testGetSuccess(): void
+    {
+        $this->authUserAdmin();
 
         $this->get($this->route())
-            ->assertStatus(302)
-            ->assertRedirect(route('user.auth.credentials'));
+            ->assertStatus(200)
+            ->assertViewIs('domains.team.index');
     }
 
     /**
