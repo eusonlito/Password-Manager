@@ -2269,16 +2269,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v8.53.1",
+            "version": "v8.54.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "5df423c2790f32b26baee90518bb659572aa404f"
+                "reference": "7b88554cd1aeb52b7f82689bf244182e7a81894b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/5df423c2790f32b26baee90518bb659572aa404f",
-                "reference": "5df423c2790f32b26baee90518bb659572aa404f",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/7b88554cd1aeb52b7f82689bf244182e7a81894b",
+                "reference": "7b88554cd1aeb52b7f82689bf244182e7a81894b",
                 "shasum": ""
             },
             "require": {
@@ -2433,7 +2433,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2021-08-05T14:04:08+00:00"
+            "time": "2021-08-10T14:25:51+00:00"
         },
         {
             "name": "laravel/helpers",
@@ -4610,16 +4610,16 @@
         },
         {
             "name": "ramsey/uuid",
-            "version": "4.2.0",
+            "version": "4.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ramsey/uuid.git",
-                "reference": "7231612a5221f5524d3575bebdce20eeef8547a1"
+                "reference": "fe665a03df4f056aa65af552a96e1976df8c8dae"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ramsey/uuid/zipball/7231612a5221f5524d3575bebdce20eeef8547a1",
-                "reference": "7231612a5221f5524d3575bebdce20eeef8547a1",
+                "url": "https://api.github.com/repos/ramsey/uuid/zipball/fe665a03df4f056aa65af552a96e1976df8c8dae",
+                "reference": "fe665a03df4f056aa65af552a96e1976df8c8dae",
                 "shasum": ""
             },
             "require": {
@@ -4691,7 +4691,7 @@
             ],
             "support": {
                 "issues": "https://github.com/ramsey/uuid/issues",
-                "source": "https://github.com/ramsey/uuid/tree/4.2.0"
+                "source": "https://github.com/ramsey/uuid/tree/4.2.1"
             },
             "funding": [
                 {
@@ -4703,7 +4703,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-08-06T22:30:43+00:00"
+            "time": "2021-08-11T01:06:55+00:00"
         },
         {
             "name": "react/promise",
@@ -8249,16 +8249,16 @@
         },
         {
             "name": "brianium/paratest",
-            "version": "v6.3.0",
+            "version": "v6.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/paratestphp/paratest.git",
-                "reference": "268d5b2b4237c0abf76c4aa9633ad8580be01e1e"
+                "reference": "3d81e35876f6497467310b123583cca6bd4c38f2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/paratestphp/paratest/zipball/268d5b2b4237c0abf76c4aa9633ad8580be01e1e",
-                "reference": "268d5b2b4237c0abf76c4aa9633ad8580be01e1e",
+                "url": "https://api.github.com/repos/paratestphp/paratest/zipball/3d81e35876f6497467310b123583cca6bd4c38f2",
+                "reference": "3d81e35876f6497467310b123583cca6bd4c38f2",
                 "shasum": ""
             },
             "require": {
@@ -8270,25 +8270,25 @@
                 "phpunit/php-code-coverage": "^9.2.6",
                 "phpunit/php-file-iterator": "^3.0.5",
                 "phpunit/php-timer": "^5.0.3",
-                "phpunit/phpunit": "^9.5.4",
+                "phpunit/phpunit": "^9.5.8",
                 "sebastian/environment": "^5.1.3",
-                "symfony/console": "^4.4.21 || ^5.2.6",
-                "symfony/process": "^4.4.21 || ^5.2.4"
+                "symfony/console": "^4.4.23 || ^5.3.6",
+                "symfony/process": "^4.4.22 || ^5.3.4"
             },
             "require-dev": {
                 "doctrine/coding-standard": "^9.0.0",
                 "ekino/phpstan-banned-code": "^0.4.0",
                 "ergebnis/phpstan-rules": "^0.15.3",
                 "ext-posix": "*",
-                "infection/infection": "^0.21.5",
-                "phpstan/phpstan": "^0.12.84",
+                "infection/infection": "^0.24",
+                "phpstan/phpstan": "^0.12.94",
                 "phpstan/phpstan-deprecation-rules": "^0.12.6",
-                "phpstan/phpstan-phpunit": "^0.12.18",
-                "phpstan/phpstan-strict-rules": "^0.12.9",
+                "phpstan/phpstan-phpunit": "^0.12.21",
+                "phpstan/phpstan-strict-rules": "^0.12.10",
                 "squizlabs/php_codesniffer": "^3.6.0",
-                "symfony/filesystem": "^5.2.6",
+                "symfony/filesystem": "^5.3.4",
                 "thecodingmachine/phpstan-strict-rules": "^0.12.1",
-                "vimeo/psalm": "^4.7.1"
+                "vimeo/psalm": "^4.9.2"
             },
             "bin": [
                 "bin/paratest"
@@ -8327,7 +8327,7 @@
             ],
             "support": {
                 "issues": "https://github.com/paratestphp/paratest/issues",
-                "source": "https://github.com/paratestphp/paratest/tree/v6.3.0"
+                "source": "https://github.com/paratestphp/paratest/tree/v6.3.1"
             },
             "funding": [
                 {
@@ -8339,7 +8339,7 @@
                     "type": "paypal"
                 }
             ],
-            "time": "2021-04-27T09:24:27+00:00"
+            "time": "2021-08-10T07:38:58+00:00"
         },
         {
             "name": "dealerdirect/phpcodesniffer-composer-installer",
