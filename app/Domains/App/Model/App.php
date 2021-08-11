@@ -44,6 +44,13 @@ class App extends ModelAbstract
     ];
 
     /**
+     * @var array
+     */
+    protected $casts = [
+        'user_id' => 'integer',
+    ];
+
+    /**
      * @var \stdClass
      */
     protected stdClass $payloadDecrypted;

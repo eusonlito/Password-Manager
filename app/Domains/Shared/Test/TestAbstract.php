@@ -43,7 +43,7 @@ abstract class TestAbstract extends TestsAbstract
     {
         $this->auth = $user ?: $this->user();
 
-        parent::actingAs($this->auth);
+        $this->actingAs($this->auth);
 
         return $this;
     }
@@ -104,12 +104,12 @@ abstract class TestAbstract extends TestsAbstract
 
     /**
      * @param string $class
-     * @param array $whitelist
+     * @param array $whitelist = []
      * @param string|bool $action = ''
      *
      * @return array
      */
-    protected function factoryWhitelist(string $class, array $whitelist, $action = ''): array
+    protected function factoryWhitelist(string $class, array $whitelist = [], $action = ''): array
     {
         return $this->whitelist($this->factoryMake($class)->toArray(), $whitelist, $action);
     }
@@ -124,14 +124,18 @@ abstract class TestAbstract extends TestsAbstract
 
     /**
      * @param array $data
-     * @param array $whitelist
+     * @param array $whitelist = []
      * @param string|bool $action = ''
      *
      * @return array
      */
-    protected function whitelist(array $data, array $whitelist, $action = ''): array
+    protected function whitelist(array $data, array $whitelist = [], $action = ''): array
     {
-        $values = array_intersect_key($data, array_flip($whitelist));
+        if ($whitelist) {
+            $values = array_intersect_key($data, array_flip($whitelist));
+        } else {
+            $values = $data;
+        }
 
         if (in_array('password', $whitelist, true) && isset($data['email'])) {
             $values['password'] = $data['email'];

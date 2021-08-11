@@ -8,6 +8,7 @@ use App\Domains\App\Service\Icon\Upload as IconUpload;
 use App\Domains\App\Service\Type\Type as TypeService;
 use App\Domains\App\Service\Type\TypeAbstract;
 use App\Domains\Team\Model\Team as TeamModel;
+use App\Exceptions\ValidatorException;
 
 abstract class CreateUpdateAbstract extends ActionAbstract
 {
@@ -112,8 +113,13 @@ abstract class CreateUpdateAbstract extends ActionAbstract
         $allowed = TeamModel::byUserAllowed($this->auth)->pluck('id');
         $forbidden = $this->row->teams->pluck('id')->diff($allowed);
         $valid = $allowed->intersect($this->data['teams']);
+        $ids = $valid->merge($forbidden);
 
-        $this->row->teams()->sync($valid->merge($forbidden));
+        if ($ids->count() === 0) {
+            throw new ValidatorException(__('app-create.error.teams-empty'));
+        }
+
+        $this->row->teams()->sync($ids);
     }
 
     /**

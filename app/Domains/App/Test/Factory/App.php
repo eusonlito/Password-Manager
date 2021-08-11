@@ -3,6 +3,7 @@
 namespace App\Domains\App\Test\Factory;
 
 use Illuminate\Database\Eloquent\Factories\Factory as FactoryEloquent;
+use Illuminate\Support\Facades\Crypt;
 use App\Domains\App\Model\App as Model;
 
 class App extends FactoryEloquent
@@ -20,8 +21,7 @@ class App extends FactoryEloquent
         return [
             'type' => 'website',
             'name' => $this->faker->name,
-            'icon' => '/build/images/app-type-website.png',
-            'payload' => '{}',
+            'payload' => Crypt::encryptString('{}'),
             'shared' => 0,
             'editable' => 0,
             'created_at' => date('Y-m-d H:i:s'),
