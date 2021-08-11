@@ -29,6 +29,7 @@ abstract class CreateUpdateAbstract extends ActionAbstract
     {
         $this->type();
         $this->data();
+        $this->check();
         $this->save();
         $this->saveIcon();
         $this->teams();
@@ -58,6 +59,13 @@ abstract class CreateUpdateAbstract extends ActionAbstract
             $this->data['shared'] = $this->row->shared ?? false;
             $this->data['editable'] = $this->row->editable ?? false;
         }
+    }
+
+    /**
+     * @return void
+     */
+    protected function check(): void
+    {
     }
 
     /**

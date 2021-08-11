@@ -2,6 +2,8 @@
 
 namespace App\Domains\App\Action;
 
+use App\Exceptions\NotAllowedException;
+
 class Delete extends ActionAbstract
 {
     /**
@@ -9,8 +11,16 @@ class Delete extends ActionAbstract
      */
     public function handle(): void
     {
+        $this->check();
         $this->save();
         $this->log();
+    }
+
+    protected function check(): void
+    {
+        if ($this->row->canDelete($this->auth) === false) {
+            throw new NotAllowedException(__('app-delete.error.not-allowed'));
+        }
     }
 
     /**

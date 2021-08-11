@@ -152,4 +152,14 @@ class App extends ModelAbstract
     {
         return ($this->user_id === $auth->id) || ($this->shared && $this->editable && empty($auth->readonly));
     }
+
+    /**
+     * @param \Illuminate\Contracts\Auth\Authenticatable $auth
+     *
+     * @return bool
+     */
+    public function canDelete(Authenticatable $auth): bool
+    {
+        return $this->canEdit($auth);
+    }
 }

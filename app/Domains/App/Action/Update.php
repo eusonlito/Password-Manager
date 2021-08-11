@@ -2,8 +2,20 @@
 
 namespace App\Domains\App\Action;
 
+use App\Exceptions\NotAllowedException;
+
 class Update extends CreateUpdateAbstract
 {
+    /**
+     * @return void
+     */
+    protected function check(): void
+    {
+        if ($this->row->canEdit($this->auth) === false) {
+            throw new NotAllowedException(__('app-update.error.not-allowed'));
+        }
+    }
+
     /**
      * @return void
      */

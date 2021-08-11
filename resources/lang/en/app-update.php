@@ -7,6 +7,9 @@
         'title' => 'Delete Application',
     ],
     'editable' => 'Other users can edit this application',
+    'error' => [
+        'not-allowed' => 'You have not permissions to edit this app.',
+    ],
     'fields-encrypted' => 'Fields in this zone are saved encrypted',
     'icon' => 'Icon (.png)',
     'icon-search' => 'Google Search',

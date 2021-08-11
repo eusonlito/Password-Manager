@@ -1,7 +1,7 @@
 <?php return [
     'editable' => 'Los demás usuarios pueden editar esta aplicación',
     'error' => [
-        'teams-empty' => 'Es necesario seleccionar algún equipo.'
+        'teams-empty' => 'Es necesario seleccionar algún equipo.',
     ],
     'fields-encrypted' => 'Los campos de esta zona se guardarán cifrados',
     'icon' => 'Icono (.png)',

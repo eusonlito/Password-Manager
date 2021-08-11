@@ -2,8 +2,56 @@
 
 namespace App\Domains\App\Test\Feature;
 
+use App\Domains\App\Model\App as Model;
 use App\Domains\Shared\Test\Feature\FeatureAbstract as FeatureAbstractShared;
+use App\Domains\Team\Model\Team as TeamModel;
 
 abstract class FeatureAbstract extends FeatureAbstractShared
 {
+    /**
+     * @return \App\Domains\App\Model\App
+     */
+    protected function rowCreateWithUser(): Model
+    {
+        $row = $this->factoryCreate(Model::class);
+        $row->user_id = $this->authUser()->id;
+        $row->save();
+
+        return $row;
+    }
+
+    /**
+     * @return \App\Domains\App\Model\App
+     */
+    protected function rowCreateWithTeam(): Model
+    {
+        $user = $this->authUser();
+
+        $team = $this->factoryCreate(TeamModel::class);
+        $team->users()->sync([$user->id]);
+
+        $row = $this->factoryCreate(Model::class);
+        $row->teams()->sync([$team->id]);
+
+        return $row;
+    }
+
+    /**
+     * @return \App\Domains\App\Model\App
+     */
+    protected function rowCreateWithUserAndTeam(): Model
+    {
+        $user = $this->authUser();
+
+        $team = $this->factoryCreate(TeamModel::class);
+        $team->users()->sync([$user->id]);
+
+        $row = $this->factoryCreate(Model::class);
+        $row->user_id = $user->id;
+        $row->save();
+
+        $row->teams()->sync([$team->id]);
+
+        return $row;
+    }
 }

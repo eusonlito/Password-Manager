@@ -1,7 +1,7 @@
 <?php return [
     'editable' => 'Other users can edit this application',
     'error' => [
-        'teams-empty' => 'Do you need to choose some team.'
+        'teams-empty' => 'Do you need to choose some team.',
     ],
     'fields-encrypted' => 'Fields in this zone will be stored encrypted',
     'icon' => 'Icon (.png)',

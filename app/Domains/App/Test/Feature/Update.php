@@ -415,53 +415,6 @@ class Update extends FeatureAbstract
     }
 
     /**
-     * @return \App\Domains\App\Model\App
-     */
-    protected function rowCreateWithUser(): Model
-    {
-        $row = $this->factoryCreate(Model::class);
-        $row->user_id = $this->authUser()->id;
-        $row->save();
-
-        return $row;
-    }
-
-    /**
-     * @return \App\Domains\App\Model\App
-     */
-    protected function rowCreateWithTeam(): Model
-    {
-        $user = $this->authUser();
-
-        $team = $this->factoryCreate(TeamModel::class);
-        $team->users()->sync([$user->id]);
-
-        $row = $this->factoryCreate(Model::class);
-        $row->teams()->sync([$team->id]);
-
-        return $row;
-    }
-
-    /**
-     * @return \App\Domains\App\Model\App
-     */
-    protected function rowCreateWithUserAndTeam(): Model
-    {
-        $user = $this->authUser();
-
-        $team = $this->factoryCreate(TeamModel::class);
-        $team->users()->sync([$user->id]);
-
-        $row = $this->factoryCreate(Model::class);
-        $row->user_id = $user->id;
-        $row->save();
-
-        $row->teams()->sync([$team->id]);
-
-        return $row;
-    }
-
-    /**
      * @param string $type
      * @param array $payload
      *

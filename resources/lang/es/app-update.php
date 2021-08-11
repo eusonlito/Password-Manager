@@ -7,6 +7,9 @@
         'title' => 'Borrar aplicación',
     ],
     'editable' => 'Los demás usuarios pueden editar esta aplicación',
+    'error' => [
+        'not-allowed' => 'No dispones de permisos para poder editar esta aplicación.',
+    ],
     'fields-encrypted' => 'Los campos de esta zona se guardan cifrados',
     'icon' => 'Icono (.png)',
     'icon-search' => 'Buscar en Google',
