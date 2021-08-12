@@ -6,6 +6,7 @@ use stdClass;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Crypt;
 use App\Domains\App\Model\Builder\App as Builder;
 use App\Domains\App\Service\Type\Type as TypeService;
@@ -92,6 +93,14 @@ class App extends ModelAbstract
     public function teams(): BelongsToMany
     {
         return $this->belongsToMany(TeamModel::class, TeamAppModel::TABLE);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function teamsPivot(): HasMany
+    {
+        return $this->hasMany(TeamAppModel::class, static::FOREIGN);
     }
 
     /**

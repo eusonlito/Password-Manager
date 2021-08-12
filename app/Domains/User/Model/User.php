@@ -6,6 +6,7 @@ use Illuminate\Auth\Authenticatable as AuthenticatableTrait;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use App\Domains\Team\Model\Team as TeamModel;
 use App\Domains\Team\Model\TeamUser as TeamUserModel;
@@ -80,6 +81,14 @@ class User extends ModelAbstract implements Authenticatable
     public function teams(): BelongsToMany
     {
         return $this->belongsToMany(TeamModel::class, 'team_user');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function teamsPivot(): HasMany
+    {
+        return $this->hasMany(TeamUserModel::class, static::FOREIGN);
     }
 
     /**
