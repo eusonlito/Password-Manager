@@ -21,11 +21,23 @@ class App extends FactoryEloquent
         return [
             'type' => 'website',
             'name' => $this->faker->name,
-            'payload' => Crypt::encryptString('{}'),
+            'payload' => $this->payload(),
             'shared' => 0,
             'editable' => 0,
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
         ];
+    }
+
+    /**
+     * @return string
+     */
+    protected function payload()
+    {
+        return Crypt::encryptString(json_encode([
+            'url' => 'https://google.es',
+            'user' => 'Google',
+            'password' => '123456',
+        ]));
     }
 }
