@@ -63,13 +63,9 @@ class Update extends FeatureAbstract
      */
     public function testGetSuccess(): void
     {
-        $user = $this->authUser();
+        $this->authUser();
 
-        $row = $this->factoryCreate(Model::class);
-        $row->user_id = $user->id;
-        $row->save();
-
-        $this->get($this->route(null, $row->id))
+        $this->get($this->route(null, $this->rowCreateWithUser()->id))
             ->assertStatus(200)
             ->assertViewIs('domains.app.update');
     }

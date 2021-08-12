@@ -54,4 +54,12 @@ abstract class FeatureAbstract extends FeatureAbstractShared
 
         return $row;
     }
+
+    /**
+     * @return array
+     */
+    protected function apiAuthorization(): array
+    {
+        return ['Authorization' => $this->authUser()->api_key];
+    }
 }

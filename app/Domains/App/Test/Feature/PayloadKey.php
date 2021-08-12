@@ -37,13 +37,9 @@ class PayloadKey extends FeatureAbstract
      */
     public function testGetFail(): void
     {
-        $user = $this->authUser();
+        $this->authUser();
 
-        $row = $this->factoryCreate(Model::class);
-        $row->user_id = $user->id;
-        $row->save();
-
-        $this->get($this->route(null, $row->id, 'user'))
+        $this->get($this->route(null, $this->rowCreateWithUser()->id, 'user'))
             ->assertStatus(405);
     }
 
@@ -94,17 +90,21 @@ class PayloadKey extends FeatureAbstract
 
         $row->save();
 
+        $this->assertEquals($row->payload('url'), 'https://google.es');
+        $this->assertEquals($row->payload('user'), 'Google');
+        $this->assertEquals($row->payload('password'), '123456');
+
         $this->post($this->route(null, $row->id, 'url'))
             ->assertStatus(200)
-            ->assertExactJson(['value' => base64_encode('https://google.es')]);
+            ->assertExactJson(['value' => base64_encode($row->payload('url'))]);
 
         $this->post($this->route(null, $row->id, 'user'))
             ->assertStatus(200)
-            ->assertExactJson(['value' => base64_encode('Google')]);
+            ->assertExactJson(['value' => base64_encode($row->payload('user'))]);
 
         $this->post($this->route(null, $row->id, 'password'))
             ->assertStatus(200)
-            ->assertExactJson(['value' => base64_encode('123456')]);
+            ->assertExactJson(['value' => base64_encode($row->payload('password'))]);
 
         $this->post($this->route(null, $row->id, 'private'))
             ->assertStatus(200)
