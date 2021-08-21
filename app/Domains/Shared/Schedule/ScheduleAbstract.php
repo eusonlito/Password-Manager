@@ -8,11 +8,6 @@ use Illuminate\Console\Scheduling\Schedule;
 abstract class ScheduleAbstract
 {
     /**
-     * @var \Illuminate\Console\Scheduling\Schedule
-     */
-    protected Schedule $schedule;
-
-    /**
      * @return void
      */
     abstract public function handle(): void;
@@ -22,9 +17,8 @@ abstract class ScheduleAbstract
      *
      * @return void
      */
-    final public function __construct(Schedule $schedule)
+    public final function __construct(protected Schedule $schedule)
     {
-        $this->schedule = $schedule;
     }
 
     /**

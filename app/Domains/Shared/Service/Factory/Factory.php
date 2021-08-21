@@ -12,42 +12,14 @@ use App\Domains\Shared\Validate\ValidateFactoryAbstract;
 class Factory
 {
     /**
-     * @var string
-     */
-    protected string $namespace;
-
-    /**
-     * @var ?\Illuminate\Http\Request
-     */
-    protected ?Request $request;
-
-    /**
-     * @var ?\Illuminate\Contracts\Auth\Authenticatable
-     */
-    protected ?Authenticatable $auth;
-
-    /**
-     * @var ?\App\Domains\Shared\Model\ModelAbstract
-     */
-    protected ?ModelAbstract $row;
-
-    /**
      * @param string $namespace
      * @param ?\Illuminate\Http\Request $request = null
      * @param ?\Illuminate\Contracts\Auth\Authenticatable $auth = null
      *
      * @return self
      */
-    public function __construct(
-        string $namespace,
-        ?Request $request = null,
-        ?Authenticatable $auth = null,
-        ?ModelAbstract $row = null
-    ) {
-        $this->namespace = $namespace;
-        $this->request = $request;
-        $this->auth = $auth;
-        $this->row = $row;
+    public function __construct(protected string $namespace, protected ?\Illuminate\Http\Request $request = null, protected ?\Illuminate\Contracts\Auth\Authenticatable $auth = null, protected ?\App\Domains\Shared\Model\ModelAbstract $row = null)
+    {
     }
 
     /**

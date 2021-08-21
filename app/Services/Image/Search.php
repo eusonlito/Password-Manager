@@ -7,18 +7,12 @@ use App\Services\Http\Curl\Curl;
 class Search
 {
     /**
-     * @var string
-     */
-    protected string $search;
-
-    /**
      * @param string $search
      *
      * @return self
      */
-    public function __construct(string $search)
+    public function __construct(protected string $search)
     {
-        $this->search = $search;
     }
 
     /**

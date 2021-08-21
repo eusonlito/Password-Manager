@@ -5,18 +5,12 @@ namespace App\Domains\Shared\Validate;
 abstract class ValidateFactoryAbstract
 {
     /**
-     * @var array
-     */
-    protected array $data;
-
-    /**
      * @param array $data
      *
      * @return self
      */
-    final public function __construct(array $data)
+    public final function __construct(protected array $data)
     {
-        $this->data = $data;
     }
 
     /**

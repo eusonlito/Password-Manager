@@ -9,18 +9,12 @@ use Illuminate\Support\Facades\Mail;
 abstract class MailFactoryAbstract
 {
     /**
-     * @var ?\Illuminate\Contracts\Auth\Authenticatable
-     */
-    protected ?Authenticatable $auth;
-
-    /**
      * @param ?\Illuminate\Contracts\Auth\Authenticatable $auth = null
      *
      * @return self
      */
-    final public function __construct(?Authenticatable $auth = null)
+    public final function __construct(protected ?\Illuminate\Contracts\Auth\Authenticatable $auth = null)
     {
-        $this->auth = $auth;
     }
 
     /**

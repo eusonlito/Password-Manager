@@ -8,11 +8,6 @@ use App\Services\Filesystem\Directory;
 class File
 {
     /**
-     * @var string
-     */
-    protected string $folder;
-
-    /**
      * @var array
      */
     protected array $extensions = [];
@@ -37,9 +32,8 @@ class File
      *
      * @return self
      */
-    public function __construct(string $folder)
+    public function __construct(protected string $folder)
     {
-        $this->folder = $folder;
     }
 
     /**

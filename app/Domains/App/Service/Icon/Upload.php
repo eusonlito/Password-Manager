@@ -7,16 +7,6 @@ use Illuminate\Http\UploadedFile;
 class Upload
 {
     /**
-     * @var \Illuminate\Http\UploadedFile
-     */
-    protected UploadedFile $file;
-
-    /**
-     * @var int|string
-     */
-    protected int|string $name;
-
-    /**
      * @var string
      */
     protected string $www;
@@ -32,10 +22,8 @@ class Upload
      *
      * @return self
      */
-    public function __construct(UploadedFile $file, int|string $name)
+    public function __construct(protected UploadedFile $file, protected int|string $name)
     {
-        $this->file = $file;
-        $this->name = $name;
         $this->www = $this->www();
         $this->path = $this->path();
     }

@@ -8,11 +8,6 @@ use Illuminate\View\View;
 class Select extends Component
 {
     /**
-     * @var string
-     */
-    public string $value;
-
-    /**
      * @var array
      */
     public array $text;
@@ -26,16 +21,6 @@ class Select extends Component
      * @var string|array
      */
     public string|array $selected;
-
-    /**
-     * @var string
-     */
-    public string $label;
-
-    /**
-     * @var string
-     */
-    public string $name;
 
     /**
      * @var string
@@ -56,20 +41,17 @@ class Select extends Component
      */
     public function __construct(
         array $options,
-        string $value = '',
+        public string $value = '',
         $text = '',
-        string $label = '',
+        public string $label = '',
         string|int|array|null $selected = '',
-        string $name = '',
+        public string $name = '',
         string $id = '',
         string $placeholder = ''
     ) {
-        $this->value = $value;
         $this->text = (array)$text;
         $this->selected = $this->selected($selected);
         $this->options = $this->options($options);
-        $this->label = $label;
-        $this->name = $name;
         $this->id = $id ?: 'input-'.uniqid();
 
         $this->placeholder($placeholder);

@@ -12,11 +12,6 @@ abstract class ServiceAbstract
     protected array $config;
 
     /**
-     * @var string
-     */
-    protected string $host;
-
-    /**
      * @return bool
      */
     abstract public function available(): bool;
@@ -32,9 +27,8 @@ abstract class ServiceAbstract
      *
      * @return self
      */
-    public function __construct(array $config, string $host)
+    public function __construct(array $config, protected string $host)
     {
-        $this->host = $host;
         $this->config($config);
     }
 

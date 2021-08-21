@@ -7,11 +7,6 @@ class Only extends ServiceAbstract
     /**
      * @var string
      */
-    protected string $lang = '';
-
-    /**
-     * @var string
-     */
     protected string $base = 'resources/lang';
 
     /**
@@ -19,9 +14,8 @@ class Only extends ServiceAbstract
      *
      * @return self
      */
-    public function __construct(string $lang)
+    public function __construct(protected string $lang)
     {
-        $this->lang = $lang;
         $this->base = base_path($this->base);
     }
 

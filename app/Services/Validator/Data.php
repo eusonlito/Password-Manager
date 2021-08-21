@@ -15,22 +15,16 @@ class Data
     protected array $rules = [];
 
     /**
-     * @var bool
-     */
-    protected bool $all = true;
-
-    /**
      * @param array $data
      * @param array $rules
      * @param bool $all = true
      *
      * @return self
      */
-    public function __construct(array $data, array $rules, bool $all = true)
+    public function __construct(array $data, array $rules, protected bool $all = true)
     {
         $this->data = $this->data($data);
         $this->rules = $this->rules($rules);
-        $this->all = $all;
     }
 
     /**
