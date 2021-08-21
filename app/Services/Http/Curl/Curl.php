@@ -443,16 +443,11 @@ class Curl
             $format = 'object';
         }
 
-        switch ($format) {
-            case 'array':
-                return json_decode($this->response, true);
-
-            case 'object':
-                return json_decode($this->response);
-
-            default:
-                return $this->response;
-        }
+        return match ($format) {
+            'array' => json_decode($this->response, true),
+            'object' => json_decode($this->response),
+            default => $this->response,
+        };
     }
 
     /**
