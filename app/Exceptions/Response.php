@@ -24,7 +24,7 @@ class Response
     public static function fromException(Throwable $e): GenericException
     {
         if ($e instanceof GenericException) {
-            $class = get_class($e);
+            $class = $e::class;
         } else {
             $class = GenericException::class;
         }

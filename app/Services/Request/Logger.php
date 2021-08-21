@@ -83,7 +83,7 @@ class Logger extends RotatingFileAbstract
             'method' => $request->method(),
             'headers' => static::headers($request),
             'input' => static::input($request),
-            'class' => get_class($e),
+            'class' => $e::class,
             'code' => static::exceptionCode($e),
             'status' => static::exceptionStatus($e),
             'message' => $e->getMessage(),
