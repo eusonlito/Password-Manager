@@ -20,52 +20,28 @@ class View extends ServiceProvider
      */
     protected function blade()
     {
-        Blade::directive('asset', function (string $expression) {
-            return "<?= \App\Services\Html\Html::asset($expression); ?>";
-        });
+        Blade::directive('asset', fn(string $expression) => "<?= \App\Services\Html\Html::asset($expression); ?>");
 
-        Blade::directive('image', function (string $expression) {
-            return "<?= \App\Services\Html\Html::image($expression); ?>";
-        });
+        Blade::directive('image', fn(string $expression) => "<?= \App\Services\Html\Html::image($expression); ?>");
 
-        Blade::directive('icon', function (string $expression) {
-            return "<?= \App\Services\Html\Html::icon($expression); ?>";
-        });
+        Blade::directive('icon', fn(string $expression) => "<?= \App\Services\Html\Html::icon($expression); ?>");
 
-        Blade::directive('datetime', function (string $expression) {
-            return "<?= helper()->dateLocal($expression); ?>";
-        });
+        Blade::directive('datetime', fn(string $expression) => "<?= helper()->dateLocal($expression); ?>");
 
-        Blade::directive('number', function (string $expression) {
-            return "<?= \App\Services\Html\Html::number($expression); ?>";
-        });
+        Blade::directive('number', fn(string $expression) => "<?= \App\Services\Html\Html::number($expression); ?>");
 
-        Blade::directive('status', function (string $expression) {
-            return "<?= \App\Services\Html\Html::status($expression); ?>";
-        });
+        Blade::directive('status', fn(string $expression) => "<?= \App\Services\Html\Html::status($expression); ?>");
 
-        Blade::directive('statusString', function (string $expression) {
-            return "<?= \App\Services\Html\Html::statusString($expression); ?>";
-        });
+        Blade::directive('statusString', fn(string $expression) => "<?= \App\Services\Html\Html::statusString($expression); ?>");
 
-        Blade::directive('statusNumber', function (string $expression) {
-            return "<?= \App\Services\Html\Html::statusNumber($expression); ?>";
-        });
+        Blade::directive('statusNumber', fn(string $expression) => "<?= \App\Services\Html\Html::statusNumber($expression); ?>");
 
-        Blade::directive('color', function (string $expression) {
-            return "<?= \App\Services\Html\Html::color($expression); ?>";
-        });
+        Blade::directive('color', fn(string $expression) => "<?= \App\Services\Html\Html::color($expression); ?>");
 
-        Blade::directive('jsonPretty', function (string $expression) {
-            return "<?= \App\Services\Html\Html::jsonPretty($expression); ?>";
-        });
+        Blade::directive('jsonPretty', fn(string $expression) => "<?= \App\Services\Html\Html::jsonPretty($expression); ?>");
 
-        Blade::directive('hidden', function (string $expression) {
-            return "<?= \App\Services\Html\Html::hidden($expression); ?>";
-        });
+        Blade::directive('hidden', fn(string $expression) => "<?= \App\Services\Html\Html::hidden($expression); ?>");
 
-        Blade::directive('query', function (string $expression) {
-            return "<?= \App\Services\Html\Html::query($expression); ?>";
-        });
+        Blade::directive('query', fn(string $expression) => "<?= \App\Services\Html\Html::query($expression); ?>");
     }
 }

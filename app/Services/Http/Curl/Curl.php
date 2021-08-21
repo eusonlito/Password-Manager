@@ -368,9 +368,7 @@ class Curl
             return $this;
         }
 
-        $this->setOption(CURLOPT_HTTPHEADER, array_map(static function (string $key, $value): string {
-            return $key.': '.(is_array($value) ? json_encode($value) : $value);
-        }, array_keys($this->headers), $this->headers));
+        $this->setOption(CURLOPT_HTTPHEADER, array_map(static fn(string $key, $value): string => $key.': '.(is_array($value) ? json_encode($value) : $value), array_keys($this->headers), $this->headers));
 
         return $this;
     }

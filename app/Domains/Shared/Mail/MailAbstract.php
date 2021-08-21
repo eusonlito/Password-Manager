@@ -97,8 +97,6 @@ abstract class MailAbstract extends Mailable
             $emails = preg_split('/[,;\s]+/', strtolower($emails));
         }
 
-        return array_values(array_unique(array_filter(array_map('trim', $emails), function ($value) {
-            return $value && filter_var($value, FILTER_VALIDATE_EMAIL);
-        })));
+        return array_values(array_unique(array_filter(array_map('trim', $emails), fn($value) => $value && filter_var($value, FILTER_VALIDATE_EMAIL))));
     }
 }
