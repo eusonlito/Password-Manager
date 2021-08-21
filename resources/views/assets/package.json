@@ -29,7 +29,7 @@
         "postcss": "^8.3.6",
         "tailwindcss": "^2.2.7",
         "tippy.js": "^6.2",
-        "tom-select": "^1.7.7",
+        "tom-select": "^1.7.8",
         "velocity-animate": "^1.5",
         "webpack-stream": "^6.1",
         "zoom-vanilla.js": "^2.0.6"
