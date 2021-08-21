@@ -108,7 +108,7 @@ class Alert
     {
         $message = $e->getMessage();
 
-        if (strpos($message, '{') !== 0) {
+        if (!str_starts_with($message, '{')) {
             return $message;
         }
 
@@ -130,7 +130,7 @@ class Alert
      */
     protected static function messageFix(string $message): string
     {
-        if (strstr($message, 'SQLSTATE') === false) {
+        if (!str_contains($message, 'SQLSTATE')) {
             return $message;
         }
 

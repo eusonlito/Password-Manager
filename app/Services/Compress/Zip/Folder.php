@@ -150,7 +150,7 @@ class Folder
      */
     protected function source(string $source): string
     {
-        if (strpos($source, '/') !== 0) {
+        if (!str_starts_with($source, '/')) {
             $source = base_path($source);
         }
 
@@ -172,7 +172,7 @@ class Folder
             $target = rtrim($target, '/').'.zip';
         }
 
-        if (strpos($target, '/') !== 0) {
+        if (!str_starts_with($target, '/')) {
             $target = base_path($target);
         }
 

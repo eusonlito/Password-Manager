@@ -228,7 +228,7 @@ class Helper
      */
     public function urlDomain(string $url): string
     {
-        if (strpos($url, 'http') !== 0) {
+        if (!str_starts_with($url, 'http')) {
             $url = 'http://'.$url;
         }
 
