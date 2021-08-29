@@ -15,7 +15,7 @@
         "gulp-environments": "^1.0.1",
         "gulp-imagemin": "^7.1",
         "gulp-jshint": "^2.1",
-        "gulp-postcss": "^9.0",
+        "gulp-postcss": "^9.0.1",
         "gulp-purgecss": "^4.0.2",
         "gulp-purifycss": "^0.2",
         "gulp-replace": "^1.1.3",
