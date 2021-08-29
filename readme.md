@@ -1,38 +1,38 @@
-[English](readme.en.md)
+[Castellano](readme.md)
 
-### Gestor de Contraseñas
+### Password Manager
 
-Esta aplicación permite una gestión completa de contraseñas para múltiples tipos de servicios (web, ssh, teléfonos, wifi, etc...).
+This application allows complete password management for multiple types of services (web, ssh, phones, wifi, etc ...).
 
-Los datos de cada aplicación se guardan cifrados en base de datos.
+The data of each application is stored encrypted in the database.
 
-> **El cifrado de estos datos se realiza usando el valor de `APP_KEY` como salt, con lo cual es importantísimo no regenerar esta key o perderás el acceso a todas las aplicaciones registradas.**
+> **The encryption of this data is done using the value of `APP_KEY` as salt, so it is very important not to regenerate this key or you will lose access to all registered applications.**
 
-> **Ni se te ocurra instalar este proyecto en un entorno sin protección HTTPS**
+> **Don't even think about installing this project in an environment without HTTPS protection**
 
-Las características principales son:
+The main features are:
 
-* Gestión de usuarios.
-* Gestión de equipos.
-* Acceso a aplicaciones limitadas por equipos.
-* Múltiples tipos de datos a registrar.
-* Cifrado en base de datos.
-* Autenticación por certificado y doble factor con Google Authenticator.
-* Usando certificado puedes desactivar el acceso por contraseña.
-* Dispone de un log que registra cada vez que algún usuario accede, consulta o actualiza una aplicación.
-* Permite aplicaciones privadas o compartidas.
-* Dispone de una extensión de chrome que se conecta vía API y accede directamenete a las credenciales de la web que estás visitando.
+* User Management.
+* Team management.
+* Access to applications limited by teams.
+* Multiple types of data records.
+* Encryption in database.
+* Authentication by certificate and double factor with Google Authenticator.
+* Using certificate, you can to disable password auth.
+* Logged every time a user accesses, consults or updates an application.
+* Allows private or shared applications.
+* It has a chrome extension that connects via API and directly accesses the credentials of the web you are visiting.
 
-Este proyecto dispone de una extensión para Google Chrome que puedes descargar en https://github.com/eusonlito/Password-Manager-Chrome
+This project has an extension for Google Chrome that you can download at https://github.com/eusonlito/Password-Manager-Chrome
 
-### Requisitos
+### Requirements
 
-- Apache2 (nginx no soporta autenticación con certificado limitado a ciertas rutas)
-- PHP 8.0 o superior (php-curl php-imagick php-mbstring php-mysql php-zip)
+- Apache2 (nginx does not support authentication with certificate limited to certain routes)
+- PHP 8.0 or higher (php-curl php-imagick php-mbstring php-mysql php-zip)
 - MySQL 8.0
 - ImageMagick
 
-Recuerda que si PHP 8 no es la versión por defecto del sistema, siempre debes usar el prefijo de versión, tanto para `composer` como para `artisan`, por ejemplo:
+If PHP 8 is not the default PHP version on your system you must use the binary prefix to exeucte `composer` and `artisan`, for example:
 
 ```bash
 php8.0 /usr/local/bin/composer install --no-scripts --no-dev
@@ -43,73 +43,73 @@ php8.0 /usr/local/bin/composer install --no-dev --optimize-autoloader --classmap
 php8.0 artisan key:generate
 ```
 
-### Instalación
+### Installation
 
-1. Creamos la base de datos en MySQL.
+1. Create the database in MySQL.
 
-2. Clonamos el repositorio.
+2. Clone the repository.
 
 ```bash
 git clone https://github.com/eusonlito/Password-Manager.git
 ```
 
-3. Realizamos la primera instalación (recuerda que siempre usando el binario de PHP 8.0).
+3. We carry out the first installation (remember that we always use the PHP 8.0 binary).
 
 ```bash
 composer install --no-scripts --no-dev && composer install --no-dev --optimize-autoloader --classmap-authoritative --ansi
 ```
 
-4. Configuramos el fichero `.env` con los datos necesarios.
+4. We configure the file `.env` with the necessary data.
 
 ```bash
 cp .env.example .env
 ```
 
-5. Generamos la clave de aplicación. Recuerda guardar una copia de seguridad de esta clave (`.env` > `APP_KEY`).
+5. Generate the application key. Remember to backup this key in a secure location (`.env` > `APP_KEY`).
 
 ```bash
 php artisan key:generate
 ```
 
-6. Regeneramos las cachés.
+6. Regenerate the caches.
 
 ```bash
 composer artisan-cache
 ```
 
-7. Lanzamos la migración inicial.
+7. Launch the initial migration.
 
 ```bash
 php artisan migrate
 ```
 
-8. Lanzamos el seeder.
+8. Launch the seeder.
 
 ```bash
 php artisan db:seed --class=Database\\Seeders\\Database
 ```
 
-9. Configuramos la tarea cron para el usuario relacionado con el proyecto:
+9. Configure the cron task for the user related to the project:
 
 ```
 * * * * * cd /var/www/password.domain.com && php artisan schedule:run >> storage/logs/artisan-schedule-run.log 2>&1
 ```
 
-10. Creamos el usuario principal.
+10. Create the main user.
 
 ```bash
 php artisan user:create --email=user@domain.com --name=Admin --password=StrongPassword2 --admin
 ```
 
-11. Configuramos el servidor para acceso web con `DOCUMENT_ROOT` en `public`.
+11. Configure the server for web access with `DOCUMENT_ROOT` in` public`.
 
 12. Profit!
 
-### Actualización
+### Update
 
-La actualización de la plataforma se puede realizar de manera sencilla con el comando `composer deploy` ejecutado por el usuario que gestiona ese projecto (normalmente `www-data`).
+The platform update can be done easily with the `composer deploy` command executed by the user who manages that project (usually` www-data`).
 
-Este comando realiza las siguientes acciones:
+This command performs the following actions:
 
 ```
 "git checkout .",
@@ -121,9 +121,9 @@ Este comando realiza las siguientes acciones:
 "@php artisan maintenance:opcache:preload"
 ```
 
-### Autenticación con Certificado
+### Certificate Authentication
 
-Para poder realizar la autenticación con certificado debemos añadir la siguiente configuración en el `VirtualHost` de Apache:
+In order to authenticate with a certificate, we must add the following configuration in Apache's `VirtualHost`:
 
 ```
 <Location /user/profile/certificate>
@@ -141,29 +141,35 @@ Para poder realizar la autenticación con certificado debemos añadir la siguien
 SSLCACertificateFile /var/www/password.domain.com/resources/certificates/certificates.pem
 ```
 
-La localización `/user/profile/certificate` permite obtener el identificador del certificado automáticamente desde el propio perfil de usuario, y `/user/auth/certificate` es la ruta de autenticación por certificado.
+The `/user/profile/certificate` location allows obtaining the certificate identifier automatically from the user profile itself, and `/user/auth/certificate` is the authentication path by certificate.
 
-La opción de `OptRenegotiate` le permite a Apache renegociar la conexión de manera independiente por ruta, algo que nginx no soporta.
+The `OptRenegotiate` option allows Apache to independently renegotiate the connection per path, something that nginx does not support.
 
-### Comandos
+### Commands
 
-Alta de usuario:
+Create User:
 
 ```bash
 php artisan user:create {--email=} {--name=} {--password=} {--admin} {--readonly} {--teams=}
 ```
 
-Actualización de usuario:
+User update:
 
 ```bash
-php artisan user:update {--id=} {--email=} {--name=} {--password=} {--certificate=} {--tfa_enabled=} {--admin=} {--readonly=} {--enabled=} {--teams=}
+php artisan user:update {--id=} {--email=} {--name=} {--password=} {--certificate=} {--tfa_enabled=} {--admin=} {- readonly=} {--enabled=} {--teams=}
 ```
 
-### Ayuda!
+### Help!
 
-Pues estaría guay un poco de ayuda para mejorar la traducción a inglés en [`resources/lang/en`](resources/lang/en), así como el [`readme.en.md`](readme.en.md).
+I need help to improve english translations on this project.
 
-### Capturas
+Default locale files are located in [`resources/lang/es`](resources/lang/es) and should be translated into [`resources/lang/en`](resources/lang/en).
+
+Also, I need to translate the [English Readme](readme.en.md).
+
+Thanks!
+
+### Screenshots
 
 ![Password-Manager](https://user-images.githubusercontent.com/644551/128019854-2d313657-29ec-48e8-bb8e-9802eb05858f.png)
 
