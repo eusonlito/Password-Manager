@@ -164,7 +164,7 @@ class Helper
             return $default;
         }
 
-        return date(strpos($date, ' ') ? 'd/m/Y H:i' : 'd/m/Y', $time);
+        return date(str_contains($date, ' ') ? 'd/m/Y H:i' : 'd/m/Y', $time);
     }
 
     /**
@@ -194,7 +194,7 @@ class Helper
 
         [$day, $time] = explode(' ', $date) + ['', ''];
 
-        if (strpos($day, ':')) {
+        if (str_contains($day, ':')) {
             [$day, $time] = [$time, $day];
         }
 
@@ -228,7 +228,7 @@ class Helper
      */
     public function urlDomain(string $url): string
     {
-        if (strpos($url, 'http') !== 0) {
+        if (str_starts_with($url, 'http') === false) {
             $url = 'http://'.$url;
         }
 

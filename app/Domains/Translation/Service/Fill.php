@@ -28,14 +28,14 @@ class Fill extends ServiceAbstract
      */
     protected function file(string $file): void
     {
-        if (strpos($file, '/node_modules/')) {
+        if (str_contains($file, '/node_modules/')) {
             return;
         }
 
         preg_match_all('/(__|trans_choice)\([\'"]([^\'"]+)/', file_get_contents($file), $matches);
 
         foreach ($matches[2] as $string) {
-            if (strpos($string, '.') === false) {
+            if (str_contains($string, '.') === false) {
                 throw new Exception(sprintf('Invalid string %s on file %s', $string, $this->fileRelative($file)));
             }
 

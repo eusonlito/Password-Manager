@@ -17,7 +17,7 @@ class Search extends ActionAbstract
      */
     public function handle(): Collection
     {
-        if (strpos($this->data['q'], 'http') === 0) {
+        if (str_starts_with($this->data['q'], 'http')) {
             return $this->searchUrl();
         }
 

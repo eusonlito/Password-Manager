@@ -97,7 +97,7 @@ class Server extends ServiceAbstract
      */
     protected function requestResponse(string $server, string $output): array
     {
-        if (strpos(strtolower($output), 'error') || strpos(strtolower($output), 'not allocated')) {
+        if (str_contains(strtolower($output), 'error') || str_contains(strtolower($output), 'not allocated')) {
             throw new Exception(sprintf('Server %s returns error: %s', $server, $output));
         }
 

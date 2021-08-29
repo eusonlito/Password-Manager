@@ -68,7 +68,7 @@ class Website extends TypeAbstract
             return '';
         }
 
-        if (strpos($url, '://') === false) {
+        if (str_contains($url, '://') === false) {
             $url = 'http://'.$url;
         }
 

@@ -85,7 +85,7 @@ class Alert
         $trace = ['['.str_replace($base, '', $e->getFile()).' - '.$e->getLine().'] '.$message];
 
         foreach ($e->getTrace() as $line) {
-            if (empty($line['file']) || strpos($line['file'] ?? '', '/vendor/')) {
+            if (empty($line['file']) || str_contains($line['file'] ?? '', '/vendor/')) {
                 continue;
             }
 
@@ -108,7 +108,7 @@ class Alert
     {
         $message = $e->getMessage();
 
-        if (strpos($message, '{') !== 0) {
+        if (str_starts_with($message, '{') === false) {
             return $message;
         }
 
@@ -130,7 +130,7 @@ class Alert
      */
     protected static function messageFix(string $message): string
     {
-        if (strstr($message, 'SQLSTATE') === false) {
+        if (str_contains($message, 'SQLSTATE') === false) {
             return $message;
         }
 

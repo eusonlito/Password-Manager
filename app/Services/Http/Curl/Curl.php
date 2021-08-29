@@ -443,16 +443,11 @@ class Curl
             $format = 'object';
         }
 
-        switch ($format) {
-            case 'array':
-                return json_decode($this->response, true);
-
-            case 'object':
-                return json_decode($this->response);
-
-            default:
-                return $this->response;
-        }
+        return match ($format) {
+            'array' => json_decode($this->response, true),
+            'object' => json_decode($this->response),
+            default => $this->response,
+        };
     }
 
     /**
@@ -474,7 +469,7 @@ class Curl
             return $this->url;
         }
 
-        return $this->url .= (strpos($this->url, '?') ? '&' : '?').http_build_query($this->query, '', '&');
+        return $this->url .= (str_contains($this->url, '?') ? '&' : '?').http_build_query($this->query, '', '&');
     }
 
     /**
@@ -591,7 +586,7 @@ class Curl
      */
     protected function exceptionMessage(string $message): string
     {
-        if (strpos($message, '{') !== 0) {
+        if (str_starts_with($message, '{') === false) {
             return $message;
         }
 
@@ -628,10 +623,10 @@ class Curl
      */
     protected function isAuthException(string $message): bool
     {
-        return (strpos($message, 'invalid_grant') !== false)
-            || (strpos($message, 'invalid_request') !== false)
-            || (strpos($message, 'unsupported_grant_type') !== false)
-            || (strpos($message, 'unauthorized_client') !== false);
+        return str_contains($message, 'invalid_grant')
+            || str_contains($message, 'invalid_request')
+            || str_contains($message, 'unsupported_grant_type')
+            || str_contains($message, 'unauthorized_client');
     }
 
     /**

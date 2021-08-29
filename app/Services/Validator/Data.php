@@ -48,9 +48,7 @@ class Data
      */
     public function data(array $data): array
     {
-        return array_filter($data, static function ($key): bool {
-            return strpos((string)$key, '_') !== 0;
-        }, ARRAY_FILTER_USE_KEY);
+        return array_filter($data, static fn ($key) => str_starts_with((string)$key, '_') === false, ARRAY_FILTER_USE_KEY);
     }
 
     /**
