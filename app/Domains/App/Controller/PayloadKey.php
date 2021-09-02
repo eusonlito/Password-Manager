@@ -8,11 +8,6 @@ use App\Domains\App\Model\App as Model;
 class PayloadKey extends ControllerAbstract
 {
     /**
-     * @var string
-     */
-    protected string $key;
-
-    /**
      * @param int $id
      * @param string $key
      *
@@ -23,9 +18,9 @@ class PayloadKey extends ControllerAbstract
         $this->check($key);
         $this->row($id);
 
-        $this->actionCall('viewKey');
+        $this->actionCall('viewKey', null, $key);
 
-        return $this->json(['value' => $this->value()]);
+        return $this->json(['value' => $this->row->payloadEncoded($key)]);
     }
 
     /**
@@ -38,23 +33,15 @@ class PayloadKey extends ControllerAbstract
         if (in_array($key, Model::PAYLOAD) === false) {
             helper()->notFound();
         }
-
-        $this->key = $key;
     }
 
     /**
-     * @return string
-     */
-    protected function value(): string
-    {
-        return base64_encode(strval($this->row->payload($this->key)));
-    }
-
-    /**
+     * @param string $key
+     *
      * @return void
      */
-    protected function viewKey(): void
+    protected function viewKey(string $key): void
     {
-        $this->action(null, ['key' => $this->key])->viewKey();
+        $this->action(null, ['key' => $key])->viewKey();
     }
 }

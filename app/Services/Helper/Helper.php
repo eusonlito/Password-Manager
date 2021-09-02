@@ -75,6 +75,16 @@ class Helper
     }
 
     /**
+     * @param string $string
+     *
+     * @return string
+     */
+    public function stringEncode(string $string): string
+    {
+        return base64_encode(implode('\x', array_map('bin2hex', preg_split('//u', $string, -1, PREG_SPLIT_NO_EMPTY))));
+    }
+
+    /**
      * @param array $array
      * @param array $keys
      *

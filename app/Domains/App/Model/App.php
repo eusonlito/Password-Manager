@@ -127,6 +127,20 @@ class App extends ModelAbstract
     }
 
     /**
+     * @param string $key
+     *
+     * @return ?string
+     */
+    public function payloadEncoded(string $key): ?string
+    {
+        if ($value = $this->payload($key)) {
+            return helper()->stringEncode($value);
+        }
+
+        return null;
+    }
+
+    /**
      * @return \App\Domains\App\Service\Type\Type
      */
     public function typeService(): TypeService

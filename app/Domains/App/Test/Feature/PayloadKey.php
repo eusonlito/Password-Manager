@@ -96,19 +96,19 @@ class PayloadKey extends FeatureAbstract
 
         $this->post($this->route(null, $row->id, 'url'))
             ->assertStatus(200)
-            ->assertExactJson(['value' => base64_encode($row->payload('url'))]);
+            ->assertExactJson(['value' => $row->payloadEncoded('url')]);
 
         $this->post($this->route(null, $row->id, 'user'))
             ->assertStatus(200)
-            ->assertExactJson(['value' => base64_encode($row->payload('user'))]);
+            ->assertExactJson(['value' => $row->payloadEncoded('user')]);
 
         $this->post($this->route(null, $row->id, 'password'))
             ->assertStatus(200)
-            ->assertExactJson(['value' => base64_encode($row->payload('password'))]);
+            ->assertExactJson(['value' => $row->payloadEncoded('password')]);
 
         $this->post($this->route(null, $row->id, 'private'))
             ->assertStatus(200)
-            ->assertExactJson(['value' => base64_encode('')]);
+            ->assertExactJson(['value' => null]);
 
         $row = $this->rowCreateWithUserAndTeam();
         $row->user_id = $this->factoryCreate(UserModel::class)->id;
@@ -117,6 +117,6 @@ class PayloadKey extends FeatureAbstract
 
         $this->post($this->route(null, $row->id, 'user'))
             ->assertStatus(200)
-            ->assertExactJson(['value' => base64_encode('Google')]);
+            ->assertExactJson(['value' => helper()->stringEncode('Google')]);
     }
 }

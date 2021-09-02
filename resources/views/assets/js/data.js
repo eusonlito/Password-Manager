@@ -105,6 +105,28 @@
 (function (cash) {
     'use strict';
 
+     function decode(encoded) {
+        const hex = atob(encoded).split('\\x');
+        let decoded = '';
+
+        for (let i = 0; i < hex.length; i++) {
+            decoded += hex2char(hex[i]);
+        }
+
+        return decoded;
+    }
+
+     function hex2char(hex) {
+        const groups = hex.match(/[\s\S]{2}/g) || [];
+        let char = '';
+
+        for (var i = 0, j = groups.length; i < j; i++) {
+            char += '%' + ('0' + groups[i]).slice(-2);
+        }
+
+        return decodeURIComponent(char);
+    }
+
     cash('[data-copy]').on('click', function (e) {
         e.preventDefault();
 
@@ -123,7 +145,7 @@
         }
 
         ajax(this.dataset.copyAjax, null, function (data) {
-            clipboard(atob(data.value));
+            clipboard(decode(data.value));
         });
     });
 })(cash);

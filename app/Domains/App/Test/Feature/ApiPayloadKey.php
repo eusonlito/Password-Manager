@@ -162,35 +162,35 @@ class ApiPayloadKey extends FeatureAbstract
 
         $this->postAuthorized($row, 'url')
             ->assertStatus(200)
-            ->assertExactJson(['value' => base64_encode($row->payload('url'))]);
+            ->assertExactJson(['value' => $row->payloadEncoded('url')]);
 
         $this->postJsonAuthorized($row, 'url')
             ->assertStatus(200)
-            ->assertExactJson(['value' => base64_encode($row->payload('url'))]);
+            ->assertExactJson(['value' => $row->payloadEncoded('url')]);
 
         $this->postAuthorized($row, 'user')
             ->assertStatus(200)
-            ->assertExactJson(['value' => base64_encode($row->payload('user'))]);
+            ->assertExactJson(['value' => $row->payloadEncoded('user')]);
 
         $this->postJsonAuthorized($row, 'user')
             ->assertStatus(200)
-            ->assertExactJson(['value' => base64_encode($row->payload('user'))]);
+            ->assertExactJson(['value' => $row->payloadEncoded('user')]);
 
         $this->postAuthorized($row, 'password')
             ->assertStatus(200)
-            ->assertExactJson(['value' => base64_encode($row->payload('password'))]);
+            ->assertExactJson(['value' => $row->payloadEncoded('password')]);
 
         $this->postJsonAuthorized($row, 'password')
             ->assertStatus(200)
-            ->assertExactJson(['value' => base64_encode($row->payload('password'))]);
+            ->assertExactJson(['value' => $row->payloadEncoded('password')]);
 
         $this->postAuthorized($row, 'private')
             ->assertStatus(200)
-            ->assertExactJson(['value' => base64_encode('')]);
+            ->assertExactJson(['value' => null]);
 
         $this->postJsonAuthorized($row, 'private')
             ->assertStatus(200)
-            ->assertExactJson(['value' => base64_encode('')]);
+            ->assertExactJson(['value' => null]);
 
         $row = $this->rowCreateWithUserAndTeam();
 
@@ -201,11 +201,11 @@ class ApiPayloadKey extends FeatureAbstract
 
         $this->postAuthorized($row, 'user')
             ->assertStatus(200)
-            ->assertExactJson(['value' => base64_encode('Google')]);
+            ->assertExactJson(['value' => helper()->stringEncode('Google')]);
 
         $this->postJson($this->route(null, $row->id, 'user'), [], ['Authorization' => $user->api_key])
             ->assertStatus(200)
-            ->assertExactJson(['value' => base64_encode('Google')]);
+            ->assertExactJson(['value' => helper()->stringEncode('Google')]);
     }
 
     /**

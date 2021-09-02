@@ -20,7 +20,7 @@ class PayloadKey extends ControllerAbstract
 
         $this->action(null, ['key' => $key])->viewKey();
 
-        return $this->json(['value' => $this->value($key)]);
+        return $this->json(['value' => $this->row->payloadEncoded($key)]);
     }
 
     /**
@@ -33,15 +33,5 @@ class PayloadKey extends ControllerAbstract
         if (in_array($key, Model::PAYLOAD) === false) {
             helper()->notFound();
         }
-    }
-
-    /**
-     * @param string $key
-     *
-     * @return string
-     */
-    protected function value(string $key): string
-    {
-        return base64_encode(strval($this->row->payload($key)));
     }
 }
