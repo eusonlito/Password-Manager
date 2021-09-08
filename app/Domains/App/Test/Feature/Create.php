@@ -314,6 +314,12 @@ class Create extends FeatureAbstract
      */
     public function testPostTypeWebsiteSuccess(): void
     {
+        $icon = public_path('storage/app/host/google.es.png');
+
+        if (is_file($icon)) {
+            unlink($icon);
+        }
+
         $this->postType('website', [
             'url' => 'https://google.es',
             'user' => 'user',
@@ -321,6 +327,8 @@ class Create extends FeatureAbstract
             'recovery' => 'recovery',
             'notes' => 'notes',
         ]);
+
+        $this->assertFileExists($icon);
     }
 
     /**

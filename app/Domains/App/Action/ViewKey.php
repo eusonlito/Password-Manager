@@ -12,6 +12,7 @@ class ViewKey extends ActionAbstract
     public function handle(): Model
     {
         $this->save();
+        $this->log();
 
         return $this->row;
     }
@@ -20,6 +21,14 @@ class ViewKey extends ActionAbstract
      * @return void
      */
     protected function save(): void
+    {
+        Model::where('id', $this->row->id)->update(['updated_at' => date('Y-m-d H:i:s')]);
+    }
+
+    /**
+     * @return void
+     */
+    protected function log(): void
     {
         $this->factory('Log')->action([
             'table' => 'app',

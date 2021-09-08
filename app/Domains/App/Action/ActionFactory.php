@@ -56,14 +56,6 @@ class ActionFactory extends ActionFactoryAbstract
     /**
      * @return \App\Domains\App\Model\App
      */
-    public function updateTouch(): Model
-    {
-        return $this->actionHandle(UpdateTouch::class);
-    }
-
-    /**
-     * @return \App\Domains\App\Model\App
-     */
     public function view(): Model
     {
         return $this->actionHandle(View::class);
