@@ -34,6 +34,7 @@ class Image
     {
         $image = new Imagick();
         $image->readImageBlob($contents);
+        $image->stripImage();
 
         return $image;
     }
