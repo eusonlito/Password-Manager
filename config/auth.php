@@ -110,6 +110,18 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Auth Country Control
+    |--------------------------------------------------------------------------
+    */
+
+    'country' => [
+        'enabled' => (bool)env('AUTH_COUNTRY_ENABLED', false),
+        'allowed' => array_map('strtolower', explode(',', (string)env('AUTH_COUNTRY_ALLOWED', ''))),
+        'ip_whitelist' => explode(',', (string)env('AUTH_COUNTRY_IP_WHITELIST', '')),
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
     | Resetting Passwords
     |--------------------------------------------------------------------------
     |

@@ -29,6 +29,14 @@ class ActionFactory extends ActionFactoryAbstract
     }
 
     /**
+     * @return bool
+     */
+    public function authCountry(): bool
+    {
+        return $this->actionHandle(AuthCountry::class);
+    }
+
+    /**
      * @return \App\Domains\User\Model\User
      */
     public function authCredentials(): Model

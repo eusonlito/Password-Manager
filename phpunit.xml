@@ -34,6 +34,9 @@
         <server name="APP_ENV" value="testing" />
         <server name="APP_LOCALE" value="es" />
         <server name="AUTH_CHECK_ALLOWED" value="3" />
+        <server name="AUTH_CERTIFICATE_ENABLED" value="true" />
+        <server name="AUTH_API_SECRET_ENABLED" value="true" />
+        <server name="AUTH_COUNTRY_ENABLED" value="false" />
         <server name="BCRYPT_ROUNDS" value="4" />
         <server name="CACHE_DRIVER" value="array" />
         <server name="DB_CONNECTION" value="test" />

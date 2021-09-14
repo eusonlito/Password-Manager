@@ -6,6 +6,7 @@ use Illuminate\Foundation\Http\Kernel as KernelVendor;
 use App\Domains\User\Middleware\Admin as UserAdmin;
 use App\Domains\User\Middleware\Auth as UserAuth;
 use App\Domains\User\Middleware\AuthApi as UserAuthApi;
+use App\Domains\User\Middleware\AuthCountry as UserAuthCountry;
 use App\Domains\User\Middleware\AuthRedirect as UserAuthRedirect;
 use App\Domains\User\Middleware\AuthTFA as UserAuthTFA;
 use App\Domains\User\Middleware\Enabled as UserEnabled;
@@ -23,6 +24,7 @@ class Kernel extends KernelVendor
         Middleware\RequestLogger::class,
         Middleware\Reset::class,
         Middleware\MessagesShareFromSession::class,
+        UserAuthCountry::class,
     ];
 
     /**
