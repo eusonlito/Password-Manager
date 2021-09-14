@@ -47,15 +47,29 @@
 
     @endif
 
-    <div class="p-2">
-        <label for="user-api_key" class="form-label">{{ __('user-profile.api_key') }}</label>
+    <div class="flex">
+        <div class="flex-1 p-2">
+            <label for="user-api_key" class="form-label">{{ __('user-profile.api_key') }}</label>
 
-        <div class="input-group">
-            <input type="password" name="api_key" class="form-control form-control-lg" id="user-api_key" value="{{ $row->api_key }}">
+            <div class="input-group">
+                <input type="password" name="api_key" class="form-control form-control-lg" id="user-api_key" value="{{ $row->api_key }}">
 
-            <button type="button" class="input-group-text input-group-text-lg tooltip" data-tippy-content="{{ __('common.copied') }}" title="{{ __('common.copy') }}" data-copy data-copy-target="#user-api_key" tabindex="-1">@icon('clipboard', 'w-5 h-5')</button>
-            <button type="button" class="input-group-text input-group-text-lg" title="{{ __('common.show') }}" data-password-show="#user-api_key" tabindex="-1">@icon('eye', 'w-5 h-5')</button>
-            <button type="button" class="input-group-text input-group-text-lg" title="{{ __('common.generate') }}" data-password-generate="#user-api_key" data-password-generate-format="uuid" tabindex="-1">@icon('refresh-cw', 'w-5 h-5')</button>
+                <button type="button" class="input-group-text input-group-text-lg tooltip" data-tippy-content="{{ __('common.copied') }}" title="{{ __('common.copy') }}" data-copy data-copy-target="#user-api_key" tabindex="-1">@icon('clipboard', 'w-5 h-5')</button>
+                <button type="button" class="input-group-text input-group-text-lg" title="{{ __('common.show') }}" data-password-show="#user-api_key" tabindex="-1">@icon('eye', 'w-5 h-5')</button>
+                <button type="button" class="input-group-text input-group-text-lg" title="{{ __('common.generate') }}" data-password-generate="#user-api_key" data-password-generate-format="uuid" tabindex="-1">@icon('refresh-cw', 'w-5 h-5')</button>
+            </div>
+        </div>
+
+        <div class="flex-1 p-2">
+            <label for="user-api_secret" class="form-label">{{ __('user-profile.api_secret') }}</label>
+
+            <div class="input-group">
+                <input type="password" name="api_secret" class="form-control form-control-lg" id="user-api_secret">
+
+                <button type="button" class="input-group-text input-group-text-lg tooltip" data-tippy-content="{{ __('common.copied') }}" title="{{ __('common.copy') }}" data-copy data-copy-target="#user-api_secret" tabindex="-1">@icon('clipboard', 'w-5 h-5')</button>
+                <button type="button" class="input-group-text input-group-text-lg" title="{{ __('common.show') }}" data-password-show="#user-api_secret" tabindex="-1">@icon('eye', 'w-5 h-5')</button>
+                <button type="button" class="input-group-text input-group-text-lg" title="{{ __('common.generate') }}" data-password-generate="#user-api_secret" tabindex="-1">@icon('refresh-cw', 'w-5 h-5')</button>
+            </div>
         </div>
     </div>
 </div>

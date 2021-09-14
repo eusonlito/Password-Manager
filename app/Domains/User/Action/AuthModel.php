@@ -40,6 +40,6 @@ class AuthModel extends ActionAbstract
      */
     protected function success(): void
     {
-        $this->factory('UserSession')->action()->success($this->row);
+        $this->factory('UserSession')->action(['auth' => $this->row->email])->success($this->row);
     }
 }

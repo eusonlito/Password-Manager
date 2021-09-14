@@ -13,4 +13,12 @@ class ValidateFactory extends ValidateFactoryAbstract
     {
         return $this->handle(Fail::class);
     }
+
+    /**
+     * @return array
+     */
+    public function success(): array
+    {
+        return $this->handle(Success::class);
+    }
 }

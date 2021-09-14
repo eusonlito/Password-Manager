@@ -15,7 +15,10 @@ class AuthApi extends MiddlewareAbstract
      */
     public function handle(Request $request, Closure $next)
     {
-        $this->factory()->action(['api_key' => $request->header('Authorization')])->authApi();
+        $this->factory()->action([
+            'api_key' => $request->header('Authorization'),
+            'api_secret' => $request->input('api_secret'),
+        ])->authApi();
 
         return $next($request);
     }

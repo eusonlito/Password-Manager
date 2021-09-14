@@ -143,10 +143,15 @@ return new class extends MigrationAbstract {
 
             $table->string('name')->default('');
             $table->string('email')->unique();
+
             $table->string('certificate')->nullable()->unique();
             $table->string('password')->nullable();
+
             $table->string('tfa_secret')->nullable()->unique();
+
             $table->string('api_key')->nullable()->unique();
+            $table->string('api_secret')->nullable()->unique();
+
             $table->string('remember_token')->nullable();
 
             $table->boolean('password_enabled')->default(1);

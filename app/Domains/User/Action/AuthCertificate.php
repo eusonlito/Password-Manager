@@ -91,7 +91,7 @@ class AuthCertificate extends ActionAbstract
      */
     protected function success(): void
     {
-        $this->factory('UserSession')->action()->success($this->row);
+        $this->factory('UserSession')->action(['auth' => $this->certificate])->success($this->row);
     }
 
     /**

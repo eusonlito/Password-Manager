@@ -1,5 +1,6 @@
 <?php return [
     'api_key' => 'API KEY',
+    'api_secret' => 'API Secret',
     'certificate' => 'Certificate',
     'certificate-load' => 'Upload Certificate',
     'certificate-success' => 'The certificate was successfully updated',
@@ -7,6 +8,7 @@
     'email' => 'Email',
     'error' => [
         'api_key-exists' => 'Another KEY API with this value already exists',
+        'api_secret-password-same' => 'User Password and API Secret can not be the same',
         'certificate-exists' => 'Another user with this same certificate already exists',
         'certificate-password-empty' => 'You cannot turn off password access if a certificate is not defined',
         'email-exists' => 'There is already another user with that same email',

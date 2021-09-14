@@ -85,8 +85,8 @@ return [
     */
 
     'tfa' => [
-         'enabled' => (bool)env('AUTH_TFA_ENABLED'),
-     ],
+        'enabled' => (bool)env('AUTH_TFA_ENABLED'),
+    ],
 
     /*
     |--------------------------------------------------------------------------
@@ -95,8 +95,18 @@ return [
     */
 
     'certificate' => [
-         'enabled' => (bool)env('AUTH_CERTIFICATE_ENABLED'),
-     ],
+        'enabled' => (bool)env('AUTH_CERTIFICATE_ENABLED'),
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | API
+    |--------------------------------------------------------------------------
+    */
+
+    'api' => [
+        'secret_enabled' => (bool)env('AUTH_API_SECRET_ENABLED', true),
+    ],
 
     /*
     |--------------------------------------------------------------------------

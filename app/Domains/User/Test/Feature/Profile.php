@@ -2,6 +2,7 @@
 
 namespace App\Domains\User\Test\Feature;
 
+use Illuminate\Support\Facades\Hash;
 use App\Domains\User\Model\User as Model;
 
 class Profile extends FeatureAbstract
@@ -27,6 +28,7 @@ class Profile extends FeatureAbstract
         'password_enabled' => ['bail', 'boolean'],
         'password_current' => ['bail', 'required', 'current_password'],
         'api_key' => ['bail', 'nullable', 'uuid'],
+        'api_secret' => ['bail', 'nullable', 'min:8'],
         'tfa_enabled' => ['bail', 'boolean'],
     ];
 
@@ -180,6 +182,41 @@ class Profile extends FeatureAbstract
     /**
      * @return void
      */
+    public function testPostApiSecretFail(): void
+    {
+        $row = $this->authUser();
+
+        $data = $row->toArray();
+        $data['api_secret'] = 'A';
+        $data['password_current'] = $row->email;
+
+        $this->post($this->route(), $data + $this->action())
+            ->assertStatus(422)
+            ->assertDontSee('validation.')
+            ->assertDontSee('validator.')
+            ->assertSee('El campo api secret debe tener al menos 8 caracteres.');
+
+        $data['api_secret'] = $row->email;
+
+        $this->post($this->route(), $data + $this->action())
+            ->assertStatus(422)
+            ->assertDontSee('validation.')
+            ->assertDontSee('validator.')
+            ->assertSee('La contraseña y el API Secret no pueden ser iguales');
+
+        $data['password'] = $row->email;
+        $data['api_secret'] = $row->email;
+
+        $this->post($this->route(), $data + $this->action())
+            ->assertStatus(422)
+            ->assertDontSee('validation.')
+            ->assertDontSee('validator.')
+            ->assertSee('La contraseña y el API Secret no pueden ser iguales');
+    }
+
+    /**
+     * @return void
+     */
     public function testPostSuccess(): void
     {
         $row = $this->authUser();
@@ -187,6 +224,7 @@ class Profile extends FeatureAbstract
         $data = $this->factoryMake(Model::class)->toArray();
         $data['password'] = $data['email'];
         $data['password_current'] = $row->email;
+        $data['api_secret'] = $data['api_key'];
 
         $this->followingRedirects()
             ->post($this->route(), $data + $this->action())
@@ -200,6 +238,9 @@ class Profile extends FeatureAbstract
         $this->assertEquals($row->certificate, $data['certificate']);
         $this->assertEquals($row->api_key, $data['api_key']);
         $this->assertEquals($row->password_enabled, $data['password_enabled']);
+
+        $this->assertTrue(Hash::check($data['password'], $row->password));
+        $this->assertTrue(Hash::check($data['api_secret'], $row->api_secret));
 
         $this->get(route('user.logout'))
             ->assertStatus(302)

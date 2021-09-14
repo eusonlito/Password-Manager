@@ -29,6 +29,7 @@ class Profile extends ActionAbstract
         $this->data['email'] = strtolower($this->data['email']);
         $this->data['certificate'] = $this->data['certificate'] ?: null;
         $this->data['api_key'] = $this->data['api_key'] ?: null;
+        $this->data['api_secret'] = $this->data['api_secret'] ?: null;
     }
 
     /**
@@ -40,6 +41,7 @@ class Profile extends ActionAbstract
         $this->checkPassword();
         $this->checkCertificate();
         $this->checkApiKey();
+        $this->checkApiSecret();
     }
 
     /**
@@ -89,6 +91,68 @@ class Profile extends ActionAbstract
     /**
      * @return void
      */
+    protected function checkApiSecret(): void
+    {
+        if (empty($this->data['api_secret']) && empty($this->data['password'])) {
+            return;
+        }
+
+        $this->checkApiSecretEqual()
+            || $this->checkApiSecretApi()
+            || $this->checkApiSecretPassword();
+    }
+
+    /**
+     * @return bool
+     */
+    protected function checkApiSecretEqual(): bool
+    {
+        if (empty($this->data['api_secret']) || empty($this->data['password'])) {
+            return false;
+        }
+
+        if ($this->data['api_secret'] === $this->data['password']) {
+            throw new ValidatorException(__('user-profile.error.api_secret-password-same'));
+        }
+
+        return true;
+    }
+
+    /**
+     * @return bool
+     */
+    protected function checkApiSecretApi(): bool
+    {
+        if (empty($this->data['api_secret'])) {
+            return false;
+        }
+
+        if (Hash::check($this->data['api_secret'], $this->row->password)) {
+            throw new ValidatorException(__('user-profile.error.api_secret-password-same'));
+        }
+
+        return true;
+    }
+
+    /**
+     * @return bool
+     */
+    protected function checkApiSecretPassword(): bool
+    {
+        if (empty($this->data['password'])) {
+            return false;
+        }
+
+        if (Hash::check($this->data['password'], $this->row->api_secret)) {
+            throw new ValidatorException(__('user-profile.error.api_secret-password-same'));
+        }
+
+        return true;
+    }
+
+    /**
+     * @return void
+     */
     protected function save(): void
     {
         $this->row->name = $this->data['name'];
@@ -99,6 +163,10 @@ class Profile extends ActionAbstract
 
         if ($this->data['password']) {
             $this->row->password = Hash::make($this->data['password']);
+        }
+
+        if ($this->data['api_secret']) {
+            $this->row->api_secret = Hash::make($this->data['api_secret']);
         }
 
         if (config('auth.tfa.enabled')) {

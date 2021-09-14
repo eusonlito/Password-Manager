@@ -2,7 +2,6 @@
 
 namespace App\Domains\UserSession\Action;
 
-use App\Domains\User\Model\User as UserModel;
 use App\Domains\UserSession\Model\UserSession as Model;
 use App\Domains\Shared\Action\ActionFactoryAbstract;
 
@@ -22,12 +21,10 @@ class ActionFactory extends ActionFactoryAbstract
     }
 
     /**
-     * @param \App\Domains\User\Model\User $user
-     *
      * @return void
      */
-    public function success(UserModel $user): void
+    public function success(): void
     {
-        $this->actionHandleTransaction(Success::class, [], $user);
+        $this->actionHandleTransaction(Success::class, $this->validate()->success(), ...func_get_args());
     }
 }

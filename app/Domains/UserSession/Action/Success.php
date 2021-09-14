@@ -30,7 +30,7 @@ class Success extends ActionAbstract
     protected function save(): void
     {
         Model::create([
-            'auth' => $this->user->email,
+            'auth' => $this->data['auth'],
             'ip' => $this->request->ip(),
             'success' => true,
             'user_id' => $this->user->id,

@@ -1,10 +1,10 @@
 <?php declare(strict_types=1);
 
-namespace App\Domains\User\Validate;
+namespace App\Domains\UserSession\Validate;
 
 use App\Domains\Shared\Validate\ValidateAbstract;
 
-class AuthApi extends ValidateAbstract
+class Success extends ValidateAbstract
 {
     /**
      * @return array
@@ -12,8 +12,7 @@ class AuthApi extends ValidateAbstract
     public function rules(): array
     {
         return [
-            'api_key' => ['bail', 'required', 'string'],
-            'api_secret' => ['bail', 'nullable', 'string'],
+            'auth' => ['bail', 'required'],
         ];
     }
 }

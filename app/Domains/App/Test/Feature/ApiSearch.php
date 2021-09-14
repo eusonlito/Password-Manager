@@ -64,6 +64,85 @@ class ApiSearch extends FeatureAbstract
     /**
      * @return void
      */
+    public function testPostNoSecretFail(): void
+    {
+        $this->authUser();
+
+        $row = $this->rowCreateWithUser();
+
+        $query = ['q' => $row->payload('url')];
+
+        $this->post($this->route(), $query, $this->apiAuthorization())
+            ->assertStatus(401)
+            ->assertSee('Para esta consulta es necesario el API Secret');
+
+        $this->postJson($this->route(), $query, $this->apiAuthorization())
+            ->assertStatus(401)
+            ->assertExactJson(json_decode('{"code":401,"status":"api_secret_required","message":"Para esta consulta es necesario el API Secret"}', true));
+
+        $query = [
+            'q' => $row->payload('url'),
+            'api_secret' => uniqid(),
+        ];
+
+        $this->post($this->route(), $query, $this->apiAuthorization())
+            ->assertStatus(401)
+            ->assertSee('Las credenciales indicadas no son correctas');
+
+        $this->postJson($this->route(), $query, $this->apiAuthorization())
+            ->assertStatus(401)
+            ->assertExactJson(json_decode('{"code":401,"status":"user_error","message":"Las credenciales indicadas no son correctas"}', true));
+    }
+
+    /**
+     * @return void
+     */
+    public function testPostSecretDisabledSuccess(): void
+    {
+        config(['auth.api.secret_enabled' => false]);
+
+        $this->authUser();
+
+        $row = $this->rowCreateWithUser();
+
+        $query = ['q' => $row->payload('url')];
+
+        $this->post($this->route(), $query, $this->apiAuthorization())
+            ->assertStatus(200)
+            ->assertExactJson([$row->only('id', 'name')]);
+
+        $this->postJson($this->route(), $query, $this->apiAuthorization())
+            ->assertStatus(200)
+            ->assertExactJson([$row->only('id', 'name')]);
+    }
+
+    /**
+     * @return void
+     */
+    public function testPostNoSecretSuccess(): void
+    {
+        $this->authUser();
+
+        $row = $this->rowCreateWithUser();
+
+        $query = ['q' => $row->payload('url')];
+
+        $this->postJsonAuthorized($query)
+            ->assertStatus(200)
+            ->assertExactJson([$row->only('id', 'name')]);
+
+        $this->post($this->route(), $query, $this->apiAuthorization())
+            ->assertStatus(200)
+            ->assertExactJson([$row->only('id', 'name')]);
+
+        $this->postJson($this->route(), $query, $this->apiAuthorization())
+            ->assertStatus(200)
+            ->assertExactJson([$row->only('id', 'name')]);
+    }
+
+    /**
+     * @return void
+     */
     public function testPostOtherFail(): void
     {
         $user = $this->authUser();
@@ -171,7 +250,7 @@ class ApiSearch extends FeatureAbstract
      */
     protected function postAuthorized(array $body = []): TestResponse
     {
-        return $this->post($this->route(), $body, $this->apiAuthorization());
+        return $this->post($this->route(), $this->postAuthorizedBody($body), $this->apiAuthorization());
     }
 
     /**
@@ -181,6 +260,16 @@ class ApiSearch extends FeatureAbstract
      */
     protected function postJsonAuthorized(array $body = []): TestResponse
     {
-        return $this->postJson($this->route(), $body, $this->apiAuthorization());
+        return $this->postJson($this->route(), $this->postAuthorizedBody($body), $this->apiAuthorization());
+    }
+
+    /**
+     * @param array $body
+     *
+     * @return array
+     */
+    protected function postAuthorizedBody(array $body): array
+    {
+        return ['api_secret' => $this->authUser()->api_key] + $body;
     }
 }

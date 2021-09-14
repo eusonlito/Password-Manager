@@ -68,6 +68,74 @@ class ApiPayloadKey extends FeatureAbstract
     /**
      * @return void
      */
+    public function testPostNoSecretFail(): void
+    {
+        $this->authUser();
+
+        $row = $this->rowCreateWithUser();
+
+        $this->post($this->route(null, $row->id, 'url'), [], $this->apiAuthorization())
+            ->assertStatus(401)
+            ->assertSee('Para esta consulta es necesario el API Secret');
+
+        $this->postJson($this->route(null, $row->id, 'url'), [], $this->apiAuthorization())
+            ->assertStatus(401)
+            ->assertExactJson(json_decode('{"code":401,"status":"api_secret_required","message":"Para esta consulta es necesario el API Secret"}', true));
+
+        $this->post($this->route(null, $row->id, 'url'), ['api_secret' => uniqid()], $this->apiAuthorization())
+            ->assertStatus(401)
+            ->assertSee('Las credenciales indicadas no son correctas');
+
+        $this->postJson($this->route(null, $row->id, 'url'), ['api_secret' => uniqid()], $this->apiAuthorization())
+            ->assertStatus(401)
+            ->assertExactJson(json_decode('{"code":401,"status":"user_error","message":"Las credenciales indicadas no son correctas"}', true));
+    }
+
+    /**
+     * @return void
+     */
+    public function testPostSecretDisabledSuccess(): void
+    {
+        config(['auth.api.secret_enabled' => false]);
+
+        $this->authUser();
+
+        $row = $this->rowCreateWithUser();
+
+        $this->post($this->route(null, $row->id, 'url'), [], $this->apiAuthorization())
+            ->assertStatus(200)
+            ->assertExactJson(['value' => $row->payloadEncoded('url')]);
+
+        $this->postJson($this->route(null, $row->id, 'url'), [], $this->apiAuthorization())
+            ->assertStatus(200)
+            ->assertExactJson(['value' => $row->payloadEncoded('url')]);
+    }
+
+    /**
+     * @return void
+     */
+    public function testPostNoSecretSuccess(): void
+    {
+        $this->authUser();
+
+        $row = $this->rowCreateWithUser();
+
+        $this->postJsonAuthorized($row, 'url')
+            ->assertStatus(200)
+            ->assertExactJson(['value' => $row->payloadEncoded('url')]);
+
+        $this->post($this->route(null, $row->id, 'url'), [], $this->apiAuthorization())
+            ->assertStatus(200)
+            ->assertExactJson(['value' => $row->payloadEncoded('url')]);
+
+        $this->postJson($this->route(null, $row->id, 'url'), [], $this->apiAuthorization())
+            ->assertStatus(200)
+            ->assertExactJson(['value' => $row->payloadEncoded('url')]);
+    }
+
+    /**
+     * @return void
+     */
     public function testPostOtherFail(): void
     {
         $user = $this->authUser();
@@ -216,7 +284,7 @@ class ApiPayloadKey extends FeatureAbstract
      */
     protected function postAuthorized(Model $row, string $key): TestResponse
     {
-        return $this->post($this->route(null, $row->id, $key), [], $this->apiAuthorization());
+        return $this->post($this->route(null, $row->id, $key), $this->postAuthorizedBody(), $this->apiAuthorization());
     }
 
     /**
@@ -227,6 +295,14 @@ class ApiPayloadKey extends FeatureAbstract
      */
     protected function postJsonAuthorized(Model $row, string $key): TestResponse
     {
-        return $this->postJson($this->route(null, $row->id, $key), [], $this->apiAuthorization());
+        return $this->postJson($this->route(null, $row->id, $key), $this->postAuthorizedBody(), $this->apiAuthorization());
+    }
+
+    /**
+     * @return array
+     */
+    protected function postAuthorizedBody(): array
+    {
+        return ['api_secret' => $this->authUser()->api_key];
     }
 }
