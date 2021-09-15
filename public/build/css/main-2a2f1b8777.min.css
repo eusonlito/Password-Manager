@@ -263,9 +263,14 @@ Add the correct display in Chrome and Safari.
  * Removes the default spacing and border for appropriate elements.
  */
 
-
+blockquote,
+dl,
+dd,
 h1,
 h2,
+h3,
+h4,
+figure,
 p {
   margin: 0;
 }
@@ -275,7 +280,7 @@ button {
   background-image: none;
 }
 
-
+ol,
 ul {
   list-style: none;
   margin: 0;
@@ -399,7 +404,9 @@ table {
 }
 
 h1,
-h2 {
+h2,
+h3,
+h4 {
   font-size: inherit;
   font-weight: inherit;
 }
@@ -3252,6 +3259,10 @@ video {
   display: block;
 }
 
+.inline-block {
+  display: inline-block;
+}
+
 .inline {
   display: inline;
 }
@@ -3817,6 +3828,11 @@ video {
 .hover\:text-gray-500:hover {
   --tw-text-opacity: 1;
   color: rgba(160, 174, 192, var(--tw-text-opacity));
+}
+
+.antialiased {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 *, ::before, ::after {
@@ -5307,6 +5323,17 @@ video {
   transform-origin: center left;
 }
 
+.tippy-box[data-placement^=right] > .tippy-arrow {
+  left: 0;
+}
+
+.tippy-box[data-placement^=right] > .tippy-arrow:before {
+  left: -7px;
+  border-width: 8px 8px 8px 0;
+  border-right-color: initial;
+  transform-origin: center right;
+}
+
 .tippy-arrow {
   width: 16px;
   height: 16px;
@@ -5340,6 +5367,10 @@ video {
 
 .tippy-box[data-animation=shift-away][data-state=hidden][data-placement^=left] {
   transform: translateX(10px);
+}
+
+.tippy-box[data-animation=shift-away][data-state=hidden][data-placement^=right] {
+  transform: translateX(-10px);
 }
 
 /**

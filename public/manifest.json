@@ -1,0 +1,18 @@
+{
+    "lang": "es-ES",
+    "name": "Password Manager",
+    "short_name": "Password Manager",
+    "start_url": "/pwa",
+    "scope": "/",
+    "theme_color": "white",
+    "background_color": "white",
+    "display": "standalone",
+    "orientation": "any",
+    "icons": [
+        {
+            "src": "/build/images/logo.svg",
+            "sizes": "512x512",
+            "type": "image/svg+xml"
+        }
+    ]
+}
