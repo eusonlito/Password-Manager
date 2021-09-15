@@ -2,6 +2,9 @@ parameters:
     paths:
         - app
 
+    excludePaths:
+        - app/Domains/*/Test/*
+
     level: 5
 
     ignoreErrors:
@@ -21,4 +24,3 @@ parameters:
         - '#\(App\\Domains\\User\\Model\\User\|null\) does not accept Illuminate\\Contracts\\Auth\\Authenticatable\|null#'
 
     checkMissingIterableValueType: false
-
