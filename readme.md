@@ -21,7 +21,9 @@ The main features are:
 * Using certificate, you can to disable password auth.
 * Logged every time a user accesses, consults or updates an application.
 * Allows private or shared applications.
+* Limited access by country.
 * It has a chrome extension that connects via API and directly accesses the credentials of the web you are visiting.
+* API Password control on every different IP.
 
 This project has an extension for Google Chrome that you can download at https://github.com/eusonlito/Password-Manager-Chrome
 

@@ -21,7 +21,9 @@ Las características principales son:
 * Usando certificado puedes desactivar el acceso por contraseña.
 * Dispone de un log que registra cada vez que algún usuario accede, consulta o actualiza una aplicación.
 * Permite aplicaciones privadas o compartidas.
+* Limitación de acceso por país.
 * Dispone de una extensión de chrome que se conecta vía API y accede directamenete a las credenciales de la web que estás visitando.
+* Solicitud de contraseña de API cada vez que se accede desde una IP diferente.
 
 Este proyecto dispone de una extensión para Google Chrome que puedes descargar en https://github.com/eusonlito/Password-Manager-Chrome
 
