@@ -16,9 +16,14 @@ class Log extends ModelAbstract
     protected $table = 'log';
 
     /**
-     * @var string
+     * @const string
      */
-    public static string $foreign = 'log_id';
+    public const TABLE = 'log';
+
+    /**
+     * @const string
+     */
+    public const FOREIGN = 'log_id';
 
     /**
      * @var array
