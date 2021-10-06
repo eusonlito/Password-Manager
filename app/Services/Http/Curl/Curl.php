@@ -79,18 +79,40 @@ class Curl
     protected array $info = [];
 
     /**
+     * @param string $method = ''
+     * @param string $url = ''
+     *
      * @return self
      */
-    public function __construct()
+    public static function new(string $method = '', string $url = ''): self
+    {
+        return new self($method, $url);
+    }
+
+    /**
+     * @param string $method = ''
+     * @param string $url = ''
+     *
+     * @return self
+     */
+    public function __construct(string $method = '', string $url = '')
     {
         $this->initCurl();
         $this->initCache();
+
+        if ($method) {
+            $this->setMethod($method);
+        }
+
+        if ($url) {
+            $this->setUrl($url);
+        }
     }
 
     /**
      * @return self
      */
-    protected function initCurl()
+    protected function initCurl(): self
     {
         $this->curl = curl_init();
 
@@ -114,7 +136,7 @@ class Curl
     /**
      * @return self
      */
-    protected function initCache()
+    protected function initCache(): self
     {
         $this->cache = new Cache();
 
