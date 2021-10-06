@@ -5284,6 +5284,7 @@ video {
   border-radius: 4px;
   font-size: 14px;
   line-height: 1.4;
+  white-space: normal;
   outline: 0;
   transition-property: transform,visibility,opacity;
 }
@@ -6050,6 +6051,7 @@ select {
 }
 
 .header-sticky table thead th {
+  position: -webkit-sticky;
   position: sticky;
   top: 0px;
   border-bottom: 1px solid #CCC;
