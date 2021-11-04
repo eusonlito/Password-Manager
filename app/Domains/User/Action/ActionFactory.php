@@ -77,14 +77,6 @@ class ActionFactory extends ActionFactoryAbstract
     }
 
     /**
-     * @return bool
-     */
-    public function sessionTFA(): bool
-    {
-        return $this->actionHandle(SessionTFA::class);
-    }
-
-    /**
      * @return \App\Domains\User\Model\User
      */
     public function profile(): Model
@@ -98,6 +90,14 @@ class ActionFactory extends ActionFactoryAbstract
     public function profileCertificate(): Model
     {
         return $this->actionHandle(ProfileCertificate::class);
+    }
+
+    /**
+     * @return bool
+     */
+    public function sessionTFA(): bool
+    {
+        return $this->actionHandle(SessionTFA::class);
     }
 
     /**
