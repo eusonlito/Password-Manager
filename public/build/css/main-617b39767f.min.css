@@ -8,7 +8,6 @@
   stroke-linejoin: round;
   fill: none;
 }
-
 /*
  |--------------------------------------------------------------------------
  | TailwindCSS Directives
@@ -984,7 +983,7 @@ video {
 }
 
 .input-group > .input-group-text:not(:first-child),
-      .input-group > .form-control:not(:first-child) {
+.input-group > .form-control:not(:first-child) {
   border-left-color: transparent;
 }
 
@@ -1056,7 +1055,7 @@ video {
   position: relative;
 }
 
-.modal .modal-dialog .modal-content > [data-dismiss="modal"] {
+.modal .modal-dialog .modal-content > [data-dismiss=modal] {
   position: absolute;
   top: 0px;
   right: 0px;
@@ -5286,7 +5285,7 @@ video {
   line-height: 1.4;
   white-space: normal;
   outline: 0;
-  transition-property: transform,visibility,opacity;
+  transition-property: transform, visibility, opacity;
 }
 
 .tippy-box[data-placement^=top] > .tippy-arrow {
@@ -5470,8 +5469,7 @@ video {
   padding: calc( 8px - 2px - 0) 8px calc( 8px - 2px - 3px - 0);
 }
 
-.ts-input.disabled,
-  .ts-input.disabled * {
+.ts-input.disabled, .ts-input.disabled * {
   cursor: default !important;
 }
 
@@ -5559,8 +5557,8 @@ video {
 }
 
 .ts-dropdown .option,
-  .ts-dropdown .no-results,
-  .ts-dropdown .create {
+.ts-dropdown .no-results,
+.ts-dropdown .create {
   padding: 5px 8px;
 }
 
@@ -5575,15 +5573,15 @@ video {
 }
 
 .ts-dropdown .create:hover,
-  .ts-dropdown .option:hover,
-  .ts-dropdown .active {
+.ts-dropdown .option:hover,
+.ts-dropdown .active {
   background-color: #f5fafd;
   color: #495c68;
 }
 
 .ts-dropdown .create:hover.create,
-    .ts-dropdown .option:hover.create,
-    .ts-dropdown .active.create {
+.ts-dropdown .option:hover.create,
+.ts-dropdown .active.create {
   color: #495c68;
 }
 
@@ -5998,7 +5996,6 @@ html body {
     width: 60%;
   }
 }
-
 html, body, .main {
   padding: 0;
 }
@@ -6123,4 +6120,3 @@ select {
 table[data-table-sort] thead th {
   cursor: pointer;
 }
-

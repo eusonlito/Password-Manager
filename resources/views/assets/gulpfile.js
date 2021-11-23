@@ -17,7 +17,7 @@ const
     purifycss = require('gulp-purifycss'),
     replace = require('gulp-replace'),
     rev = require('gulp-rev'),
-    sass = require('gulp-sass'),
+    sass = require('gulp-sass')(require('sass')),
     stylish = require('jshint-stylish'),
     tailwindcss = require('tailwindcss'),
     uglify = require('gulp-uglify'),
