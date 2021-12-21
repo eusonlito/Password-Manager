@@ -24,9 +24,12 @@ class App extends ServiceProvider
 
         setlocale(LC_COLLATE, $locale);
         setlocale(LC_CTYPE, $locale);
-        setlocale(LC_MESSAGES, $locale);
         setlocale(LC_MONETARY, $locale);
         setlocale(LC_TIME, $locale);
+
+        if (defined('LC_MESSAGES')) {
+            setlocale(LC_MESSAGES, $locale);
+        }
     }
 
     /**
