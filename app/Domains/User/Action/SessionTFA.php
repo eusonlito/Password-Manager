@@ -31,6 +31,20 @@ class SessionTFA extends ActionAbstract
      */
     protected function check(): bool
     {
-        return $this->request->session()->get('tfa:id') === ($this->row->id.'|'.$this->request->session()->getId());
+        $id = explode('|', (string)$this->request->session()->get('tfa:id'));
+
+        if (count($id) !== 3) {
+            return false;
+        }
+
+        if ($this->row->id !== (int)$id[0]) {
+            return false;
+        }
+
+        if ($this->request->ip() === $id[1]) {
+            return true;
+        }
+
+        return (time() - $id[3]) < (3600 * 6);
     }
 }

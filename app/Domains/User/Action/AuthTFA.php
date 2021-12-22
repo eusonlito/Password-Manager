@@ -63,6 +63,6 @@ class AuthTFA extends ActionAbstract
      */
     protected function session(): void
     {
-        $this->request->session()->put('tfa:id', $this->row->id.'|'.$this->request->session()->getId());
+        $this->request->session()->put('tfa:id', $this->row->id.'|'.$this->request->ip().'|'.time());
     }
 }
