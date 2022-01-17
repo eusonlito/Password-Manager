@@ -45,6 +45,6 @@ class SessionTFA extends ActionAbstract
             return true;
         }
 
-        return (time() - $id[3]) < (3600 * 6);
+        return (time() - $id[2]) < (3600 * 6);
     }
 }
