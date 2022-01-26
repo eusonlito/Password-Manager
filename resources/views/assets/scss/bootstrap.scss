@@ -117,6 +117,10 @@ select {
     max-width: 15rem;
 }
 
+::-webkit-file-upload-button {
+    display: none;
+}
+
 table[data-table-sort] thead th {
     cursor: pointer;
 }
