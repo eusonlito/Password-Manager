@@ -86,25 +86,23 @@ const css = function(cb) {
     return src(loadManifest('scss'))
         .pipe(sass())
         .pipe(postcss([ tailwindcss('./tailwind.config.js') ]))
-        .pipe(production(
-            cleancss({
-                specialComments: 0,
-                level: 2,
-                inline: ['all']
-            }))
-            .pipe(purgecss({
-                defaultExtractor: content => content.match(/[\w\.\-\/:]+(?<!:)/g) || [],
-                content: [
-                    paths.from.html + '/**/*.html',
-                    paths.from.app + '/Services/Html/**/*.php',
-                    paths.from.app + '/View/**/*.php',
-                    paths.from.js + '**/*.js',
-                    paths.from.view + 'components/**/*.php',
-                    paths.from.view + 'domains/**/*.php',
-                    paths.from.view + 'layouts/**/*.php'
-                ]
-            }))
-        )
+        .pipe(production(cleancss({
+            specialComments: 0,
+            level: 2,
+            inline: ['all']
+        })))
+        .pipe(production(purgecss({
+            defaultExtractor: content => content.match(/[\w\.\-\/:]+(?<!:)/g) || [],
+            content: [
+                paths.from.html + '/**/*.html',
+                paths.from.app + '/Services/Html/**/*.php',
+                paths.from.app + '/View/**/*.php',
+                paths.from.js + '**/*.js',
+                paths.from.view + 'components/**/*.php',
+                paths.from.view + 'domains/**/*.php',
+                paths.from.view + 'layouts/**/*.php'
+            ]
+        })))
         .pipe(postcss([ autoprefixer() ]))
         .pipe(concat('main.min.css'))
         .pipe(dest(paths.to.css));
