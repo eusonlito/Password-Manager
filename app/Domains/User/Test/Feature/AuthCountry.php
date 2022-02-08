@@ -19,7 +19,7 @@ class AuthCountry extends FeatureAbstract
         'null' => '0.0.0.0',
         'local' => '127.0.0.1',
         'es' => '212.128.109.1',
-        'us' => '13.107.21.200',
+        'us' => '156.33.241.5',
     ];
 
     /**
