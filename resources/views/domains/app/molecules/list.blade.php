@@ -5,9 +5,9 @@
                 <th>{{ __('app-index.icon') }}</th>
                 <th>{{ __('app-index.name') }}</th>
                 <th>{{ __('app-index.type') }}</th>
-                <th></th>
-                <th></th>
-                <th></th>
+                <th>{{ __('app-create.payload.host') }}</th>
+                <th>{{ __('app-create.payload.user') }}</th>
+                <th>{{ __('app-create.payload.password') }}</th>
                 <th class="text-center">{{ __('app-index.tags') }}</th>
                 <th class="text-center">{{ __('app-index.visibility') }}</th>
             </tr>
