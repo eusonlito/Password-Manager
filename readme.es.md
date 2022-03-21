@@ -1,4 +1,4 @@
-[English](readme.en.md)
+[English](readme.md)
 
 ### Gestor de Contraseñas
 
