@@ -1,4 +1,4 @@
-[Castellano](readme.md)
+[Castellano](readme.es.md)
 
 ### Password Manager
 
