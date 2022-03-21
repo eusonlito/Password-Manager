@@ -9,12 +9,13 @@ return [
     |
     | Choose your preferred editor to use when clicking any edit button.
     |
-    | Supported: "phpstorm", "vscode", "vscode-insiders",
-    |            "sublime", "atom"
+    | Supported: "phpstorm", "vscode", "vscode-insiders", "textmate", "emacs",
+    |            "sublime", "atom", "nova", "macvim", "idea", "netbeans",
+    |            "xdebug"
     |
     */
 
-    'editor' => env('IGNITION_EDITOR', 'sublime'),
+    'editor' => env('IGNITION_EDITOR', 'phpstorm'),
 
     /*
     |--------------------------------------------------------------------------
@@ -27,7 +28,7 @@ return [
     |
     */
 
-    'theme' => env('IGNITION_THEME', 'light'),
+    'theme' => env('IGNITION_THEME', 'auto'),
 
     /*
     |--------------------------------------------------------------------------
@@ -41,7 +42,7 @@ return [
     |
     */
 
-    'enable_share_button' => env('IGNITION_SHARING_ENABLED', false),
+    'enable_share_button' => env('IGNITION_SHARING_ENABLED', true),
 
     /*
     |--------------------------------------------------------------------------
@@ -55,7 +56,22 @@ return [
     | You can enable the command registration below.
     |
     */
+
     'register_commands' => env('REGISTER_IGNITION_COMMANDS', false),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Solution Providers
+    |--------------------------------------------------------------------------
+    |
+    | You may specify a list of solution providers (as fully qualified class
+    | names) that shouldn't be loaded. Ignition will ignore these classes
+    | and possible solutions provided by them will never be displayed.
+    |
+    */
+
+    'solution_providers' => [
+    ],
 
     /*
     |--------------------------------------------------------------------------
@@ -69,7 +85,7 @@ return [
     */
 
     'ignored_solution_providers' => [
-        //
+
     ],
 
     /*
@@ -78,12 +94,14 @@ return [
     |--------------------------------------------------------------------------
     |
     | Some solutions that Ignition displays are runnable and can perform
-    | various tasks. Runnable solutions are enabled when your app has
-    | debug mode enabled. You may also fully disable this feature.
+    | various tasks. By default, runnable solutions are enabled when your app
+    | has debug mode enabled. You may also fully disable this feature.
+    |
+    | Default: env('IGNITION_ENABLE_RUNNABLE_SOLUTIONS', env('APP_DEBUG', false))
     |
     */
 
-    'enable_runnable_solutions' => env('IGNITION_ENABLE_RUNNABLE_SOLUTIONS', null),
+    'enable_runnable_solutions' => env('IGNITION_ENABLE_RUNNABLE_SOLUTIONS', env('APP_DEBUG', false)),
 
     /*
     |--------------------------------------------------------------------------
@@ -108,7 +126,7 @@ return [
     |
     */
 
-    'remote_sites_path' => env('IGNITION_REMOTE_SITES_PATH', ''),
+    'remote_sites_path' => env('IGNITION_REMOTE_SITES_PATH', base_path()),
     'local_sites_path' => env('IGNITION_LOCAL_SITES_PATH', ''),
 
     /*
@@ -120,6 +138,32 @@ return [
     | specify a route prefix that will be used to host all internal links.
     |
     */
+
     'housekeeping_endpoint_prefix' => '_ignition',
+
+    /*
+    |--------------------------------------------------------------------------
+    | Settings File
+    |--------------------------------------------------------------------------
+    |
+    | Ignition allows you to save your settings to a specific global file.
+    |
+    | If no path is specified, a file with settings will be saved to the user's
+    | home directory. The directory depends on the OS and its settings but it's
+    | typically `~/.ignition.json`. In this case, the settings will be applied
+    | to all of your projects where Ignition is used and the path is not
+    | specified.
+    |
+    | However, if you want to store your settings on a project basis, or you
+    | want to keep them in another directory, you can specify a path where
+    | the settings file will be saved. The path should be an existing directory
+    | with correct write access.
+    | For example, create a new `ignition` folder in the storage directory and
+    | use `storage_path('ignition')` as the `settings_file_path`.
+    |
+    | Default value: '' (empty string)
+    */
+
+    'settings_file_path' => '',
 
 ];
