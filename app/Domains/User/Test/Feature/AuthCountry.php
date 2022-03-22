@@ -2,7 +2,6 @@
 
 namespace App\Domains\User\Test\Feature;
 
-use App\Domains\User\Model\User as Model;
 use Illuminate\Testing\TestResponse;
 
 class AuthCountry extends FeatureAbstract
