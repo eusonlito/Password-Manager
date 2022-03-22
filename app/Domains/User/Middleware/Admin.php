@@ -18,7 +18,7 @@ class Admin extends MiddlewareAbstract
         $this->load($request);
 
         if (empty($this->auth->admin)) {
-            return redirect()->back();
+            return $this->unauthorized($request, static fn () =>redirect()->back());
         }
 
         return $next($request);

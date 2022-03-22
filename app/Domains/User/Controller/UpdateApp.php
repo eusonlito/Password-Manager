@@ -30,9 +30,8 @@ class UpdateApp extends ControllerAbstract
      */
     protected function apps(): Collection
     {
-        return AppModel::byUserAllowed($this->row)
+        return AppModel::byUserAllowed($this->auth)
             ->listByUser($this->row)
-            ->whereShared()
             ->get();
     }
 }

@@ -22,4 +22,23 @@ abstract class MiddlewareAbstract extends MiddlewareAbstractShared
     {
         $this->auth = $this->row = $request->user();
     }
+
+    /**
+     * @param \Illuminate\Http\Request $request
+     * @param callable $callback
+     *
+     * @return mixed
+     */
+    protected function unauthorized(Request $request, callable $callback)
+    {
+        if ($request->wantsJson()) {
+            return response()->json(['code' => 401, 'status' => 'unauthorized', 'message' => 'Unauthorized'], 401);
+        }
+
+        if ($request->ajax()) {
+            return response('Unauthorized.', 401);
+        }
+
+        return $callback($request);
+    }
 }
