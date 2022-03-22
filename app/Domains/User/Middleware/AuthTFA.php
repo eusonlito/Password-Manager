@@ -18,23 +18,9 @@ class AuthTFA extends MiddlewareAbstract
         $this->load($request);
 
         if ($this->factory()->action()->sessionTFA() === false) {
-            return $this->fail($request);
+            return $this->unauthorized($request, static fn () => redirect()->route('user.auth.tfa'));
         }
 
         return $next($request);
-    }
-
-    /**
-     * @param \Illuminate\Http\Request $request
-     *
-     * @return mixed
-     */
-    protected function fail(Request $request)
-    {
-        if ($request->ajax() || $request->wantsJson()) {
-            return response('Unauthorized.', 401);
-        }
-
-        return redirect()->route('user.auth.tfa');
     }
 }

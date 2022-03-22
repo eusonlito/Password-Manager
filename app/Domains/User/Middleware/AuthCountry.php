@@ -16,19 +16,9 @@ class AuthCountry extends MiddlewareAbstract
     public function handle(Request $request, Closure $next)
     {
         if ($this->factory()->action()->authCountry() === false) {
-            return $this->fail($request);
+            return $this->unauthorized($request, static fn () => response('Unauthorized.', 401));
         }
 
         return $next($request);
-    }
-
-    /**
-     * @param \Illuminate\Http\Request $request
-     *
-     * @return mixed
-     */
-    protected function fail(Request $request)
-    {
-        return response('Unauthorized.', 401);
     }
 }

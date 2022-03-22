@@ -111,7 +111,7 @@ class UpdateApp extends FeatureAbstract
 
         $this->get($this->route(null, $user->id))
             ->assertStatus(200)
-            ->assertDontSee($app->name);
+            ->assertSee($app->name);
 
         $app->shared = true;
         $app->save();
