@@ -1687,16 +1687,16 @@
         },
         {
             "name": "eusonlito/laravel-packer",
-            "version": "v2.2.4",
+            "version": "v2.2.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/eusonlito/laravel-Packer.git",
-                "reference": "52f8ec26a7de406e36ba707c659cee07a37146a6"
+                "reference": "af7b6e391657b3168c0c3b886791d9a71d2ec47e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/eusonlito/laravel-Packer/zipball/52f8ec26a7de406e36ba707c659cee07a37146a6",
-                "reference": "52f8ec26a7de406e36ba707c659cee07a37146a6",
+                "url": "https://api.github.com/repos/eusonlito/laravel-Packer/zipball/af7b6e391657b3168c0c3b886791d9a71d2ec47e",
+                "reference": "af7b6e391657b3168c0c3b886791d9a71d2ec47e",
                 "shasum": ""
             },
             "require": {
@@ -1744,9 +1744,9 @@
             ],
             "support": {
                 "issues": "https://github.com/eusonlito/laravel-Packer/issues",
-                "source": "https://github.com/eusonlito/laravel-Packer/tree/v2.2.4"
+                "source": "https://github.com/eusonlito/laravel-Packer/tree/v2.2.5"
             },
-            "time": "2021-02-09T10:37:01+00:00"
+            "time": "2022-03-22T16:21:23+00:00"
         },
         {
             "name": "friendsofphp/php-cs-fixer",
@@ -9233,16 +9233,16 @@
         },
         {
             "name": "nunomaduro/phpinsights",
-            "version": "v2.1.0",
+            "version": "v2.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nunomaduro/phpinsights.git",
-                "reference": "d67e258b21a43de04399a31785a618b6554765da"
+                "reference": "854c214968b27c65590d8ea68797434bcf83e6c1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nunomaduro/phpinsights/zipball/d67e258b21a43de04399a31785a618b6554765da",
-                "reference": "d67e258b21a43de04399a31785a618b6554765da",
+                "url": "https://api.github.com/repos/nunomaduro/phpinsights/zipball/854c214968b27c65590d8ea68797434bcf83e6c1",
+                "reference": "854c214968b27c65590d8ea68797434bcf83e6c1",
                 "shasum": ""
             },
             "require": {
@@ -9317,7 +9317,7 @@
             ],
             "support": {
                 "issues": "https://github.com/nunomaduro/phpinsights/issues",
-                "source": "https://github.com/nunomaduro/phpinsights/tree/v2.1.0"
+                "source": "https://github.com/nunomaduro/phpinsights/tree/v2.2.0"
             },
             "funding": [
                 {
@@ -9337,7 +9337,7 @@
                     "type": "patreon"
                 }
             ],
-            "time": "2022-01-13T15:03:56+00:00"
+            "time": "2022-03-21T20:51:37+00:00"
         },
         {
             "name": "phar-io/manifest",
@@ -11477,16 +11477,16 @@
         },
         {
             "name": "spatie/ignition",
-            "version": "1.2.5",
+            "version": "1.2.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/ignition.git",
-                "reference": "982f69f3c2e525cef62fa23ada047d745e4bcda9"
+                "reference": "be24d33a9de271638314924b5da85e168e4148e4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/ignition/zipball/982f69f3c2e525cef62fa23ada047d745e4bcda9",
-                "reference": "982f69f3c2e525cef62fa23ada047d745e4bcda9",
+                "url": "https://api.github.com/repos/spatie/ignition/zipball/be24d33a9de271638314924b5da85e168e4148e4",
+                "reference": "be24d33a9de271638314924b5da85e168e4148e4",
                 "shasum": ""
             },
             "require": {
@@ -11543,7 +11543,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-03-19T14:07:30+00:00"
+            "time": "2022-03-23T11:02:14+00:00"
         },
         {
             "name": "spatie/laravel-ignition",
