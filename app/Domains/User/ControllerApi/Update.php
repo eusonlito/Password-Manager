@@ -3,7 +3,6 @@
 namespace App\Domains\User\ControllerApi;
 
 use Illuminate\Http\JsonResponse;
-use App\Domains\User\Model\User as Model;
 
 class Update extends ControllerAbstract
 {

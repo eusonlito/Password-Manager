@@ -3,7 +3,8 @@
 namespace App\Domains\User\ControllerApi;
 
 use Illuminate\Http\JsonResponse;
-use App\Domains\User\Model\User as Model;
+use Illuminate\Support\Collection;
+use App\Domains\App\Model\App as AppModel;
 
 class Detail extends ControllerAbstract
 {
@@ -16,8 +17,20 @@ class Detail extends ControllerAbstract
     {
         $this->row($id);
 
-        $this->row->setRelation('apps', AppModel::byUserAllowed($this->auth)->listByUser($this->row)->get());
+        $this->row->setRelation('apps', $this->apps());
 
         return $this->json($this->factory()->fractal('apiDetail', $this->row));
+    }
+
+    /**
+     * @return \Illuminate\Support\Collection
+     */
+    protected function apps(): Collection
+    {
+        return AppModel::select('id', 'name')
+            ->byUserIdOrShared($this->auth->id)
+            ->byUserAllowed($this->row)
+            ->listByUser($this->row)
+            ->get();
     }
 }

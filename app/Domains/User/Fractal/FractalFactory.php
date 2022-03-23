@@ -2,7 +2,6 @@
 
 namespace App\Domains\User\Fractal;
 
-use App\Domains\App\Model\App as AppModel;
 use App\Domains\Shared\Fractal\FractalAbstract;
 use App\Domains\User\Model\User as Model;
 
