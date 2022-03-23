@@ -3,6 +3,7 @@
 namespace App\Domains\User\Test\Feature;
 
 use App\Domains\App\Model\App as AppModel;
+use App\Domains\Team\Model\Team as TeamModel;
 use App\Domains\User\Model\User as Model;
 
 class UpdateApp extends FeatureAbstract
@@ -57,7 +58,7 @@ class UpdateApp extends FeatureAbstract
      */
     public function testGetOtherSuccess(): void
     {
-        $user = $this->authUserAdmin();
+        $auth = $this->authUserAdmin();
 
         $row = $this->factoryCreate(Model::class);
 
@@ -87,6 +88,42 @@ class UpdateApp extends FeatureAbstract
 
         $app->shared = false;
         $app->save();
+
+        $app = $this->factoryCreate(AppModel::class);
+        $app->user_id = $auth->id;
+        $app->save();
+
+        $this->get($this->route(null, $row->id))
+            ->assertStatus(200)
+            ->assertDontSee($app->name);
+
+        $appAuth = $this->factoryCreate(AppModel::class);
+        $appAuth->user_id = $auth->id;
+        $appAuth->save();
+
+        $this->get($this->route(null, $row->id))
+            ->assertStatus(200)
+            ->assertDontSee($appAuth->name);
+
+        $appAuth->shared = true;
+        $appAuth->save();
+
+        $this->get($this->route(null, $row->id))
+            ->assertStatus(200)
+            ->assertDontSee($appAuth->name);
+
+        $team = $this->factoryCreate(TeamModel::class);
+        $team->users()->sync([$row->id]);
+
+        $this->get($this->route(null, $row->id))
+            ->assertStatus(200)
+            ->assertDontSee($appAuth->name);
+
+        $appAuth->teams()->sync([$team->id]);
+
+        $this->get($this->route(null, $row->id))
+            ->assertStatus(200)
+            ->assertSee($appAuth->name);
     }
 
     /**
@@ -94,29 +131,29 @@ class UpdateApp extends FeatureAbstract
      */
     public function testGetMineSuccess(): void
     {
-        $user = $this->authUserAdmin();
+        $auth = $this->authUserAdmin();
 
-        $this->get($this->route(null, $user->id))
+        $this->get($this->route(null, $auth->id))
             ->assertStatus(200)
             ->assertViewIs('domains.user.update-app');
 
         $app = $this->factoryCreate(AppModel::class);
 
-        $this->get($this->route(null, $user->id))
+        $this->get($this->route(null, $auth->id))
             ->assertStatus(200)
             ->assertDontSee($app->name);
 
-        $app->user_id = $user->id;
+        $app->user_id = $auth->id;
         $app->save();
 
-        $this->get($this->route(null, $user->id))
+        $this->get($this->route(null, $auth->id))
             ->assertStatus(200)
             ->assertSee($app->name);
 
         $app->shared = true;
         $app->save();
 
-        $this->get($this->route(null, $user->id))
+        $this->get($this->route(null, $auth->id))
             ->assertStatus(200)
             ->assertSee($app->name);
     }

@@ -1,0 +1,51 @@
+<?php declare(strict_types=1);
+
+namespace App\Domains\User\Test\Feature;
+
+use App\Domains\User\Model\User as Model;
+
+class ApiIndex extends ApiAbstract
+{
+    /**
+     * @var string
+     */
+    protected string $route = 'user.api.index';
+
+    /**
+     * @return void
+     */
+    public function testGetFail(): void
+    {
+        $this->authUserAdmin();
+
+        $this->get($this->route(), $this->apiAuthorization())
+            ->assertStatus(405);
+
+        $this->getJson($this->route(), $this->apiAuthorization())
+            ->assertStatus(405);
+    }
+
+    /**
+     * @return void
+     */
+    public function testPostSuccess(): void
+    {
+        $auth = $this->authUserAdmin();
+
+        $json = [$auth->only('id', 'name', 'email', 'certificate', 'tfa_enabled', 'admin', 'readonly', 'enabled')];
+
+        $this->postJsonAuthorized($this->route())
+            ->assertStatus(200)
+            ->assertExactJson($json);
+
+        $row = $this->factoryCreate(Model::class);
+        $row->name = 'ZZ'.$row['name'];
+        $row->save();
+
+        $json[] = $row->only('id', 'name', 'email', 'certificate', 'tfa_enabled', 'admin', 'readonly', 'enabled');
+
+        $this->postJsonAuthorized($this->route())
+            ->assertStatus(200)
+            ->assertExactJson($json);
+    }
+}
