@@ -27,7 +27,7 @@
         "nunomaduro/phpinsights": "^2.0",
         "phpstan/phpstan": "^1.4",
         "phpunit/phpunit": "^9.3",
-	"spatie/laravel-ignition": "^1.0"
+        "spatie/laravel-ignition": "^1.0"
     },
     "config": {
         "optimize-autoloader": true,
