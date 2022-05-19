@@ -1,5 +1,5 @@
 <?php return [
-    'api_key' => 'API-SCHLÜSSEL',
+    'api_key' => 'API-SCHLÃœSSEL',
     'api_secret' => 'API-Geheimnis',
     'certificate' => 'Zertifikat',
     'certificate-load' => 'Zertifikat hochladen',
@@ -8,9 +8,9 @@
     'email' => 'E-Mail',
     'error' => [
         'api_key-exists' => 'Eine andere KEY-API mit diesem Wert existiert bereits',
-        'api_secret-password-same' => 'Benutzerpasswort und API-Secret dürfen nicht gleich sein',
+        'api_secret-password-same' => 'Benutzerpasswort und API-Secret dÃ¼rfen nicht gleich sein',
         'certificate-exists' => 'Ein anderer Benutzer mit demselben Zertifikat existiert bereits',
-        'certificate-password-empty' => 'Sie können den Passwortzugriff nicht deaktivieren, wenn kein Zertifikat definiert ist',
+        'certificate-password-empty' => 'Sie kÃ¶nnen den Passwortzugriff nicht deaktivieren, wenn kein Zertifikat definiert ist',
         'email-exists' => 'Es gibt bereits einen anderen Benutzer mit derselben E-Mail',
     ],
     'meta-title' => 'Profilaktualisierung',
@@ -21,6 +21,6 @@
     'save' => 'Speichern',
     'success' => 'Ihr Profil wurde korrekt aktualisiert',
     'tfa' => '2FA',
-    'tfa-description' => 'Sie müssen den QR-Code mit Ihrer Google Authenticator-App scannen, bevor Sie die Zwei-Faktor-Authentifizierung aktivieren, sonst können Sie nicht mehr auf die Plattform zugreifen.',
+    'tfa-description' => 'Sie mÃ¼ssen den QR-Code mit Ihrer Google Authenticator-App scannen, bevor Sie die Zwei-Faktor-Authentifizierung aktivieren, sonst kÃ¶nnen Sie nicht mehr auf die Plattform zugreifen.',
     'tfa_enabled' => '2FA aktiviert',
 ];

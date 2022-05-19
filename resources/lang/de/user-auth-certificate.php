@@ -1,5 +1,5 @@
 <?php return [
     'error' => [
-        'auth-fail' => 'Das ausgewählte Zertifikat hat keinen Zugriff auf diese Anwendung',
+        'auth-fail' => 'Das ausgewÃ¤hlte Zertifikat hat keinen Zugriff auf diese Anwendung',
     ],
 ];

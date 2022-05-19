@@ -1,7 +1,7 @@
 <?php return [
     'card' => 'Card',
     'error' => [
-        'invalid' => 'Der gewaehlte Typ ist nicht gueltig',
+        'invalid' => 'Der gewählte Typ ist nicht gültig',
     ],
     'phone' => 'Telefon',
     'server' => 'Server',

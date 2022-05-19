@@ -3,7 +3,7 @@
     'error' => [
         'teams-empty' => 'Moechten Sie ein Team waehlen.',
     ],
-    'fields-encrypted' => 'Felder in dieser Zone werden verschluesselt gespeichert',
+    'fields-encrypted' => 'Felder in dieser Zone werden verschlüsselt gespeichert',
     'icon' => 'Icon (.png)',
     'icon-search' => 'Google Suche',
     'meta-title' => 'Account erstellen',

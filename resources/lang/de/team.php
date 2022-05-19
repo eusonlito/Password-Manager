@@ -1,5 +1,5 @@
 <?php return [
     'error' => [
-        'not-found' => 'Das angeforderte Team ist nicht verf¸gbar',
+        'not-found' => 'Das angeforderte Team ist nicht verf√ºgbar',
     ],
 ];

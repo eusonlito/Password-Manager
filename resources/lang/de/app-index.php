@@ -8,7 +8,7 @@
     'private' => 'Privat',
     'readonly' => 'nur-lesen',
     'shared' => 'geteilt',
-    'shared-no' => 'Nur fuer mich',
+    'shared-no' => 'Nur für mich',
     'shared-select' => 'Alle',
     'shared-yes' => 'geteilt',
     'tag' => 'Tag',
