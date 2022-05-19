@@ -1,5 +1,5 @@
 <?php return [
-    'back-home' => 'Zurueck',
+    'back-home' => 'Zurück',
     'generic' => 'System Fehler',
     'meta-title' => 'Fehler',
 ];

@@ -6,9 +6,9 @@
     'email' => 'Email',
     'enabled' => 'Aktiviert',
     'error' => [
-        'admin-own' => 'Sie koennen die Admin Option fuer Ihren Account nicht deaktivieren',
+        'admin-own' => 'Sie können die Admin Option für Ihren Account nicht deaktivieren',
         'certificate-exists' => 'Es existiert bereits ein Benutzer mit diesem Zertifikat',
-        'certificate-password-empty' => 'Sie koennen die Passwort-Anmeldung nicht deaktivieren, wenn kein Zertifikat konfiguriert ist',
+        'certificate-password-empty' => 'Sie können die Passwort-Anmeldung nicht deaktivieren, wenn kein Zertifikat konfiguriert ist',
         'email-exists' => 'Es gibt bereits einen Benutzer mit dieser Emailadresse',
         'enabled-own' => 'Sie können sich nicht selbst deaktivieren',
         'readonly-own' => 'Sie können die nur-lesen Option nicht für Ihren eigenen Account setzen',

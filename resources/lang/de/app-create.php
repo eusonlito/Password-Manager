@@ -1,7 +1,7 @@
 <?php return [
-    'editable' => 'Andere Benutzer koennen diesen Account bearbeiten',
+    'editable' => 'Andere Benutzer können diesen Account bearbeiten',
     'error' => [
-        'teams-empty' => 'Moechten Sie ein Team waehlen.',
+        'teams-empty' => 'Möchten Sie ein Team wählen.',
     ],
     'fields-encrypted' => 'Felder in dieser Zone werden verschlüsselt gespeichert',
     'icon' => 'Icon (.png)',
@@ -10,7 +10,7 @@
     'name' => 'Name',
     'payload' => [
         'cvc' => 'CVC',
-        'expires' => 'laeuft ab',
+        'expires' => 'läuft ab',
         'holder' => 'Besitzer',
         'host' => 'Host',
         'name' => 'Name',
@@ -35,5 +35,5 @@
     'tags' => 'Tags',
     'teams' => 'Teams',
     'type' => 'Typ',
-    'type-select' => 'bitte waehlen',
+    'type-select' => 'bitte wählen',
 ];

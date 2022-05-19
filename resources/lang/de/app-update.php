@@ -1,10 +1,10 @@
 <?php return [
     'delete' => [
-        'button' => 'loeschen',
+        'button' => 'löschen',
         'cancel' => 'Abbrechen',
-        'delete' => 'Ja, Loeschen',
+        'delete' => 'Ja, Löschen',
         'message' => 'Denken Sie daran, dass diese Aktion nicht rückgängig gemacht werden kann',
-        'title' => 'Account loeschen',
+        'title' => 'Account löschen',
     ],
     'editable' => 'Andere Benutzer können diesen Account bearbeiten',
     'error' => [
@@ -17,7 +17,7 @@
     'name' => 'Name',
     'payload' => [
         'cvc' => 'CVC',
-        'expires' => 'laeuft ab',
+        'expires' => 'läuft ab',
         'holder' => 'Besitzer',
         'host' => 'Host',
         'name' => 'Name',

@@ -1,5 +1,5 @@
 <?php return [
-    'back' => 'Zurueck',
+    'back' => 'Zurück',
     'code' => 'Google Authenticator Code',
     'login' => 'Anmeldung',
     'meta-title' => 'Zwei-Factor Authentifizierung',

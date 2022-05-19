@@ -1,6 +1,6 @@
 <?php return [
     'error' => [
-        'team_ids-empty' => 'Sie haben kein Team gewaehlt.',
+        'team_ids-empty' => 'Sie haben kein Team gewählt.',
     ],
     'filter' => 'Filter Teams...',
     'name' => 'Name',
