@@ -1,5 +1,5 @@
 <?php return [
-    'card' => 'Card',
+    'card' => 'Bankkarte',
     'error' => [
         'invalid' => 'Der gewählte Typ ist nicht gültig',
     ],

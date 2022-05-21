@@ -2,7 +2,7 @@
     'action' => 'Aktion',
     'app' => 'Account',
     'created_at' => 'Datum',
-    'filter' => 'Filter Logs...',
+    'filter' => 'Logs filtern...',
     'id' => 'ID',
     'meta-title' => 'Logs',
     'payload' => 'Details',
