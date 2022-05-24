@@ -84,6 +84,7 @@ return new class extends MigrationAbstract {
 
             $table->string('code')->unique();
             $table->string('name');
+            $table->string('color')->default('');
 
             $table->string('remote_provider')->nullable()->index();
             $table->string('remote_id')->nullable()->index();
