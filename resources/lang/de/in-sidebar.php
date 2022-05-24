@@ -3,6 +3,7 @@
     'log' => 'Logs',
     'logout' => 'Abmelden',
     'profile' => 'Profil',
+    'tags' => '',
     'teams' => 'Teams',
     'users' => 'Benutzer',
 ];

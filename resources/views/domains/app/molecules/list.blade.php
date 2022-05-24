@@ -35,7 +35,7 @@
                     <div class="flex justify-center space-x-2">
                         @foreach ($row->tags as $each)
 
-                        <a href="?tag={{ $each->code }}" class="text-xs py-1 px-2 rounded-lg" style="background-color: @color($each->code)">{{ $each->name }}</a>
+                        <a href="?tag={{ $each->code }}" class="text-xs py-1 px-2 rounded-lg" style="background-color: {{ $each->color }}">{{ $each->name }}</a>
 
                         @endforeach
                     </div>

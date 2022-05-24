@@ -70,11 +70,7 @@ class GetOrCreate extends ActionAbstract
      */
     protected function exists(int|string $code): bool
     {
-        if (is_int($code)) {
-            return $this->list->contains('id', $code);
-        }
-
-        return $this->list->contains('code', $code);
+        return $this->list->contains(is_int($code) ? 'id' : 'code', $code);
     }
 
     /**
@@ -88,6 +84,7 @@ class GetOrCreate extends ActionAbstract
         return Model::create([
             'code' => $code,
             'name' => $name,
+            'color' => sprintf('#%06X', mt_rand(0, 0xFFFFFF)),
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),
         ]);

@@ -16,7 +16,6 @@ return new class extends MigrationAbstract
         }
 
         $this->tables();
-        $this->keys();
     }
 
     /**
@@ -35,13 +34,6 @@ return new class extends MigrationAbstract
         Schema::table('user', function (Blueprint $table) {
             $table->string('api_secret')->nullable();
         });
-    }
-
-    /**
-     * @return void
-     */
-    protected function keys()
-    {
     }
 
     /**

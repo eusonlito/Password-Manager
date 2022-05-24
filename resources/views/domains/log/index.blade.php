@@ -14,7 +14,7 @@
     <table id="log-list-table" class="table table-report sm:mt-2 font-medium text-center whitespace-nowrap" data-table-sort data-table-pagination>
         <thead>
             <tr>
-                <th>{{ __('log-index.id') }}</th>
+                <th class="w-1">{{ __('log-index.id') }}</th>
                 <th>{{ __('log-index.created_at') }}</th>
                 <th class="text-left">{{ __('log-index.action') }}</th>
                 <th class="text-left">{{ __('log-index.payload') }}</th>
@@ -27,7 +27,7 @@
             @foreach ($list as $row)
 
             <tr>
-                <td><span class="block text-center whitespace-nowrap">{{ $row->id }}</span></td>
+                <td class="w-1"><span class="block text-center whitespace-nowrap">{{ $row->id }}</span></td>
                 <td><span class="block text-center whitespace-nowrap">@datetime($row->created_at)</span></td>
                 <td><span class="block text-left whitespace-nowrap">{{ $row->action }}</span></td>
                 <td><span class="block text-left whitespace-nowrap">{{ $row->payload() }}</span></td>

@@ -10,6 +10,13 @@
         @if ($AUTH->admin)
 
         <li>
+            <a href="{{ route('tag.index') }}" class="side-menu {{ (strpos($ROUTE, 'tag.') === 0) ? 'side-menu--active' : '' }}">
+                <div class="side-menu__icon">@icon('tag')</div>
+                <div class="side-menu__title">{{ __('in-sidebar.tags') }}</div>
+            </a>
+        </li>
+
+        <li>
             <a href="{{ route('user.index') }}" class="side-menu {{ ((strpos($ROUTE, 'user.') === 0) && ($ROUTE !== 'user.profile')) ? 'side-menu--active' : '' }}">
                 <div class="side-menu__icon">@icon('users')</div>
                 <div class="side-menu__title">{{ __('in-sidebar.users') }}</div>

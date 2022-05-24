@@ -16,6 +16,13 @@
         @if ($AUTH->admin)
 
         <li>
+            <a href="{{ route('tag.index') }}" class="menu {{ (strpos($ROUTE, 'tag.') === 0) ? 'menu--active' : '' }}">
+                <div class="menu__icon">@icon('tag')</div>
+                <div class="menu__title">{{ __('in-sidebar.tags') }}</div>
+            </a>
+        </li>
+
+        <li>
             <a href="{{ route('user.index') }}" class="menu {{ ((strpos($ROUTE, 'user.') === 0) && ($ROUTE !== 'user.profile')) ? 'menu--active' : '' }}">
                 <div class="menu__icon">@icon('users')</div>
                 <div class="menu__title">{{ __('in-sidebar.users') }}</div>
