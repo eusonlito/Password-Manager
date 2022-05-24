@@ -43,9 +43,9 @@ return new class extends MigrationAbstract
     protected function fill()
     {
         if ($this->driver() === 'mysql') {
-            $query = 'UPDATE `tag` SET `color` = CONCAT("#", SUBSTR(MD5(RAND()), 1, 8));';
+            $query = 'UPDATE `tag` SET `color` = CONCAT("#", SUBSTR(MD5(RAND()), 1, 6));';
         } else {
-            $query = 'UPDATE `tag` SET `color` = "#" + SUBSTR(hex(randomblob(16)), 1, 8);';
+            $query = 'UPDATE `tag` SET `color` = "#" + SUBSTR(hex(randomblob(16)), 1, 6);';
         }
 
         $this->db()->statement($query);
