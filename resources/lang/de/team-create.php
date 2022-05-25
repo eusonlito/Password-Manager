@@ -3,6 +3,7 @@
     'default' => 'Default',
     'error' => [
         'code-exists' => 'Ein anderes Team mit demselben Code existiert bereits',
+        'name-exists' => '',
     ],
     'meta-title' => 'Erstellen',
     'name' => 'Name',

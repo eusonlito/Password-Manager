@@ -1,11 +1,11 @@
 <?php return [
-    'color' => '',
-    'data' => '',
+    'color' => 'Color',
+    'data' => 'Data',
     'error' => [
-        'code-exists' => '',
-        'name-exists' => '',
+        'code-exists' => 'There are another Tag with the same code',
+        'name-exists' => 'There are another Tag with the same name',
     ],
-    'name' => '',
-    'save' => '',
-    'success' => '',
+    'name' => 'Name',
+    'save' => 'Save',
+    'success' => 'The Tag was successfully updated',
 ];

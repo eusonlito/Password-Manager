@@ -13,6 +13,7 @@ class Create extends ValidateAbstract
     {
         return [
             'name' => ['bail', 'required', 'string'],
+            'color' => ['bail', 'string', 'required', 'regex:/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/'],
             'default' => ['bail', 'boolean'],
         ];
     }

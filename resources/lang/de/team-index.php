@@ -1,4 +1,5 @@
 <?php return [
+    'color' => '',
     'create' => 'Erstellen',
     'default' => 'Default',
     'filter' => 'Filter Teams...',

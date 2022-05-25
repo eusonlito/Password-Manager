@@ -36,7 +36,7 @@ class File
         $export = implode(PHP_EOL, array_filter(['['] + (array)$export));
         $export = preg_replace('(\d+\s=>\s)', '', $export);
 
-        return '<?php return '.trim($export).';';
+        return '<?php return '.trim($export).';'."\n";
     }
 
     /**

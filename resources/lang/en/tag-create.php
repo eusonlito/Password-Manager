@@ -1,12 +1,12 @@
 <?php return [
-    'color' => '',
-    'data' => '',
+    'color' => 'Color',
+    'data' => 'Data',
     'error' => [
-        'code-exists' => '',
-        'name-exists' => '',
+        'code-exists' => 'There are another Tag with the same code',
+        'name-exists' => 'There are another Tag with the same name',
     ],
-    'meta-title' => '',
-    'name' => '',
-    'save' => '',
-    'success' => '',
+    'meta-title' => 'Create',
+    'name' => 'Name',
+    'save' => 'Save',
+    'success' => 'The Tag was successfully created',
 ];

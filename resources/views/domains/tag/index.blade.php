@@ -32,7 +32,7 @@
             <tr>
                 <td class="w-1"><a href="{{ $link }}" class="block text-center font-semibold whitespace-nowrap">{{ $row->id }}</a></td>
                 <td><a href="{{ $link }}" class="block text-left font-semibold whitespace-nowrap">{{ $row->name }}</a></td>
-                <td><a href="{{ $link }}" class="text-xs py-1 px-2 rounded-lg" style="@backgroundColor($row->color)">{{ $row->color }}</a></td>
+                <td class="text-center"><a href="{{ $link }}" class="text-xs py-1 px-2 rounded-lg" style="@backgroundColor($row->color)">{{ $row->color }}</a></td>
             </tr>
 
             @endforeach

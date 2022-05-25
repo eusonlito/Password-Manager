@@ -50,7 +50,7 @@
                     <div class="flex justify-center space-x-2">
                         @foreach ($row->teams as $each)
 
-                        <a href="{{ route('team.update', $each->id) }}" class="text-xs py-1 px-2 rounded-lg" style="@backgroundColor($each->code)">{{ $each->name }}</a>
+                        <a href="{{ route('team.update', $each->id) }}" class="text-xs py-1 px-2 rounded-lg" style="@backgroundColor($each->color)">{{ $each->name }}</a>
 
                         @endforeach
                     </div>

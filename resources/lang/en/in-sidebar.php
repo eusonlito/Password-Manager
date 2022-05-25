@@ -3,7 +3,7 @@
     'log' => 'Logs',
     'logout' => 'Logout',
     'profile' => 'Profile',
-    'tags' => '',
+    'tags' => 'Tags',
     'teams' => 'Teams',
     'users' => 'Users',
 ];

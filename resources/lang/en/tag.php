@@ -1,5 +1,5 @@
 <?php return [
     'error' => [
-        'not-found' => '',
+        'not-found' => 'The requested Tag is unavailable',
     ],
 ];

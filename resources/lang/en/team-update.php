@@ -1,9 +1,11 @@
 <?php return [
     'apps' => 'Applications',
+    'color' => 'Color',
     'data' => 'Data',
     'default' => 'Default',
     'error' => [
-        'code-exists' => 'Another Team with the same code already exists',
+        'code-exists' => 'There are another Team with the same code',
+        'name-exists' => 'There are another Team with the same name',
     ],
     'name' => 'Name',
     'save' => 'Save',

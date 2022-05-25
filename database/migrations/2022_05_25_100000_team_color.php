@@ -1,0 +1,63 @@
+<?php declare(strict_types=1);
+
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+use App\Domains\Shared\Migration\MigrationAbstract;
+
+return new class extends MigrationAbstract
+{
+    /**
+     * @return void
+     */
+    public function up()
+    {
+        if ($this->upMigrated()) {
+            return;
+        }
+
+        $this->tables();
+        $this->fill();
+    }
+
+    /**
+     * @return bool
+     */
+    protected function upMigrated(): bool
+    {
+        return Schema::hasColumn('team', 'color');
+    }
+
+    /**
+     * @return void
+     */
+    protected function tables()
+    {
+        Schema::table('team', function (Blueprint $table) {
+            $table->string('color')->default('');
+        });
+    }
+
+    /**
+     * @return void
+     */
+    protected function fill()
+    {
+        if ($this->driver() === 'mysql') {
+            $query = 'UPDATE `team` SET `color` = CONCAT("#", SUBSTR(MD5(RAND()), 1, 6));';
+        } else {
+            $query = 'UPDATE `team` SET `color` = "#" + SUBSTR(hex(randomblob(16)), 1, 6);';
+        }
+
+        $this->db()->statement($query);
+    }
+
+    /**
+     * @return void
+     */
+    public function down()
+    {
+        Schema::table('team', function (Blueprint $table) {
+            $table->dropColumn('color');
+        });
+    }
+};
