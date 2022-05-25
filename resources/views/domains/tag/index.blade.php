@@ -15,7 +15,7 @@
 </form>
 
 <div class="overflow-auto md:overflow-visible header-sticky">
-    <table id="tag-list-table" class="table table-report sm:mt-2 font-medium text-center whitespace-nowrap" data-table-sort>
+    <table id="tag-list-table" class="table table-report sm:mt-2 font-medium text-center whitespace-nowrap" data-table-sort data-table-pagination>
         <thead>
             <tr>
                 <th class="w-1">{{ __('tag-index.id') }}</th>
@@ -32,7 +32,7 @@
             <tr>
                 <td class="w-1"><a href="{{ $link }}" class="block text-center font-semibold whitespace-nowrap">{{ $row->id }}</a></td>
                 <td><a href="{{ $link }}" class="block text-left font-semibold whitespace-nowrap">{{ $row->name }}</a></td>
-                <td><a href="{{ $link }}" class="text-xs py-1 px-2 rounded-lg" style="background-color: {{ $row->color }}">{{ $row->color }}</a></td>
+                <td><a href="{{ $link }}" class="text-xs py-1 px-2 rounded-lg" style="@backgroundColor($row->color)">{{ $row->color }}</a></td>
             </tr>
 
             @endforeach

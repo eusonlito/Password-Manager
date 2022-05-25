@@ -80,6 +80,10 @@ class Html
      */
     public static function color(string $string): string
     {
+        if (preg_match('/^#[a-zA-Z0-9]{6}$/', $string)) {
+            return $string;
+        }
+
         $string = preg_replace('/[a-z]/', '', md5($string));
         $i = 0;
 
@@ -88,6 +92,16 @@ class Html
         } while ($color && (($color < 10) || ($color > 230)));
 
         return 'hsl('.$color.', 74.2%, 80%);';
+    }
+
+    /**
+     * @param string $string
+     *
+     * @return string
+     */
+    public static function backgroundColor(string $string): string
+    {
+        return 'background-color: '.static::color($string);
     }
 
     /**
