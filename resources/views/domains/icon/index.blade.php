@@ -30,7 +30,7 @@
 
             <tr>
                 <td class="w-1">
-                    <a href="{{ $link }}" class="app-logo"><img src="@image($row->public, 'resize,0,32')" class="app-logo"></a>
+                    <a href="@asset($row->public)" class="app-logo"><img src="@image($row->public, 'resize,0,32')" class="app-logo" target="_blank"></a>
                 </td>
                 <td class="text-left"><a href="{{ $link }}" class="block font-semibold whitespace-nowrap">{{ $row->name }}</a></td>
             </tr>
