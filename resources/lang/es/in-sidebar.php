@@ -1,5 +1,6 @@
 <?php return [
     'apps' => 'Aplicaciones',
+    'icon' => 'Iconos',
     'log' => 'Registros',
     'logout' => 'Salir',
     'profile' => 'Perfil',

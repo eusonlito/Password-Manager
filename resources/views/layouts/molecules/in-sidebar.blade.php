@@ -31,6 +31,13 @@
         </li>
 
         <li>
+            <a href="{{ route('icon.index') }}" class="side-menu {{ (strpos($ROUTE, 'icon.') === 0) ? 'side-menu--active' : '' }}">
+                <div class="side-menu__icon">@icon('image')</div>
+                <div class="side-menu__title">{{ __('in-sidebar.icon') }}</div>
+            </a>
+        </li>
+
+        <li>
             <a href="{{ route('log.index') }}" class="side-menu {{ (strpos($ROUTE, 'log.') === 0) ? 'side-menu--active' : '' }}">
                 <div class="side-menu__icon">@icon('book-open')</div>
                 <div class="side-menu__title">{{ __('in-sidebar.log') }}</div>
