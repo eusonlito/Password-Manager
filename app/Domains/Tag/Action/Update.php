@@ -3,6 +3,7 @@
 namespace App\Domains\Tag\Action;
 
 use App\Domains\Tag\Model\Tag as Model;
+use App\Exceptions\ValidatorException;
 
 class Update extends ActionAbstract
 {
