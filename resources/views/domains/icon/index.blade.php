@@ -26,7 +26,7 @@
         <tbody>
             @foreach ($list as $row)
 
-            @php($link = route('icon.update', $row->name))
+            @php ($link = route('icon.update', $row->name))
 
             <tr>
                 <td class="w-1">

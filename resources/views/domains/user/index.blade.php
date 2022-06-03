@@ -34,7 +34,7 @@
         <tbody>
             @foreach ($list as $row)
 
-            @php($link = route('user.update', $row->id))
+            @php ($link = route('user.update', $row->id))
 
             <tr>
                 <td class="w-1"><a href="{{ $link }}" class="block text-center font-semibold whitespace-nowrap">{{ $row->id }}</a></td>
