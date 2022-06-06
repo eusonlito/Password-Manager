@@ -28,6 +28,10 @@ class Update extends ActionAbstract
         $this->data['name'] = trim($this->data['name']);
         $this->data['email'] = strtolower($this->data['email']);
         $this->data['certificate'] = $this->data['certificate'] ?: null;
+
+        if (config('auth.certificate.enabled') === false) {
+            $this->data['password_enabled'] = true;
+        }
     }
 
     /**

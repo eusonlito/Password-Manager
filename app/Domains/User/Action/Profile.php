@@ -30,6 +30,10 @@ class Profile extends ActionAbstract
         $this->data['certificate'] = $this->data['certificate'] ?: null;
         $this->data['api_key'] = $this->data['api_key'] ?: null;
         $this->data['api_secret'] = $this->data['api_secret'] ?: null;
+
+        if (config('auth.certificate.enabled') === false) {
+            $this->data['password_enabled'] = true;
+        }
     }
 
     /**

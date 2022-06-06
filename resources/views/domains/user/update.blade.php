@@ -46,6 +46,10 @@
             </div>
         </div>
 
+        @else
+
+        <input type="hidden" name="password_enabled" value="1" />
+
         @endif
     </div>
 
