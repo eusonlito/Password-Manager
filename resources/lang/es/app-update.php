@@ -20,6 +20,7 @@
         'expires' => 'Caduca',
         'holder' => 'Titular',
         'host' => 'Host',
+        'key' => 'Clave de Cifrado',
         'name' => 'Nombre',
         'notes' => 'Notas',
         'number' => 'Número',

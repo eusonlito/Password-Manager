@@ -20,6 +20,7 @@
         'expires' => 'Expires',
         'holder' => 'Holder',
         'host' => 'Host',
+        'key' => 'Encryption Key',
         'name' => 'Name',
         'notes' => 'Notes',
         'number' => 'Number',

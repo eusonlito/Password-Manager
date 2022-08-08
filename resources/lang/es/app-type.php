@@ -4,6 +4,7 @@
     'error' => [
         'invalid' => 'El tipo seleccionado no es válido',
     ],
+    'idrive' => 'IDrive',
     'phone' => 'Teléfono',
     'server' => 'Servidor',
     'ssh' => 'SSH',

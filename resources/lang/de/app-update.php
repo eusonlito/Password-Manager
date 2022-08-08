@@ -20,6 +20,7 @@
         'expires' => 'läuft ab',
         'holder' => 'Besitzer',
         'host' => 'Host',
+        'key' => 'Verschlüsselungsschlüssel',
         'name' => 'Name',
         'notes' => 'Notizen',
         'number' => 'Nummer',
