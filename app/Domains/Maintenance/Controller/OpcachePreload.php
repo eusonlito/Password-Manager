@@ -7,10 +7,10 @@ use Illuminate\Http\Response;
 class OpcachePreload extends ControllerAbstract
 {
     /**
-     * @return \Illuminate\Http\Response
+     * @return void
      */
-    public function __invoke(): Response
+    public function __invoke(): void
     {
-        return response($this->action()->opcachePreload());
+        $this->action()->opcachePreload();
     }
 }
