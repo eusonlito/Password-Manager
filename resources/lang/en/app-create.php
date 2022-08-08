@@ -28,6 +28,7 @@
         'unlock' => 'Unlock',
         'url' => 'URL',
         'user' => 'User',
+        'username' => 'Username',
     ],
     'save' => 'Save',
     'shared' => 'Application shared with other users',

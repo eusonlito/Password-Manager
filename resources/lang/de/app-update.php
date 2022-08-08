@@ -35,6 +35,7 @@
         'unlock' => 'Entsperren',
         'url' => 'URL',
         'user' => 'Benutzer',
+        'username' => 'Benutzer',
     ],
     'save' => 'Speichern',
     'shared' => 'Mit anderen Benutzern geteilter Account',

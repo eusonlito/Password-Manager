@@ -28,6 +28,7 @@
         'unlock' => 'Desbloqueo',
         'url' => 'URL',
         'user' => 'Usuario',
+        'username' => 'Usuario',
     ],
     'save' => 'Guardar',
     'shared' => 'Aplicación compartida con los demás usuarios',
