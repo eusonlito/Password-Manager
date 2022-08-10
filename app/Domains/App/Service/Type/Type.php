@@ -9,7 +9,7 @@ class Type
     /**
      * @const
      */
-    protected const FORMATS = ['card', 'phone', 'ssh', 'server', 'text', 'website', 'wifi'];
+    protected const FORMATS = ['card', 'email', 'idrive', 'phone', 'ssh', 'server', 'text', 'website', 'wifi'];
 
     /**
      * @return array
@@ -18,6 +18,8 @@ class Type
     {
         return [
             'card' => __('app-type.card'),
+            'email' => __('app-type.email'),
+            'idrive' => __('app-type.idrive'),
             'phone' => __('app-type.phone'),
             'ssh' => __('app-type.ssh'),
             'server' => __('app-type.server'),
@@ -57,6 +59,8 @@ class Type
     {
         return match ($code) {
             'card' => $this->classFormat('Card'),
+            'email' => $this->classFormat('Email'),
+            'idrive' => $this->classFormat('Idrive'),
             'phone' => $this->classFormat('Phone'),
             'ssh' => $this->classFormat('SSH'),
             'server' => $this->classFormat('Server'),
