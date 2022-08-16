@@ -23,7 +23,7 @@ class Update extends FeatureAbstract
      * @var array
      */
     protected array $validation = [
-        'type' => ['bail', 'required', 'in:card,phone,ssh,server,text,website,wifi'],
+        'type' => ['bail', 'required', 'in:card,email,idrive,phone,ssh,server,text,website,wifi'],
 
         'name' => ['bail', 'required', 'string'],
         'icon' => ['bail', 'file', 'mimetypes:image/png'],
