@@ -3,7 +3,6 @@
 namespace App\Domains\Icon\Controller;
 
 use App\Domains\Icon\Model\Icon as Model;
-use App\Domains\Icon\Service\Loader;
 use App\Domains\Shared\Controller\ControllerWebAbstract;
 use App\Exceptions\NotFoundException;
 

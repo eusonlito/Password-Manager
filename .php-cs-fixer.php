@@ -5,5 +5,12 @@ use PhpCsFixer\Config;
 
 return (new Config())
     ->setRiskyAllowed(true)
-    ->setRules(['native_constant_invocation' => true, 'native_function_invocation' => true])
-    ->setFinder(Finder::create()->exclude(['guzzlehttp', 'phpunit', 'php-parallel-lint', 'tests'])->in('vendor'));
+    ->setRules([
+        '@PHP80Migration' => true,
+        '@PSR2' => true,
+        'braces' => false,
+        'class_definition' => false,
+        'no_unused_imports' => true,
+        'phpdoc_separation' => true,
+    ])
+    ->setFinder(Finder::create()->in(['app', 'database', 'config']));

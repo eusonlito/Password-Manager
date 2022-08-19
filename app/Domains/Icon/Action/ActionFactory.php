@@ -2,7 +2,6 @@
 
 namespace App\Domains\Icon\Action;
 
-use Illuminate\Support\Collection;
 use App\Domains\Icon\Model\Icon as Model;
 use App\Domains\Shared\Action\ActionFactoryAbstract;
 

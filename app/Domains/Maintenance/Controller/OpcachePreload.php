@@ -2,8 +2,6 @@
 
 namespace App\Domains\Maintenance\Controller;
 
-use Illuminate\Http\Response;
-
 class OpcachePreload extends ControllerAbstract
 {
     /**
