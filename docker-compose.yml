@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+    passwordmanager:
+        build:
+            context: .
+            dockerfile: docker/Dockerfile
+        entrypoint: "/root/entrypoint.sh"
+        ports:
+            - "80:80"    
+        environment:
+            - DB_HOST=mariadb
+            - DB_USER=passwordmanager
+            - DB_PASSWORD=passwordmanager
+            - DB_DATABASE=passwordmanager
+            - ADMIN_USER=admin
+            - ADMIN_PASSWORD=admin123
+            - ADMIN_MAIL=admin@foobar.com
+    mariadb:
+        image: mariadb:10.4
+        ports:
+            - '3306:3306'
+        volumes:
+            - db_data/var/lib/mysql
+        environment:
+            - MYSQL_ROOT_PASSWORD=root
+            - MYSQL_USER=passwordmanager
+            - MYSQL_PASSWORD=passwordmanager
+            - MYSQL_DATABASE=passwordmanager
+        command: --character-set-server=utf8 --collation-server=utf8_unicode_ci

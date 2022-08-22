@@ -47,6 +47,32 @@ php8.0 artisan key:generate
 
 ### Installation
 
+#### Docker Compose
+
+1. Clone the repository.
+```bash
+git clone https://github.com/eusonlito/Password-Manager.git
+```
+
+2. Build and pull docker images
+```bash
+docker-compose pull && docker-compose build
+
+```
+
+3. Adapt Admin credentials in docker-compose.yml
+
+
+4. Start containers
+```bash
+docker-compose up
+
+```
+
+5. Open your web browser and goto http://localhost
+
+#### Local Installation
+
 1. Create the database in MySQL.
 
 2. Clone the repository.
