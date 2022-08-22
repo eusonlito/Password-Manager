@@ -24,3 +24,4 @@ COPY docker/env .env
 COPY docker/entrypoint.sh /root/entrypoint.sh
 COPY docker/default /etc/nginx/sites-available/default
 CMD /root/entrypoint.sh
+
