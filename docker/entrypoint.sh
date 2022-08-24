@@ -18,9 +18,9 @@ ADMIN_PASSWORD="${ADMIN_PASSWORD:-admin123}"
 
 
 function check_db_init {
-    db_rc=1
+    db_rc=0
     table_num=""
-    while [ $db_rc -ne 0 ]; do    
+    while [ -z "$table_num" ] && [ "$db_rc" -eq "0" ]; do    
         echo "Try to check DB state ..."
         table_num=$(echo "SELECT COUNT(*) FROM information_schema.tables WHERE TABLE_SCHEMA ='passwordmanager';" |  mysql -h $DB_HOST -u $DB_USER --password="$DB_PASSWORD" $DB_DATABASE 2>/dev/null | tail -n 1)
         db_rc=$?
@@ -30,7 +30,7 @@ function check_db_init {
         echo "Could not connect to DB server. Try again in 1 second."
         sleep 1
     done
-    if [ ! -z "$table_num" ];
+    if [ ! -z "$table_num" ]; then
         echo "Found $table_num table(s) in database."
     fi
 
