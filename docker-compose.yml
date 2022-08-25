@@ -7,7 +7,9 @@ services:
             dockerfile: docker/Dockerfile
         entrypoint: "/root/entrypoint.sh"
         ports:
-            - "80:80"    
+            - "80:80"
+        volumes:
+            - pwm_data:/var/www/passwordmanager/storage
         environment:
             - DB_HOST=mariadb
             - DB_USER=passwordmanager
@@ -21,10 +23,13 @@ services:
         ports:
             - '3306:3306'
         volumes:
-            - db_data/var/lib/mysql
+            - db_data:/var/lib/mysql
         environment:
             - MYSQL_ROOT_PASSWORD=root
             - MYSQL_USER=passwordmanager
             - MYSQL_PASSWORD=passwordmanager
             - MYSQL_DATABASE=passwordmanager
         command: --character-set-server=utf8 --collation-server=utf8_unicode_ci
+volumes:
+    pwm_data:
+    db_data:
