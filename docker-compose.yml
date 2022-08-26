@@ -9,7 +9,8 @@ services:
         ports:
             - "80:80"
         volumes:
-            - pwm_data:/var/www/passwordmanager/storage
+            - pwm_int_storage:/var/www/passwordmanager/storage
+            - pwm_pub_storage:/var/www/passwordmanager/public/storage
         environment:
             - DB_HOST=mariadb
             - DB_USER=passwordmanager
@@ -31,5 +32,7 @@ services:
             - MYSQL_DATABASE=passwordmanager
         command: --character-set-server=utf8 --collation-server=utf8_unicode_ci
 volumes:
-    pwm_data:
+    pwm_int_storage:
+    pwm_pub_storage:
     db_data:
+
