@@ -2,6 +2,7 @@ version: '3'
 
 services:
     passwordmanager:
+        image: passwortmanager:latest
         build:
             context: .
             dockerfile: docker/Dockerfile
@@ -11,14 +12,8 @@ services:
         volumes:
             - pwm_int_storage:/var/www/passwordmanager/storage
             - pwm_pub_storage:/var/www/passwordmanager/public/storage
-        environment:
-            - DB_HOST=mariadb
-            - DB_USER=passwordmanager
-            - DB_PASSWORD=passwordmanager
-            - DB_DATABASE=passwordmanager
-            - ADMIN_USER=admin
-            - ADMIN_PASSWORD=admin123
-            - ADMIN_MAIL=admin@foobar.com
+        env_file: ./configuration.env
+
     mariadb:
         image: mariadb:10.4
         ports:
@@ -35,4 +30,3 @@ volumes:
     pwm_int_storage:
     pwm_pub_storage:
     db_data:
-

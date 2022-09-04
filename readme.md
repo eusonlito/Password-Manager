@@ -60,7 +60,7 @@ docker-compose pull && docker-compose build
 
 ```
 
-3. Adapt Admin credentials in docker-compose.yml
+3. Adapt file configuration.env
 
 
 4. Start containers
