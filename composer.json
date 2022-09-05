@@ -115,6 +115,13 @@
             "@php artisan maintenance:opcache:preload"
         ],
 
+        "deploy-docker": [
+            "rm -f bootstrap/cache/*.php",
+            "@composer env-version --ansi",
+            "@composer install --no-dev --optimize-autoloader --classmap-authoritative --ansi",
+            "@php artisan migrate --force --ansi"
+        ],
+
         "fix": [
             "@php ./vendor/bin/php-cs-fixer fix -v --ansi",
             "@php ./vendor/bin/pint -v"

@@ -47,30 +47,6 @@ php8.0 artisan key:generate
 
 ### Installation
 
-#### Docker Compose
-
-1. Clone the repository.
-```bash
-git clone https://github.com/eusonlito/Password-Manager.git
-```
-
-2. Build and pull docker images
-```bash
-docker-compose pull && docker-compose build
-
-```
-
-3. Adapt file configuration.env
-
-
-4. Start containers
-```bash
-docker-compose up
-
-```
-
-5. Open your web browser and goto http://localhost
-
 #### Local Installation
 
 1. Create the database in MySQL.
@@ -132,6 +108,38 @@ php artisan user:create --email=user@domain.com --name=Admin --password=StrongPa
 11. Configure the server for web access with `DOCUMENT_ROOT` in` public`.
 
 12. Profit!
+
+#### Docker Compose
+
+Currently only for testing (no certificate support).
+
+1. Clone the repository.
+
+```bash
+git clone https://github.com/eusonlito/Password-Manager.git
+```
+
+2. Adapt file `docker/.env`
+
+3. Build docker images
+
+```bash
+sudo docker-compose -f docker/docker-compose.yml build
+```
+
+4. Start containers
+
+```bash
+sudo docker-compose -f docker/docker-compose.yml up
+```
+
+5. Create the admin user
+
+```bash
+sudo docker exec -it passwordmanager bash -c "cd /var/www/passwordmanager && php artisan user:create --email=user@domain.com --name=Admin --password=StrongPassword2 --admin"
+```
+
+6. Open your web browser and goto http://localhost:8080
 
 ### Update
 
