@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+    passwordmanager:
+        image: passwortmanager:latest
+        build:
+            context: .
+            dockerfile: docker/Dockerfile
+        entrypoint: "/root/entrypoint.sh"
+        ports:
+            - "80:80"
+        volumes:
+            - pwm_int_storage:/var/www/passwordmanager/storage
+            - pwm_pub_storage:/var/www/passwordmanager/public/storage
+        env_file: ./configuration.env
+
+    mariadb:
+        image: mariadb:10.4
+        ports:
+            - '3306:3306'
+        volumes:
+            - db_data:/var/lib/mysql
+        environment:
+            - MYSQL_ROOT_PASSWORD=root
+            - MYSQL_USER=passwordmanager
+            - MYSQL_PASSWORD=passwordmanager
+            - MYSQL_DATABASE=passwordmanager
+        command: --character-set-server=utf8 --collation-server=utf8_unicode_ci
+volumes:
+    pwm_int_storage:
+    pwm_pub_storage:
+    db_data:
