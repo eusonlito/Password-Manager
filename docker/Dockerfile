@@ -13,12 +13,10 @@ RUN docker-php-ext-enable imagick
 WORKDIR /var/www/passwordmanager
 
 COPY ./ /var/www/passwordmanager
-COPY ./docker/.env /var/www/passwordmanager/.env
 
 COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
 
 RUN composer install --no-scripts --no-dev
-RUN rm -rf bootstrap/cache/*.php
-RUN php artisan key:generate
+RUN composer install --no-dev --optimize-autoloader --classmap-authoritative
 
 CMD ["./docker/init.sh"]
