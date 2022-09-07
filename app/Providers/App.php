@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\URL;
 
 class App extends ServiceProvider
 {
@@ -13,6 +14,10 @@ class App extends ServiceProvider
     public function boot(): void
     {
         $this->locale();
+        if (env('APP_ENV') === 'production' && str_starts_with(env('APP_URL'),'https')) {
+            $this->app['request']->server->set('HTTPS','on');
+            URL::forceScheme('https');
+        }
     }
 
     /**
