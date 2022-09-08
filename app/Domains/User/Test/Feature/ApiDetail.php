@@ -105,8 +105,12 @@ class ApiDetail extends ApiAbstract
 
         $appAuth->teams()->sync([$team->id]);
 
+        $apps = collect([$app, $appAuth])
+            ->sortByDesc('updated_at')
+            ->map(static fn ($app) => $app->only('id', 'name'));
+
         $json = $data + [
-            'apps' => [$app->only('id', 'name'), $appAuth->only('id', 'name')],
+            'apps' => $apps->toArray(),
             'teams' => [$team->only('id', 'code', 'name', 'default')],
         ];
 

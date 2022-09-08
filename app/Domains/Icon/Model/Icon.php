@@ -72,7 +72,7 @@ class Icon extends ModelAbstract
             'file' => $file,
             'basename' => ($basename = basename($file)),
             'public' => (static::PATH.$basename),
-            'name' => str_replace('.png', '', $basename)
+            'name' => str_replace('.png', '', $basename),
         ];
     }
 }

@@ -142,6 +142,7 @@ class Preloader
 
         if ($this->ignored($class)) {
             $this->log['ignored'][] = $class;
+
             return;
         }
 

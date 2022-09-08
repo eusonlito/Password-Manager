@@ -11,7 +11,6 @@
         "eusonlito/disposable-email-validator": "^0.1",
         "eusonlito/laravel-meta": "^3.1",
         "eusonlito/laravel-packer": "^2.2",
-        "friendsofphp/php-cs-fixer": "^3.0",
         "laravel/framework": "^9.5",
         "laravel/helpers": "^1.2",
         "pragmarx/google2fa-qrcode": "master-dev",
@@ -22,15 +21,18 @@
         "barryvdh/laravel-debugbar": "^3.2",
         "brianium/paratest": "^6.2",
         "fakerphp/faker": "^1.13",
+        "friendsofphp/php-cs-fixer": "^3.9",
+        "laravel/pint": "^1.0",
         "mockery/mockery": "^1.4.2",
         "nunomaduro/collision": "^6.1",
-        "nunomaduro/phpinsights": "^2.0",
+        "nunomaduro/phpinsights": "dev-master",
         "phpstan/phpstan": "^1.4",
-        "phpunit/phpunit": "^9.3",
+        "phpunit/phpunit": "^9.5",
         "spatie/laravel-ignition": "^1.0"
     },
     "config": {
         "optimize-autoloader": true,
+        "platform-check": false,
         "preferred-install": "dist",
         "sort-packages": true,
         "allow-plugins": {
@@ -111,6 +113,11 @@
             "@composer install --no-dev --optimize-autoloader --classmap-authoritative --ansi",
             "@php artisan migrate --force --ansi",
             "@php artisan maintenance:opcache:preload"
+        ],
+
+        "fix": [
+            "@php ./vendor/bin/php-cs-fixer fix -v --ansi",
+            "@php ./vendor/bin/pint -v"
         ],
 
         "quality": [

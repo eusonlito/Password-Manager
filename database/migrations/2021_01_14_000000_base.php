@@ -4,7 +4,8 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use App\Domains\Shared\Migration\MigrationAbstract;
 
-return new class extends MigrationAbstract {
+return new class extends MigrationAbstract
+{
     /**
      * @return void
      */

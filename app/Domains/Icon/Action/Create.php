@@ -4,7 +4,6 @@ namespace App\Domains\Icon\Action;
 
 use App\Domains\Icon\Model\Icon as Model;
 use App\Domains\App\Service\Icon\Image;
-use App\Domains\Icon\Service\Loader;
 use App\Exceptions\ValidatorException;
 
 class Create extends ActionAbstract
