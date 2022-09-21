@@ -1,10 +1,10 @@
 <?php return [
     'apps' => 'Accounts',
-    'icon' => '',
+    'icon' => 'Ikonen',
     'log' => 'Logs',
     'logout' => 'Abmelden',
     'profile' => 'Profil',
-    'tags' => '',
+    'tags' => 'Schilder',
     'teams' => 'Teams',
     'users' => 'Benutzer',
 ];

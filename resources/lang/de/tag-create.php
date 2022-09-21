@@ -1,12 +1,12 @@
 <?php return [
-    'color' => '',
-    'data' => '',
+    'color' => 'Farbe',
+    'data' => 'Daten',
     'error' => [
-        'code-exists' => '',
-        'name-exists' => '',
+        'code-exists' => 'Der Code ist bereits für ein anderes Label vorhanden.',
+        'name-exists' => 'Der Name ist bereits für ein anderes Label vorhanden.',
     ],
-    'meta-title' => '',
-    'name' => '',
-    'save' => '',
-    'success' => '',
+    'meta-title' => 'Label erstellen',
+    'name' => 'Name',
+    'save' => 'Retten',
+    'success' => 'Das Label wurde korrekt erstellt',
 ];

@@ -1,11 +1,11 @@
 <?php return [
     'apps' => 'Accounts',
-    'color' => '',
+    'color' => 'Farbe',
     'data' => 'Daten',
     'default' => 'Default',
     'error' => [
         'code-exists' => 'Ein anderes Team mit demselben Code existiert bereits',
-        'name-exists' => '',
+        'name-exists' => 'Ein anderer Computer mit demselben Namen ist bereits vorhanden',
     ],
     'name' => 'Name',
     'save' => 'Speichern',

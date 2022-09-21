@@ -1,10 +1,10 @@
 <?php return [
     'error' => [
-        'name-exists' => '',
+        'name-exists' => 'Ein weiteres Symbol mit demselben Namen ist bereits vorhanden',
     ],
-    'icon' => '',
-    'meta-title' => '',
-    'name' => '',
-    'save' => '',
-    'success' => '',
+    'icon' => 'Ikone',
+    'meta-title' => 'Symbol "Erstellen"',
+    'name' => 'Name',
+    'save' => 'Retten',
+    'success' => 'Das Symbol wurde korrekt erstellt',
 ];

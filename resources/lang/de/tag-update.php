@@ -1,11 +1,11 @@
 <?php return [
-    'color' => '',
-    'data' => '',
+    'color' => 'Farbe',
+    'data' => 'Daten',
     'error' => [
-        'code-exists' => '',
-        'name-exists' => '',
+        'code-exists' => 'Der Code ist bereits für ein anderes Label vorhanden.',
+        'name-exists' => 'Der Name ist bereits für ein anderes Label vorhanden.',
     ],
-    'name' => '',
-    'save' => '',
-    'success' => '',
+    'name' => 'Name',
+    'save' => 'Retten',
+    'success' => 'Das Label wurde korrekt aktualisiert',
 ];

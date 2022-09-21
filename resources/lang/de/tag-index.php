@@ -1,8 +1,8 @@
 <?php return [
-    'color' => '',
-    'create' => '',
-    'filter' => '',
-    'id' => '',
-    'meta-title' => '',
-    'name' => '',
+    'color' => 'Farbe',
+    'create' => 'Schaffen',
+    'filter' => 'Tags filtern...',
+    'id' => 'Id',
+    'meta-title' => 'Schilder',
+    'name' => 'Name',
 ];

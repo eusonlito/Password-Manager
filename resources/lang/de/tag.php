@@ -1,5 +1,5 @@
 <?php return [
     'error' => [
-        'not-found' => '',
+        'not-found' => 'Das angeforderte Tag ist nicht mehr verfügbar',
     ],
 ];
