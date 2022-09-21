@@ -12,7 +12,9 @@
         'certificate-exists' => 'Another user with this same certificate already exists',
         'certificate-password-empty' => 'You cannot turn off password access if a certificate is not defined',
         'email-exists' => 'There is already another user with that same email',
+        'tfa-disabled' => '2FA is disabled by configuration',
     ],
+    'export' => 'Export',
     'meta-title' => 'Profile Update',
     'name' => 'Name',
     'password' => 'Password',
@@ -21,6 +23,4 @@
     'save' => 'Save',
     'success' => 'Your profile has been updated correctly',
     'tfa' => '2FA',
-    'tfa-description' => 'You must scan the QR code with your Google Authenticator app before activating two-factor authentication, or you won\'t be able to access the platform again.',
-    'tfa_enabled' => '2FA Enabled',
 ];

@@ -53,6 +53,32 @@ class App extends BuilderAbstract
     }
 
     /**
+     * @param \App\Domains\User\Model\User $user
+     *
+     * @return self
+     */
+    public function byUserAllowed(UserModel $user): self
+    {
+        if ($user->admin) {
+            return $this->byUserIdOrShared($user->id);
+        }
+
+        return $this->where(static fn ($q) => $q->where('user_id', $user->id)->orWhere(
+            static fn ($q) => $q->where('shared', true)->byUserIdTeams($user->id)
+        ));
+    }
+
+    /**
+     * @param int $user_id
+     *
+     * @return self
+     */
+    public function byUserId(int $user_id): self
+    {
+        return $this->where('user_id', $user_id);
+    }
+
+    /**
      * @param int $user_id
      *
      * @return self
@@ -70,22 +96,6 @@ class App extends BuilderAbstract
     public function byUserIdTeams(int $user_id): self
     {
         return $this->whereIn('id', TeamAppModel::select('app_id')->whereIn('team_id', TeamUserModel::select('team_id')->where('user_id', $user_id)));
-    }
-
-    /**
-     * @param \App\Domains\User\Model\User $user
-     *
-     * @return self
-     */
-    public function byUserAllowed(UserModel $user): self
-    {
-        if ($user->admin) {
-            return $this->byUserIdOrShared($user->id);
-        }
-
-        return $this->where(static fn ($q) => $q->where('user_id', $user->id)->orWhere(
-            static fn ($q) => $q->where('shared', true)->byUserIdTeams($user->id)
-        ));
     }
 
     /**

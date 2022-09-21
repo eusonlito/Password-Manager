@@ -44,6 +44,14 @@ class Folder
     protected int $toTime = 0;
 
     /**
+     * @return self
+     */
+    public static function new(): self
+    {
+        return new static(...func_get_args());
+    }
+
+    /**
      * @param string $source
      * @param string $source = ''
      *

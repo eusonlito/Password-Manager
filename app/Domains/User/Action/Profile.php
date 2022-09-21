@@ -173,10 +173,6 @@ class Profile extends ActionAbstract
             $this->row->api_secret = Hash::make($this->data['api_secret']);
         }
 
-        if (config('auth.tfa.enabled')) {
-            $this->row->tfa_enabled = $this->data['tfa_enabled'];
-        }
-
         $this->row->save();
     }
 }

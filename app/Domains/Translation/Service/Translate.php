@@ -127,7 +127,8 @@ class Translate extends ServiceAbstract
     {
         return ''
             .'Content-type: application/json'."\r\n"
-            .'Ocp-Apim-Subscription-Key: '.config('services.azure.key')."\r\n";
+            .'Ocp-Apim-Subscription-Key: '.config('services.azure.key')."\r\n"
+            .'Ocp-Apim-Subscription-Region: '.config('services.azure.region')."\r\n";
     }
 
     /**

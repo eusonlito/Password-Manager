@@ -14,12 +14,12 @@
         "laravel/framework": "^9.5",
         "laravel/helpers": "^1.2",
         "pragmarx/google2fa-qrcode": "master-dev",
-        "predis/predis": "^1.1",
+        "predis/predis": "^2.0",
         "sentry/sentry-laravel": "^2.0"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.2",
-        "brianium/paratest": "^6.2",
+        "brianium/paratest": "^6.4",
         "fakerphp/faker": "^1.13",
         "friendsofphp/php-cs-fixer": "^3.9",
         "laravel/pint": "^1.0",
