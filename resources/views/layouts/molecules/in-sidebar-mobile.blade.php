@@ -7,7 +7,7 @@
 
     <ul class="border-t border-theme-21 py-5 hidden">
         <li>
-            <a href="{{ route('app.index') }}" class="menu {{ (strpos($ROUTE, 'app.') === 0) ? 'menu--active' : '' }}">
+            <a href="{{ route('app.index') }}" class="menu {{ str_starts_with($ROUTE, 'app.') ? 'menu--active' : '' }}">
                 <div class="menu__icon">@icon('cpu')</div>
                 <div class="menu__title">{{ __('in-sidebar.apps') }}</div>
             </a>
@@ -16,35 +16,35 @@
         @if ($AUTH->admin)
 
         <li>
-            <a href="{{ route('tag.index') }}" class="menu {{ (strpos($ROUTE, 'tag.') === 0) ? 'menu--active' : '' }}">
+            <a href="{{ route('tag.index') }}" class="menu {{ str_starts_with($ROUTE, 'tag.') ? 'menu--active' : '' }}">
                 <div class="menu__icon">@icon('tag')</div>
                 <div class="menu__title">{{ __('in-sidebar.tags') }}</div>
             </a>
         </li>
 
         <li>
-            <a href="{{ route('user.index') }}" class="menu {{ ((strpos($ROUTE, 'user.') === 0) && ($ROUTE !== 'user.profile')) ? 'menu--active' : '' }}">
+            <a href="{{ route('user.index') }}" class="menu {{ (str_starts_with($ROUTE, 'user.') && (str_starts_with($ROUTE, 'user.profile') === false)) ? 'menu--active' : '' }}">
                 <div class="menu__icon">@icon('users')</div>
                 <div class="menu__title">{{ __('in-sidebar.users') }}</div>
             </a>
         </li>
 
         <li>
-            <a href="{{ route('team.index') }}" class="menu {{ (strpos($ROUTE, 'team.') === 0) ? 'menu--active' : '' }}">
+            <a href="{{ route('team.index') }}" class="menu {{ str_starts_with($ROUTE, 'team.') ? 'menu--active' : '' }}">
                 <div class="menu__icon">@icon('briefcase')</div>
                 <div class="menu__title">{{ __('in-sidebar.teams') }}</div>
             </a>
         </li>
 
         <li>
-            <a href="{{ route('icon.index') }}" class="menu {{ (strpos($ROUTE, 'icon.') === 0) ? 'menu--active' : '' }}">
+            <a href="{{ route('icon.index') }}" class="menu {{ str_starts_with($ROUTE, 'icon.') ? 'menu--active' : '' }}">
                 <div class="menu__icon">@icon('image')</div>
                 <div class="menu__title">{{ __('in-sidebar.icon') }}</div>
             </a>
         </li>
 
         <li>
-            <a href="{{ route('log.index') }}" class="menu {{ (strpos($ROUTE, 'log.') === 0) ? 'menu--active' : '' }}">
+            <a href="{{ route('log.index') }}" class="menu {{ str_starts_with($ROUTE, 'log.') ? 'menu--active' : '' }}">
                 <div class="menu__icon">@icon('book-open')</div>
                 <div class="menu__title">{{ __('in-sidebar.log') }}</div>
             </a>
@@ -53,7 +53,7 @@
         @endif
 
         <li>
-            <a href="{{ route('user.profile') }}" class="menu {{ ($ROUTE === 'user.profile') ? 'menu--active' : '' }}">
+            <a href="{{ route('user.profile') }}" class="menu {{ str_starts_with($ROUTE, 'user.profile') ? 'menu--active' : '' }}">
                 <div class="menu__icon">@icon('user')</div>
                 <div class="menu__title">{{ __('in-sidebar.profile') }}</div>
             </a>
