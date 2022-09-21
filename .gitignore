@@ -2,6 +2,7 @@
 /public/hot
 /public/storage
 /resources/views/assets/node_modules
+/storage/docker
 /storage/*.key
 /vendor
 
