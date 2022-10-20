@@ -1,3 +1,6 @@
+includes:
+    - ./vendor/nunomaduro/larastan/extension.neon
+
 parameters:
     paths:
         - app
@@ -19,8 +22,10 @@ parameters:
         - '#but returns Illuminate\\Database\\Query\\Builder#'
         - '#expects App\\Domains\\Shared\\Model\\ModelAbstract\|null, Illuminate\\Contracts\\Auth\\Authenticatable\|null given#'
         - '#expects App\\Domains\\User\\Model\\User, Illuminate\\Contracts\\Auth\\Authenticatable\|null given#'
+        - '#is not subtype of native type App\\Domains\\SharedApp\\Model\\ModelAbstract#'
         - '#should return Illuminate\\View\\View but returns Illuminate\\Contracts\\View\\Factory\|Illuminate\\Contracts\\View\\View#'
         - '#should return Illuminate\\View\\View\|null but returns Illuminate\\Contracts\\View\\Factory\|Illuminate\\Contracts\\View\\View#'
+        - '#Unsafe usage of new static#'
         - '#\(App\\Domains\\User\\Model\\User\|null\) does not accept Illuminate\\Contracts\\Auth\\Authenticatable\|null#'
 
     checkMissingIterableValueType: false
