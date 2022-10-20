@@ -34,6 +34,7 @@ class Export extends ActionAbstract
         $this->zip();
         $this->contents();
         $this->clean();
+        $this->log();
 
         return $this->contents;
     }
@@ -137,5 +138,17 @@ class Export extends ActionAbstract
     protected function clean(): void
     {
         unlink($this->file);
+    }
+
+    /**
+     * @return void
+     */
+    protected function log(): void
+    {
+        $this->factory('Log')->action([
+            'table' => 'app',
+            'action' => 'export',
+            'user_from_id' => $this->auth->id,
+        ])->create();
     }
 }
