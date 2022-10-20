@@ -14,7 +14,7 @@
         'email-exists' => 'Ya existe otro usuario con ese mismo email',
         'tfa-disabled' => 'El doble factor de autenticación está desactivado por configuración',
     ],
-    'export' => 'Exportar',
+    'export' => 'Exportar Aplicaciones',
     'meta-title' => 'Actualización de Perfil',
     'name' => 'Nombre',
     'password' => 'Contraseña',

@@ -17,6 +17,14 @@ class ValidateFactory extends ValidateFactoryAbstract
     /**
      * @return array
      */
+    public function export(): array
+    {
+        return $this->handle(Export::class);
+    }
+
+    /**
+     * @return array
+     */
     public function search(): array
     {
         return $this->handle(Search::class);

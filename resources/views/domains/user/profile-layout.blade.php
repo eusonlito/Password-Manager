@@ -10,7 +10,7 @@
         <a href="{{ route('user.profile.tfa') }}" class="py-4 sm:mr-8 {{ ($ROUTE === 'user.profile.tfa') ? 'active' : '' }}" role="tab">{{ __('user-profile.tfa') }}</a>
         @endif
 
-        <a href="{{ route('user.profile.export') }}" class="py-4 sm:mr-8 {{ ($ROUTE === 'user.profile.export') ? 'active' : '' }}" role="tab">{{ __('user-profile.export') }}</a>
+        <a href="{{ route('app.export') }}" class="py-4 sm:mr-8 {{ ($ROUTE === 'app.export') ? 'active' : '' }}" role="tab">{{ __('user-profile.export') }}</a>
     </div>
 </div>
 

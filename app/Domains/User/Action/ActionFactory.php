@@ -93,14 +93,6 @@ class ActionFactory extends ActionFactoryAbstract
     }
 
     /**
-     * @return string
-     */
-    public function profileExport(): string
-    {
-        return $this->actionHandle(ProfileExport::class, $this->validate()->profileExport());
-    }
-
-    /**
      * @return \App\Domains\User\Model\User
      */
     public function profileTFA(): Model
