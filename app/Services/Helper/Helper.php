@@ -129,6 +129,19 @@ class Helper
     }
 
     /**
+     * @param array $array
+     * @param ?callable $callback = null
+     *
+     * @return array
+     */
+    public function arrayFilterRecursive(array $array, ?callable $callback = null): array
+    {
+        $callback ??= static fn ($value) => (bool)$value;
+
+        return array_filter(array_map(fn ($value) => is_array($value) ? $this->arrayFilterRecursive($value, $callback) : $value, $array), $callback);
+    }
+
+    /**
      * @param array $query
      *
      * @return string
