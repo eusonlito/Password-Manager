@@ -1,0 +1,23 @@
+<?php return [
+    'admin' => 'Admin',
+    'apps' => 'Applications',
+    'certificate' => 'Certificat',
+    'data' => 'Données',
+    'email' => 'Email',
+    'enabled' => 'Activé',
+    'error' => [
+        'admin-own' => 'Il n'est pas possible de désactiver l\'option d\'administrateur pour votre profil utilisateur',
+        'certificate-exists' => 'Il existe déjà un autre utilisateur avec ce même certificat',
+        'certificate-password-empty' => 'Vous ne pouvez pas désactiver l\'accès par mot de passe si aucun certificat n\'est défini',
+        'email-exists' => 'Il existe déjà un autre utilisateur avec ce même email',
+        'enabled-own' => 'Il n\'est pas possible de désactiver votre propre profil utilisateur',
+        'readonly-own' => 'Vous ne pouvez pas régler l\'option en lecture seule pour votre propre profil utilisateur',
+    ],
+    'name' => 'Nom',
+    'password' => 'Mot de passe',
+    'password_enabled' => 'Authentification par mot de passe activée',
+    'readonly' => 'Lecture Seule',
+    'save' => 'Sauver',
+    'success' => 'Les données utilisateur ont été mises à jour avec succès',
+    'teams' => 'Team',
+];
