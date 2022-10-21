@@ -4,4 +4,5 @@
     'password' => 'ZIP Password',
     'password_current' => 'Current Password',
     'save' => 'Export',
+    'shared' => '',
 ];

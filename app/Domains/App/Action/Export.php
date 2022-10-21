@@ -28,6 +28,7 @@ class Export extends ActionAbstract
      */
     public function handle(): string
     {
+        $this->data();
         $this->list();
         $this->map();
         $this->file();
@@ -42,9 +43,17 @@ class Export extends ActionAbstract
     /**
      * @return void
      */
+    protected function data(): void
+    {
+        $this->data['shared'] = $this->data['shared'] && $this->auth->admin;
+    }
+
+    /**
+     * @return void
+     */
     protected function list(): void
     {
-        $this->list = Model::byUserId($this->auth->id)->list()->get();
+        $this->list = Model::export($this->auth, $this->data['shared'])->list()->get();
     }
 
     /**

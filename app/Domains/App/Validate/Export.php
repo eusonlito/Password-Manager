@@ -12,6 +12,7 @@ class Export extends ValidateAbstract
     public function rules(): array
     {
         return [
+            'shared' => ['bail', 'boolean'],
             'password' => ['bail', 'string'],
             'password_current' => ['bail', 'required', 'current_password'],
         ];

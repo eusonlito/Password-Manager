@@ -163,6 +163,21 @@ class App extends BuilderAbstract
     }
 
     /**
+     * @param \App\Domains\User\Model\User $user
+     * @param bool $shared
+     *
+     * @return self
+     */
+    public function export(UserModel $user, bool $shared): self
+    {
+        return $this->when(
+            $shared,
+            static fn ($q) => $q->byUserAllowed($user),
+            static fn ($q) => $q->byUserId($user->id)
+        );
+    }
+
+    /**
      * @param bool $shared = true
      *
      * @return self

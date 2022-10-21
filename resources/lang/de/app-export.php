@@ -4,4 +4,5 @@
     'password' => 'Passwort',
     'password_current' => 'Aktuelles Passwort',
     'save' => 'Speichern',
+    'shared' => 'Freigegebene Apps einschließen',
 ];

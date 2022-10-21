@@ -4,4 +4,5 @@
     'password' => 'Contraseña para el fichero ZIP',
     'password_current' => 'Contraseña Actual',
     'save' => 'Exportar',
+    'shared' => 'Incluir las aplicaciones compartidas',
 ];

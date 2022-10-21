@@ -20,6 +20,17 @@
         </div>
     </div>
 
+    @if ($AUTH->admin)
+
+    <div class="box p-5 mt-5">
+        <div class="p-2 form-check">
+            <input type="checkbox" name="shared" value="1" class="form-check-switch" id="app-shared">
+            <label for="app-shared" class="form-check-label">{{ __('app-export.shared') }}</label>
+        </div>
+    </div>
+
+    @endif
+
     <div class="box p-5 mt-5">
         <div class="p-2">
             <label for="user-password_current" class="form-label">{{ __('app-export.password_current') }}</label>
