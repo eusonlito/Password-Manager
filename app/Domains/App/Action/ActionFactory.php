@@ -30,6 +30,14 @@ class ActionFactory extends ActionFactoryAbstract
     }
 
     /**
+     * @return string
+     */
+    public function export(): string
+    {
+        return $this->actionHandle(Export::class, $this->validate()->export());
+    }
+
+    /**
      * @return \Illuminate\Support\Collection
      */
     public function search(): Collection

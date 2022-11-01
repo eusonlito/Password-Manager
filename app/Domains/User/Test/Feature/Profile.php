@@ -29,7 +29,6 @@ class Profile extends FeatureAbstract
         'password_current' => ['bail', 'required', 'current_password'],
         'api_key' => ['bail', 'nullable', 'uuid'],
         'api_secret' => ['bail', 'nullable', 'min:8'],
-        'tfa_enabled' => ['bail', 'boolean'],
     ];
 
     /**

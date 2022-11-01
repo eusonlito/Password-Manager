@@ -21,6 +21,11 @@
                 </div>
 
                 <div class="p-2">
+                    <label for="team-color" class="form-label">{{ __('team-update.color') }}</label>
+                    <input type="color" name="color" class="form-control form-control-lg pt-0 pb-0" id="team-color" value="{{ $REQUEST->input('color') }}" required>
+                </div>
+
+                <div class="p-2">
                     <div class="form-check">
                         <input type="checkbox" name="default" value="1" class="form-check-switch" id="team-default" {{ $REQUEST->input('default') ? 'checked' : '' }}>
                         <label for="team-default" class="form-check-label">{{ __('team-create.default') }}</label>

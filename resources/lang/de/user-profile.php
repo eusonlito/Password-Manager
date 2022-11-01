@@ -12,7 +12,9 @@
         'certificate-exists' => 'Ein anderer Benutzer mit demselben Zertifikat existiert bereits',
         'certificate-password-empty' => 'Sie können den Passwortzugriff nicht deaktivieren, wenn kein Zertifikat definiert ist',
         'email-exists' => 'Es gibt bereits einen anderen Benutzer mit derselben E-Mail',
+        'tfa-disabled' => 'Die Zwei-Faktor-Authentifizierung wird durch Konfiguration deaktiviert',
     ],
+    'export' => 'Exportieren',
     'meta-title' => 'Profilaktualisierung',
     'name' => 'Name',
     'password' => 'Passwort',
@@ -21,6 +23,4 @@
     'save' => 'Speichern',
     'success' => 'Ihr Profil wurde korrekt aktualisiert',
     'tfa' => '2FA',
-    'tfa-description' => 'Sie müssen den QR-Code mit Ihrer Google Authenticator-App scannen, bevor Sie die Zwei-Faktor-Authentifizierung aktivieren, sonst können Sie nicht mehr auf die Plattform zugreifen.',
-    'tfa_enabled' => '2FA aktiviert',
 ];

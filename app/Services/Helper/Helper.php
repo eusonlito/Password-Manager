@@ -129,6 +129,19 @@ class Helper
     }
 
     /**
+     * @param array $array
+     * @param ?callable $callback = null
+     *
+     * @return array
+     */
+    public function arrayFilterRecursive(array $array, ?callable $callback = null): array
+    {
+        $callback ??= static fn ($value) => (bool)$value;
+
+        return array_filter(array_map(fn ($value) => is_array($value) ? $this->arrayFilterRecursive($value, $callback) : $value, $array), $callback);
+    }
+
+    /**
      * @param array $query
      *
      * @return string
@@ -184,8 +197,8 @@ class Helper
     {
         $data = random_bytes(16);
 
-        $data[6] = chr(ord($data[6]) & 0x0f | 0x40);
-        $data[8] = chr(ord($data[8]) & 0x3f | 0x80);
+        $data[6] = chr(ord($data[6]) & 0x0F | 0x40);
+        $data[8] = chr(ord($data[8]) & 0x3F | 0x80);
 
         return vsprintf('%s%s-%s-%s-%s-%s%s%s', str_split(bin2hex($data), 4));
     }

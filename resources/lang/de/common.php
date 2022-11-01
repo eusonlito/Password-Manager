@@ -11,7 +11,7 @@
     ],
     'generate' => 'Erstellen',
     'meta' => [
-        'title' => '',
+        'title' => 'Passwort-Manager',
     ],
     'show' => 'Anzeigen',
     'view' => 'Anzeigen',

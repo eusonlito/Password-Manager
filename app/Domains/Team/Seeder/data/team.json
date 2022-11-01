@@ -2,6 +2,7 @@
     {
         "code": "global",
         "name": "Global",
+        "color": "#a8c5ff",
         "default": true
     }
 ]

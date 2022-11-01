@@ -56,6 +56,10 @@ class View extends ServiceProvider
             return "<?= \App\Services\Html\Html::color($expression); ?>";
         });
 
+        Blade::directive('backgroundColor', function (string $expression) {
+            return "<?= \App\Services\Html\Html::backgroundColor($expression); ?>";
+        });
+
         Blade::directive('jsonPretty', function (string $expression) {
             return "<?= \App\Services\Html\Html::jsonPretty($expression); ?>";
         });

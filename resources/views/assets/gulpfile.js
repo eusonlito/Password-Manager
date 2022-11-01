@@ -7,11 +7,11 @@ const
     cleancss = require('gulp-clean-css'),
     concat = require('gulp-concat'),
     del = require('del'),
-    env = require('gulp-environments'),
     filesExist = require('files-exist'),
     imagemin = require('gulp-imagemin'),
     jshint = require('gulp-jshint'),
     merge = require('merge2'),
+    mode = require('gulp-mode')({ default: 'production' }),
     postcss = require('gulp-postcss'),
     purgecss = require('gulp-purgecss'),
     purifycss = require('gulp-purifycss'),
@@ -23,8 +23,6 @@ const
     uglify = require('gulp-uglify'),
     webpack = require('webpack-stream'),
     manifest = {};
-
-const production = env.production;
 
 const loadManifest = function(name) {
     if (manifest[name]) {
@@ -86,12 +84,12 @@ const css = function(cb) {
     return src(loadManifest('scss'))
         .pipe(sass())
         .pipe(postcss([ tailwindcss('./tailwind.config.js') ]))
-        .pipe(production(cleancss({
+        .pipe(mode.production(cleancss({
             specialComments: 0,
             level: 2,
             inline: ['all']
         })))
-        .pipe(production(purgecss({
+        .pipe(mode.production(purgecss({
             defaultExtractor: content => content.match(/[\w\.\-\/:]+(?<!:)/g) || [],
             content: [
                 paths.from.html + '/**/*.html',
@@ -124,21 +122,41 @@ const jsLint = function(cb) {
 
 const js = series(jsLint, function() {
     return src(loadManifest('js'))
-        .pipe(webpack({ mode: 'production' }))
+        .pipe(webpack({
+            mode: mode.production() ? 'production' : 'development',
+            module: {
+                    rules: [{
+                    test: /\.svg$/,
+                    use: [{
+                        loader: 'html-loader',
+                        options: { minimize: mode.production() ? true : false }
+                    }]
+                }]
+            }
+        }))
         .pipe(concat('main.min.js'))
-        .pipe(production(uglify()))
+        .pipe(mode.production(uglify()))
         .pipe(dest(paths.to.js));
 });
 
 const images = function() {
     return src(paths.from.images + '**/*')
         .pipe(dest(paths.to.images))
-        .pipe(imagemin([
+        .pipe(mode.production(imagemin([
             imagemin.gifsicle(),
             imagemin.mozjpeg({ progressive: true }),
             imagemin.optipng(),
-            imagemin.svgo({ plugins: [{ removeViewBox: false }] })
-        ]))
+            imagemin.svgo({
+                plugins: [
+                    { removeViewBox: false },
+                    { removeEmptyAttrs: false },
+                    { removeUnknownsAndDefaults: false },
+                    { removeUselessStrokeAndFill: false },
+                    { mergeStyles: false },
+                    { mergePaths: false }
+                ]
+            })
+        ])))
         .pipe(dest(paths.to.images));
 };
 

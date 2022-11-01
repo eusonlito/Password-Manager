@@ -49,6 +49,14 @@ class ValidateFactory extends ValidateFactoryAbstract
     /**
      * @return array
      */
+    public function profileTFA(): array
+    {
+        return $this->handle(ProfileTFA::class);
+    }
+
+    /**
+     * @return array
+     */
     public function update(): array
     {
         return $this->handle(Update::class);

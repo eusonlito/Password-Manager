@@ -93,6 +93,14 @@ class ActionFactory extends ActionFactoryAbstract
     }
 
     /**
+     * @return \App\Domains\User\Model\User
+     */
+    public function profileTFA(): Model
+    {
+        return $this->actionHandle(ProfileTFA::class, $this->validate()->profileTFA());
+    }
+
+    /**
      * @return bool
      */
     public function sessionTFA(): bool

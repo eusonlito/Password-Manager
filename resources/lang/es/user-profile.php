@@ -12,7 +12,9 @@
         'certificate-exists' => 'Ya existe otro usuario con este mismo certificado',
         'certificate-password-empty' => 'No se puede desactivar el acceso por contraseña si no se ha definido un certificado',
         'email-exists' => 'Ya existe otro usuario con ese mismo email',
+        'tfa-disabled' => 'El doble factor de autenticación está desactivado por configuración',
     ],
+    'export' => 'Exportar Aplicaciones',
     'meta-title' => 'Actualización de Perfil',
     'name' => 'Nombre',
     'password' => 'Contraseña',
@@ -21,6 +23,4 @@
     'save' => 'Guardar',
     'success' => 'Tu perfil ha sido actualizado correctmente',
     'tfa' => '2FA',
-    'tfa-description' => 'Debes escanear el código QR con tu aplicación de Google Authenticator antes de activar la autenticación de doble factor, o no podrás acceder de nuevo a la plataforma.',
-    'tfa_enabled' => '2FA Activado',
 ];

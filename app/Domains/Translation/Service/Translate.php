@@ -9,17 +9,22 @@ class Translate extends ServiceAbstract
     /**
      * @const string
      */
-    protected const LANG = 'es';
-
-    /**
-     * @const string
-     */
     protected const ENDPOINT = 'https://api.cognitive.microsofttranslator.com/translate?api-version=3.0&from=:from&to=:to';
 
     /**
      * @var string
      */
-    protected string $lang = '';
+    protected array $config;
+
+    /**
+     * @var string
+     */
+    protected string $reference;
+
+    /**
+     * @var string
+     */
+    protected string $lang;
 
     /**
      * @var string
@@ -33,12 +38,16 @@ class Translate extends ServiceAbstract
      */
     public function __construct(string $lang)
     {
-        if ($lang === static::LANG) {
+        $this->reference = config('app.locale');
+
+        if ($lang === $this->reference) {
             throw new UnexpectedValueException(sprintf('Language must be different than reference language %s', $lang));
         }
 
-        if (empty(config('services.azure.key'))) {
-            throw new UnexpectedValueException('You must set a Microsoft Azure key');
+        $this->config = config('microsoft.azure', []);
+
+        if (empty($this->config['key']) || empty($this->config['region'])) {
+            throw new UnexpectedValueException('You must set a Microsoft Azure Key and Region');
         }
 
         $this->lang = $lang;
@@ -60,7 +69,7 @@ class Translate extends ServiceAbstract
      */
     protected function files(): array
     {
-        return glob($this->base.'/'.static::LANG.'/*.php');
+        return glob($this->base.'/'.$this->reference.'/*.php');
     }
 
     /**
@@ -82,16 +91,25 @@ class Translate extends ServiceAbstract
     {
         $file = $this->file(basename($reference));
         $current = array_dot(is_file($file) ? (require $file) : []);
-        $empty = array_filter($current, static fn ($value) => empty($value));
+        $empty = helper()->arrayFilterRecursive($current, static fn ($value) => is_string($value) && empty($value));
         $strings = array_intersect_key(array_dot(require $reference), $empty);
 
         if (empty($strings)) {
             return;
         }
 
-        $translated = array_merge($current, array_combine(array_keys($strings), $this->request($strings)));
+        $this->writeFile($file, $this->translateUndot($current, $strings));
+    }
 
-        $this->writeFile($file, $this->undot($translated));
+    /**
+     * @param array $current
+     * @param array $strings
+     *
+     * @return array
+     */
+    protected function translateUndot(array $current, array $strings): array
+    {
+        return $this->undot(array_merge($current, array_combine(array_keys($strings), $this->request($strings))));
     }
 
     /**
@@ -117,7 +135,7 @@ class Translate extends ServiceAbstract
      */
     protected function requestEndpoint(): string
     {
-        return str_replace([':from', ':to'], [static::LANG, $this->lang], static::ENDPOINT);
+        return str_replace([':from', ':to'], [$this->reference, $this->lang], static::ENDPOINT);
     }
 
     /**
@@ -127,7 +145,8 @@ class Translate extends ServiceAbstract
     {
         return ''
             .'Content-type: application/json'."\r\n"
-            .'Ocp-Apim-Subscription-Key: '.config('services.azure.key')."\r\n";
+            .'Ocp-Apim-Subscription-Key: '.$this->config['key']."\r\n"
+            .'Ocp-Apim-Subscription-Region: '.$this->config['region']."\r\n";
     }
 
     /**

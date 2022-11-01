@@ -99,6 +99,7 @@ CREATE TABLE `tag` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `code` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `color` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   `remote_provider` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `remote_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -134,6 +135,7 @@ CREATE TABLE `team` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `code` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `color` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '',
   `default` tinyint(1) NOT NULL DEFAULT '0',
   `remote_provider` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `remote_id` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -191,6 +193,7 @@ CREATE TABLE `user` (
   `password` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `tfa_secret` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `api_key` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `api_secret` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `remember_token` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `password_enabled` tinyint(1) NOT NULL DEFAULT '1',
   `tfa_enabled` tinyint(1) NOT NULL DEFAULT '0',
@@ -202,12 +205,12 @@ CREATE TABLE `user` (
   `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `deleted_at` datetime DEFAULT NULL,
-  `api_secret` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `user_email_unique` (`email`),
   UNIQUE KEY `user_certificate_unique` (`certificate`),
   UNIQUE KEY `user_tfa_secret_unique` (`tfa_secret`),
   UNIQUE KEY `user_api_key_unique` (`api_key`),
+  UNIQUE KEY `user_api_secret_unique` (`api_secret`),
   KEY `user_remote_provider_index` (`remote_provider`),
   KEY `user_remote_id_index` (`remote_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -239,4 +242,6 @@ CREATE TABLE `user_session` (
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 INSERT INTO `migrations` VALUES (1,'2021_01_14_000000_base',1);
-INSERT INTO `migrations` VALUES (2,'2021_09_14_130000_user_api_secret',2);
+INSERT INTO `migrations` VALUES (2,'2021_09_14_130000_user_api_secret',1);
+INSERT INTO `migrations` VALUES (3,'2022_05_24_170000_tag_color',1);
+INSERT INTO `migrations` VALUES (4,'2022_05_25_100000_team_color',1);

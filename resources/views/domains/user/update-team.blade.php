@@ -29,9 +29,11 @@
                     @foreach ($teams as $each)
 
                     <tr>
-                        <td class="text-left"><a href="{{ route('team.update', $each->id) }}" class="block font-semibold whitespace-nowrap">{{ $each->name }}</a></td>
+                        <td class="text-left">
+                            <label for="team_ids-{{ $each->id }}" class="text-xs py-1 px-2 rounded-lg" style="@backgroundColor($each->color)">{{ $each->name }}</label>
+                        </td>
                         <td data-table-sort-value="{{ (int)$each->selected }}">
-                            <input type="checkbox" name="team_ids[]" value="{{ $each->id }}" {{ $each->selected ? 'checked' : '' }}/>
+                            <input type="checkbox" name="team_ids[]" id="team_ids-{{ $each->id }}" value="{{ $each->id }}" {{ $each->selected ? 'checked' : '' }}/>
                         </td>
                     </tr>
 

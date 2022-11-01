@@ -7,6 +7,16 @@ use App\Domains\Shared\Model\Builder\BuilderAbstract;
 class Tag extends BuilderAbstract
 {
     /**
+     * @param string $code
+     *
+     * @return self
+     */
+    public function byCode(string $code): self
+    {
+        return $this->where('code', $code);
+    }
+
+    /**
      * @param array $list
      *
      * @return self
@@ -14,6 +24,16 @@ class Tag extends BuilderAbstract
     public function byIdsOrCodes(array $list): self
     {
         return $this->where(fn ($q) => $q->orWhereIn('id', $list)->orWhereIn('code', $list));
+    }
+
+    /**
+     * @param string $name
+     *
+     * @return self
+     */
+    public function byName(string $name): self
+    {
+        return $this->where('name', $name);
     }
 
     /**

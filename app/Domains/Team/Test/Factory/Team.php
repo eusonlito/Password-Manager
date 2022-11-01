@@ -20,6 +20,7 @@ class Team extends FactoryEloquent
         return [
             'code' => str_slug($name = $this->faker->name),
             'name' => $name,
+            'color' => $this->faker->hexColor(),
             'default' => true,
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s'),

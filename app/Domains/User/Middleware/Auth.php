@@ -18,7 +18,7 @@ class Auth extends MiddlewareAbstract
         $this->load($request);
 
         if (empty($this->auth)) {
-            return $this->unauthorized($request, static fn () =>redirect()->route('user.auth.credentials'));
+            return $this->unauthorized($request, static fn () => redirect()->route('user.auth.credentials'));
         }
 
         return $next($request);

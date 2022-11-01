@@ -4,7 +4,8 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use App\Domains\Shared\Migration\MigrationAbstract;
 
-return new class extends MigrationAbstract {
+return new class extends MigrationAbstract
+{
     /**
      * @return void
      */
@@ -84,6 +85,7 @@ return new class extends MigrationAbstract {
 
             $table->string('code')->unique();
             $table->string('name');
+            $table->string('color')->default('');
 
             $table->string('remote_provider')->nullable()->index();
             $table->string('remote_id')->nullable()->index();
@@ -105,6 +107,7 @@ return new class extends MigrationAbstract {
 
             $table->string('code')->unique();
             $table->string('name');
+            $table->string('color')->default('');
 
             $table->boolean('default')->default(0);
 

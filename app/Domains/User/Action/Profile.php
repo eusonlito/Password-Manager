@@ -30,6 +30,10 @@ class Profile extends ActionAbstract
         $this->data['certificate'] = $this->data['certificate'] ?: null;
         $this->data['api_key'] = $this->data['api_key'] ?: null;
         $this->data['api_secret'] = $this->data['api_secret'] ?: null;
+
+        if (config('auth.certificate.enabled') === false) {
+            $this->data['password_enabled'] = true;
+        }
     }
 
     /**
@@ -167,10 +171,6 @@ class Profile extends ActionAbstract
 
         if ($this->data['api_secret']) {
             $this->row->api_secret = Hash::make($this->data['api_secret']);
-        }
-
-        if (config('auth.tfa.enabled')) {
-            $this->row->tfa_enabled = $this->data['tfa_enabled'];
         }
 
         $this->row->save();

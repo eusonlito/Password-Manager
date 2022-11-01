@@ -18,7 +18,7 @@
     <table id="user-list-table" class="table table-report sm:mt-2 font-medium text-center whitespace-nowrap" data-table-pagination="user-list-table-pagination" data-table-sort>
         <thead>
             <tr>
-                <th>{{ __('user-index.id') }}</th>
+                <th class="w-1">{{ __('user-index.id') }}</th>
                 <th class="text-left">{{ __('user-index.name') }}</th>
                 <th class="text-left">{{ __('user-index.email') }}</th>
                 <th>{{ __('user-index.password_enabled') }}</th>
@@ -34,10 +34,10 @@
         <tbody>
             @foreach ($list as $row)
 
-            @php($link = route('user.update', $row->id))
+            @php ($link = route('user.update', $row->id))
 
             <tr>
-                <td><a href="{{ $link }}" class="block text-center font-semibold whitespace-nowrap">{{ $row->id }}</a></td>
+                <td class="w-1"><a href="{{ $link }}" class="block text-center font-semibold whitespace-nowrap">{{ $row->id }}</a></td>
                 <td class="text-left"><a href="{{ $link }}" class="block font-semibold whitespace-nowrap">{{ $row->name }}</a></td>
                 <td class="text-left"><a href="{{ $link }}" class="block font-semibold whitespace-nowrap">{{ $row->email }}</a></td>
                 <td data-table-sort-value="{{ (int)$row->password_enabled }}">@status($row->password_enabled)</td>
@@ -50,7 +50,7 @@
                     <div class="flex justify-center space-x-2">
                         @foreach ($row->teams as $each)
 
-                        <a href="{{ route('team.update', $each->id) }}" class="text-xs py-1 px-2 rounded-lg" style="background-color: @color($each->code)">{{ $each->name }}</a>
+                        <a href="{{ route('team.update', $each->id) }}" class="text-xs py-1 px-2 rounded-lg" style="@backgroundColor($each->color)">{{ $each->name }}</a>
 
                         @endforeach
                     </div>

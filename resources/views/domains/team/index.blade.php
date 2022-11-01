@@ -18,8 +18,9 @@
     <table id="team-list-table" class="table table-report sm:mt-2 font-medium text-center whitespace-nowrap" data-table-sort>
         <thead>
             <tr>
-                <th>{{ __('team-index.id') }}</th>
+                <th class="w-1">{{ __('team-index.id') }}</th>
                 <th class="text-left">{{ __('team-index.name') }}</th>
+                <th class="text-center">{{ __('team-index.color') }}</th>
                 <th>{{ __('team-index.default') }}</th>
                 <th>{{ __('team-index.users') }}</th>
             </tr>
@@ -28,11 +29,12 @@
         <tbody>
             @foreach ($list as $row)
 
-            @php($link = route('team.update', $row->id))
+            @php ($link = route('team.update', $row->id))
 
             <tr>
-                <td><a href="{{ $link }}" class="block text-center font-semibold whitespace-nowrap">{{ $row->id }}</a></td>
+                <td class="w-1"><a href="{{ $link }}" class="block text-center font-semibold whitespace-nowrap">{{ $row->id }}</a></td>
                 <td><a href="{{ $link }}" class="block text-left font-semibold whitespace-nowrap">{{ $row->name }}</a></td>
+                <td class="text-center"><a href="{{ $link }}" class="text-xs py-1 px-2 rounded-lg" style="@backgroundColor($row->color)">{{ $row->color }}</a></td>
                 <td data-table-sort-value="{{ (int)$row->default }}"><a href="{{ route('team.update.boolean', [$row->id, 'default']) }}" data-link-boolean="default">@status($row->default)</a></td>
                 <td>{{ $row->teams_users_count }}</td>
             </tr>

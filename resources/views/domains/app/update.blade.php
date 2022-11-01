@@ -65,13 +65,13 @@
 
     <div class="box p-5 mt-5">
         <div class="p-2 form-check">
-            <input type="checkbox" name="shared" value="1" class="form-check-switch" id="ticker-shared" {{ $REQUEST->input('shared') ? 'checked' : '' }}>
-            <label for="ticker-shared" class="form-check-label">{{ __('app-update.shared') }}</label>
+            <input type="checkbox" name="shared" value="1" class="form-check-switch" id="app-shared" {{ $REQUEST->input('shared') ? 'checked' : '' }}>
+            <label for="app-shared" class="form-check-label">{{ __('app-update.shared') }}</label>
         </div>
 
         <div class="p-2 form-check">
-            <input type="checkbox" name="editable" value="1" class="form-check-switch" id="ticker-editable" {{ $REQUEST->input('editable') ? 'checked' : '' }}>
-            <label for="ticker-editable" class="form-check-label">{{ __('app-update.editable') }}</label>
+            <input type="checkbox" name="editable" value="1" class="form-check-switch" id="app-editable" {{ $REQUEST->input('editable') ? 'checked' : '' }}>
+            <label for="app-editable" class="form-check-label">{{ __('app-update.editable') }}</label>
         </div>
     </div>
 

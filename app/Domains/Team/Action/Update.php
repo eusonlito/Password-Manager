@@ -34,6 +34,7 @@ class Update extends ActionAbstract
     protected function check(): void
     {
         $this->checkCode();
+        $this->checkName();
     }
 
     /**
@@ -49,10 +50,21 @@ class Update extends ActionAbstract
     /**
      * @return void
      */
+    protected function checkName(): void
+    {
+        if (Model::byIdNot($this->row->id)->byName($this->data['name'])->count()) {
+            throw new ValidatorException(__('team-update.error.name-exists'));
+        }
+    }
+
+    /**
+     * @return void
+     */
     protected function save(): void
     {
         $this->row->code = $this->data['code'];
         $this->row->name = $this->data['name'];
+        $this->row->color = $this->data['color'];
         $this->row->default = $this->data['default'];
         $this->row->save();
     }

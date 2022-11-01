@@ -1,21 +1,26 @@
 (function (cash) {
     'use strict';
 
+    function icon(name) {
+        return '<svg class="feather s-20px"><use xlink:href="' + window.location.origin + '/build/images/feather-sprite.svg#' + name + '" /></svg>';
+    }
+
     function create($table, total, limit) {
         const $paginator = paginator($table);
         const pages = parseInt((total / limit) + (((total % limit) === 0) ? 0 : 1));
 
-        $paginator.insertAdjacentHTML('beforeend', '<li><a href="javascript:;" class="pagination__link" data-table-pagination-navigate="first">&Lt;</a></li>');
-        $paginator.insertAdjacentHTML('beforeend', '<li><a href="javascript:;" class="pagination__link" data-table-pagination-navigate="previous">&lt;</a></li>');
+        $paginator.insertAdjacentHTML('beforeend', '<li><a href="javascript:;" class="pagination__link" data-table-pagination-navigate="first">' + icon('chevrons-left') + '</a></li>');
+        $paginator.insertAdjacentHTML('beforeend', '<li><a href="javascript:;" class="pagination__link" data-table-pagination-navigate="previous">' + icon('chevron-left') + '</a></li>');
         $paginator.insertAdjacentHTML('beforeend', '<li><a href="javascript:;" class="pagination__link pagination__link--active whitespace-nowrap" data-table-pagination-navigate="current" data-table-pagination-page="1"></a></li>');
-        $paginator.insertAdjacentHTML('beforeend', '<li><a href="javascript:;" class="pagination__link" data-table-pagination-navigate="next">&gt;</a></li>');
-        $paginator.insertAdjacentHTML('beforeend', '<li><a href="javascript:;" class="pagination__link" data-table-pagination-navigate="last">&Gt;</a></li>');
+        $paginator.insertAdjacentHTML('beforeend', '<li><a href="javascript:;" class="pagination__link" data-table-pagination-navigate="next">' + icon('chevron-right') + '</a></li>');
+        $paginator.insertAdjacentHTML('beforeend', '<li><a href="javascript:;" class="pagination__link" data-table-pagination-navigate="last">' + icon('chevrons-right') + '</a></li>');
 
         paginate($table, $paginator, $paginator.querySelector('[data-table-pagination-navigate="current"]'));
 
-        $paginator.querySelectorAll('a').forEach(each => each.addEventListener('click', () => paginate($table, $paginator, each), false));
+        $paginator.querySelectorAll('a').forEach(each => each.addEventListener('click', () => paginate($table, $paginator, each, true), false));
 
-        $table.addEventListener('reset', (e) => reset(e, $table, $paginator), false);
+        $table.addEventListener('search', (e) => event(e, $table, $paginator), false);
+        $table.addEventListener('sort', (e) => event(e, $table, $paginator), false);
     }
 
     function paginator($table) {
@@ -33,7 +38,15 @@
         return $paginator;
     }
 
-    function paginate($table, $paginator, $page) {
+    function paginate($table, $paginator, $page, click) {
+        if ((click === true) && $page.dataset.tablePaginationPage) {
+            paginateAll($table, $paginator, $page);
+        } else {
+            paginatePages($table, $paginator, $page);
+        }
+    }
+
+    function paginatePages($table, $paginator, $page) {
         const limit = parseInt($table.dataset.tablePaginationLimit || 20);
         const $trs = $table.querySelectorAll('tbody > tr');
         const $current = $paginator.querySelector('[data-table-pagination-navigate="current"]');
@@ -75,24 +88,77 @@
         $current.innerHTML = page + ' / ' + pages + '&nbsp;&nbsp;&nbsp;&boxH;&nbsp;&nbsp;&nbsp;' + total;
     }
 
-    function reset(e, $table, $paginator) {
-        if (e.detail === 'pagination') {
-            return;
+    function paginateAll($table, $paginator, $page) {
+        if ($page.dataset.tablePaginationShowAll) {
+            $page.dataset.tablePaginationShowAll = '';
+
+            return paginatePages($table, $paginator, $page);
         }
 
+        const $trs = $table.querySelectorAll('tbody > tr');
+        const total = $trs.length;
+
+        $trs.forEach(function (value, index) {
+            const $tr = $trs[index];
+
+            $tr.style.display = 'table-row';
+            $tr.dataset.tablePaginationHidden = 'false';
+        });
+
+        $page.innerHTML = total;
+        $page.dataset.tablePaginationShowAll = 'true';
+    }
+
+    function reset($table, $paginator) {
         paginate($table, $paginator, $paginator.querySelector('[data-table-pagination-navigate="current"]'));
     }
 
-    cash('[data-table-pagination]').each(function () {
-        const $table = this;
+    function event(e, $table, $paginator) {
+        switch (e.type) {
+            case 'sort':
+                return eventSort(e, $table, $paginator);
 
-        const total = $table.querySelectorAll('tbody > tr').length;
-        const limit = parseInt($table.dataset.tablePaginationLimit || 20);
+            case 'search':
+                return eventSearch(e, $table, $paginator);
+        }
+    }
 
-        if (total > limit) {
-            create($table, total, limit);
+    function eventSort(e, $table, $paginator) {
+        return reset($table, $paginator);
+    }
+
+    function eventSearch(e, $table, $paginator) {
+        if (e.detail) {
+            return $paginator.classList.add('hidden');
         }
 
-        $table.style.display = 'table';
-    });
-})(cash);
+        $paginator.classList.remove('hidden');
+
+        return reset($table, $paginator);
+    }
+
+    function load(element) {
+        if (element.dataset.tablePaginationLoaded) {
+            return;
+        }
+
+        const total = element.querySelectorAll('tbody > tr').length;
+        const limit = parseInt(element.dataset.tablePaginationLimit || 20);
+
+        if (total > limit) {
+            create(element, total, limit);
+        }
+
+        element.style.display = 'table';
+
+        element.dataset.tablePaginationLoaded = true;
+    }
+
+    function init () {
+        document.querySelectorAll('[data-table-pagination]').forEach(load);
+    }
+
+    document.addEventListener('ajax', init);
+
+    init();
+})();

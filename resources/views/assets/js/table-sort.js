@@ -1,11 +1,11 @@
 (function (cash) {
     'use strict';
 
-    const cellValue = function ($td) {
+    function cellValue ($td) {
         return $td.dataset.tableSortValue || ($td.innerText || $td.textContent).trim();
-    };
+    }
 
-    const sort = function ($table, col, reverse) {
+    function sort ($table, col, reverse) {
         let $body = $table.tBodies[0],
             $trs = Array.prototype.slice.call($body.rows, 0);
 
@@ -26,20 +26,33 @@
             $body.appendChild($trs[i]);
         }
 
-        $table.dispatchEvent(new CustomEvent('reset', { detail: 'sort' }));
-    };
+        $table.dispatchEvent(new Event('sort'));
+    }
 
-    cash('[data-table-sort]').each(function (e) {
-        const $table = this;
-        const $ths = this.tHead.rows[0].cells;
+    function load(element) {
+        if (element.dataset.tableSortLoaded) {
+            return;
+        }
+
+        const $ths = element.tHead.rows[0].cells;
         let i = $ths.length;
 
         while (--i >= 0) (function (i) {
             let dir = 1;
 
             $ths[i].addEventListener('click', function () {
-                sort($table, i, (dir = 1 - dir));
+                sort(element, i, (dir = 1 - dir));
             });
         }(i));
-    });
-})(cash);
+
+        element.dataset.tableSortLoaded = true;
+    }
+
+    function init () {
+        document.querySelectorAll('[data-table-sort]').forEach(load);
+    }
+
+    document.addEventListener('ajax', init);
+
+    init();
+})();

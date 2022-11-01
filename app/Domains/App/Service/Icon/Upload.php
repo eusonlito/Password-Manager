@@ -27,6 +27,14 @@ class Upload
     protected string $path;
 
     /**
+     * @return self
+     */
+    public static function new(): self
+    {
+        return new static(...func_get_args());
+    }
+
+    /**
      * @param \Illuminate\Http\UploadedFile $file
      * @param int|string $name
      *

@@ -14,10 +14,26 @@ class ActionFactory extends ActionFactoryAbstract
     protected ?Model $row;
 
     /**
+     * @return \App\Domains\Tag\Model\Tag
+     */
+    public function create(): Model
+    {
+        return $this->actionHandle(Create::class, $this->validate()->create());
+    }
+
+    /**
      * @return \Illuminate\Support\Collection
      */
     public function getOrCreate(): Collection
     {
         return $this->actionHandle(GetOrCreate::class, $this->validate()->getOrCreate());
+    }
+
+    /**
+     * @return \App\Domains\Tag\Model\Tag
+     */
+    public function update(): Model
+    {
+        return $this->actionHandle(Update::class, $this->validate()->update());
     }
 }

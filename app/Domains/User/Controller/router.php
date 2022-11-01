@@ -11,6 +11,7 @@ Route::group(['middleware' => 'user.auth.redirect'], static function () {
 
 Route::group(['middleware' => ['user-auth']], static function () {
     Route::any('/user/profile', Profile::class)->name('user.profile');
+    Route::any('/user/profile/tfa', ProfileTFA::class)->name('user.profile.tfa');
     Route::any('/user/profile/certificate', ProfileCertificate::class)->name('user.profile.certificate');
 });
 
