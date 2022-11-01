@@ -3,6 +3,6 @@
     'create' => 'Erstellen',
     'filter' => 'Tags filtern...',
     'id' => 'Id',
-    'meta-title' => 'Symbole',
+    'meta-title' => 'Labels',
     'name' => 'Name',
 ];
