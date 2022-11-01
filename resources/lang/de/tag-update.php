@@ -6,6 +6,6 @@
         'name-exists' => 'Der Name ist bereits für ein anderes Label vorhanden.',
     ],
     'name' => 'Name',
-    'save' => 'Retten',
+    'save' => 'Speichern',
     'success' => 'Das Label wurde korrekt aktualisiert',
 ];

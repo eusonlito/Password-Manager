@@ -1,5 +1,5 @@
 <?php return [
-    'close' => 'Schlissen',
+    'close' => 'Schliessen',
     'copied' => 'Kopiert!',
     'copy' => 'kopieren',
     'error' => [

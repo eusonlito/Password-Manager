@@ -4,7 +4,7 @@
     'create' => 'Erstellen',
     'email' => 'Email',
     'enabled' => 'Aktiviert',
-    'filter' => 'Filter Users...',
+    'filter' => 'Benutzer filtern...',
     'id' => 'ID',
     'meta-title' => 'Benutzer',
     'name' => 'Name',

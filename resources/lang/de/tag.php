@@ -1,5 +1,5 @@
 <?php return [
     'error' => [
-        'not-found' => 'Das angeforderte Tag ist nicht mehr verfügbar',
+        'not-found' => 'Das angeforderte Label ist nicht mehr verfügbar',
     ],
 ];

@@ -1,3 +1,3 @@
 <?php return [
-    'filter' => 'Filter Apps...',
+    'filter' => 'Accounts filtern...',
 ];

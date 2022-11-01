@@ -2,7 +2,7 @@
     'color' => 'Farbe',
     'create' => 'Erstellen',
     'default' => 'Default',
-    'filter' => 'Filter Teams...',
+    'filter' => 'Teams filtern...',
     'id' => 'ID',
     'meta-title' => 'Teams',
     'name' => 'Name',

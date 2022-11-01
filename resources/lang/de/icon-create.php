@@ -2,9 +2,9 @@
     'error' => [
         'name-exists' => 'Ein weiteres Symbol mit demselben Namen ist bereits vorhanden',
     ],
-    'icon' => 'Ikone',
+    'icon' => 'Symbol',
     'meta-title' => 'Symbol "Erstellen"',
     'name' => 'Name',
-    'save' => 'Retten',
+    'save' => 'Speichern',
     'success' => 'Das Symbol wurde korrekt erstellt',
 ];

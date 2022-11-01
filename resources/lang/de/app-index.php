@@ -1,7 +1,7 @@
 <?php return [
     'create' => 'Erstellen',
     'editable' => 'bearbeitbar',
-    'filter' => 'Filter Apps...',
+    'filter' => 'Accounts filtern...',
     'icon' => 'Icon',
     'meta-title' => 'Accounts',
     'name' => 'Name',
@@ -14,6 +14,6 @@
     'tag' => 'Tag',
     'tags' => 'Tags',
     'team' => 'Team',
-    'type' => 'Tyl',
+    'type' => 'Typ',
     'visibility' => 'Sichtbarkeit',
 ];

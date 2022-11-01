@@ -2,7 +2,7 @@
     'error' => [
         'team_ids-empty' => 'Sie haben kein Team gewählt.',
     ],
-    'filter' => 'Filter Teams...',
+    'filter' => 'Teams filtern...',
     'name' => 'Name',
     'related' => 'zugeordnet',
     'save' => 'Speichern',

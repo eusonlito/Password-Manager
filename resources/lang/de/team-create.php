@@ -1,6 +1,6 @@
 <?php return [
-    'data' => 'Data',
-    'default' => 'Default',
+    'data' => 'Daten',
+    'default' => 'Standard',
     'error' => [
         'code-exists' => 'Ein anderes Team mit demselben Code existiert bereits',
         'name-exists' => 'Ein anderer Computer mit demselben Namen ist bereits vorhanden',

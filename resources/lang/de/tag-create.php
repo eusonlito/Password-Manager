@@ -7,6 +7,6 @@
     ],
     'meta-title' => 'Label erstellen',
     'name' => 'Name',
-    'save' => 'Retten',
+    'save' => 'Speichern',
     'success' => 'Das Label wurde korrekt erstellt',
 ];
