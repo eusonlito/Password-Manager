@@ -1,7 +1,7 @@
 <?php return [
-    'create' => 'Schaffen',
+    'create' => 'Erstellen',
     'filter' => 'Symbole filtern...',
-    'icon' => 'Ikone',
-    'meta-title' => 'Ikonen',
+    'icon' => 'Symbol',
+    'meta-title' => 'Symbole',
     'name' => 'Name',
 ];

@@ -1,7 +1,7 @@
 <?php return [
     'data' => 'Daten',
-    'icon' => 'Ikone',
+    'icon' => 'Symbol',
     'name' => 'Name',
-    'save' => 'Retten',
+    'save' => 'Speichern',
     'success' => 'Das Symbol wurde korrekt gespeichert',
 ];
