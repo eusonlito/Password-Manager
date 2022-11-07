@@ -1,0 +1,23 @@
+<?php return [
+    'admin' => 'Admin',
+    'apps' => 'Aplicações',
+    'certificate' => 'Certificado',
+    'data' => 'Dados',
+    'email' => 'E-mail',
+    'enabled' => 'Habilitado',
+    'error' => [
+        'admin-own' => 'Não é possível desabilitar a opção de administrador no seu próprio usuário',
+        'certificate-exists' => 'Já existe outro usuário com esse mesmo certificado',
+        'certificate-password-empty' => 'Você não pode desativar o acesso por senha se um certificado não estiver definido',
+        'email-exists' => 'Já existe outro usuário com o mesmo e-mail',
+        'enabled-own' => 'Não é possível desativar seu próprio usuário',
+        'readonly-own' => 'Você não pode definir a opção somente leitura para seu próprio usuário',
+    ],
+    'name' => 'Nome',
+    'password' => 'Senha',
+    'password_enabled' => 'Autenticação de senha ativada',
+    'readonly' => 'Somente leitura',
+    'save' => 'Salvar',
+    'success' => 'Os dados do usuário foram atualizados corretamente',
+    'teams' => 'Equipes',
+];
