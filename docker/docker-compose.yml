@@ -40,7 +40,6 @@ services:
             - ./../public/storage:/var/www/passwordmanager/public/storage
         networks:
             - app
-        env_file: ./.env
         tty: true
 
 networks:
