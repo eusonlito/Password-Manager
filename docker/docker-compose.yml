@@ -1,0 +1,48 @@
+version: "3.9"
+
+services:
+    mariadb:
+        image: mariadb:10.4
+        container_name: mariadb
+        restart: always
+        ports:
+            - "3307:3306"
+        volumes:
+            - ./../storage/docker/db:/var/lib/mysql
+        environment:
+            - MYSQL_ROOT_PASSWORD=root
+            - MYSQL_USER=passwordmanager
+            - MYSQL_PASSWORD=passwordmanager
+            - MYSQL_DATABASE=passwordmanager
+        command:
+            - --character-set-server=utf8
+            - --collation-server=utf8_unicode_ci
+        networks:
+            - app
+        healthcheck:
+            test: mysqladmin ping -h localhost --password=root
+            interval: 1s
+            retries: 15
+
+    passwordmanager:
+        image: passwordmanager:latest
+        container_name: passwordmanager
+        depends_on:
+            mariadb:
+                condition: service_healthy
+        build:
+            context: ..
+            dockerfile: ./docker/Dockerfile
+        ports:
+            - "8080:80"
+        volumes:
+            - ./../storage:/var/www/passwordmanager/storage
+            - ./../public/storage:/var/www/passwordmanager/public/storage
+        networks:
+            - app
+        env_file: ./.env
+        tty: true
+
+networks:
+  app:
+    driver: bridge
