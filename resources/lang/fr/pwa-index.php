@@ -1,4 +1,4 @@
-<?php return [ 
+<?php return [
     'api-key' => 'Clé API',
     'api-secret' => 'API Secret',
     'save' => 'Sauver',
