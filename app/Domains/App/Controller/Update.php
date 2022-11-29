@@ -50,6 +50,7 @@ class Update extends ControllerAbstract
             'type' => $typeService->selected($this->request->input('type')),
             'teams' => TeamModel::byUserAllowed($this->auth)->list()->get(),
             'tags' => TagModel::list()->get(),
+            'files' => $this->row->files,
         ]);
     }
 

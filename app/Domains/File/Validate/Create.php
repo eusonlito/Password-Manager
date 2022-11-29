@@ -12,7 +12,8 @@ class Create extends ValidateAbstract
     public function rules(): array
     {
         return [
-            'file' => ['bail', 'required', 'file', 'mime:doc,docx,jpg,pdf,png,odt,ods,txt,xls,xlsx,zip'],
+            'file' => ['bail', 'required', 'file'],
+            'app_id' => ['bail', 'required', 'integer'],
         ];
     }
 }

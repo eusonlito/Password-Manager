@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Crypt;
 use App\Domains\App\Model\Builder\App as Builder;
 use App\Domains\App\Service\Type\Type as TypeService;
 use App\Domains\App\Test\Factory\App as TestFactory;
+use App\Domains\File\Model\File as FileModel;
 use App\Domains\Shared\Model\ModelAbstract;
 use App\Domains\Tag\Model\Tag as TagModel;
 use App\Domains\Tag\Model\TagApp as TagAppModel;
@@ -77,6 +78,14 @@ class App extends ModelAbstract
     protected static function newFactory()
     {
         return TestFactory::new();
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function files(): HasMany
+    {
+        return $this->hasMany(FileModel::class, static::FOREIGN);
     }
 
     /**

@@ -2,14 +2,12 @@
 
 namespace App\Domains\Translation\Command;
 
-use App\Domains\Translation\Service\Fixed as FixedService;
-
 class Fixed extends CommandAbstract
 {
     /**
      * @var string
      */
-    protected $signature = 'translation:fixed';
+    protected $signature = 'translation:fixed {--paths-exclude=*}';
 
     /**
      * @var string
@@ -21,8 +19,12 @@ class Fixed extends CommandAbstract
      */
     public function handle()
     {
-        foreach ((new FixedService())->scan() as $status) {
-            $this->info($status);
-        }
+        $this->info('[START]');
+
+        $this->requestWithOptions();
+
+        $this->info($this->factory()->action()->fixed());
+
+        $this->info('[END]');
     }
 }

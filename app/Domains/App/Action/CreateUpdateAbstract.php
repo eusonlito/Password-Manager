@@ -2,11 +2,12 @@
 
 namespace App\Domains\App\Action;
 
-use Exception;
+use Throwable;
 use App\Domains\App\Model\App as Model;
 use App\Domains\App\Service\Icon\Upload as IconUpload;
 use App\Domains\App\Service\Type\Type as TypeService;
 use App\Domains\App\Service\Type\TypeAbstract;
+use App\Domains\File\Model\File as FileModel;
 use App\Domains\Team\Model\Team as TeamModel;
 use App\Exceptions\ValidatorException;
 
@@ -35,6 +36,7 @@ abstract class CreateUpdateAbstract extends ActionAbstract
         $this->teams();
         $this->tags();
         $this->log();
+        $this->files();
 
         return $this->row;
     }
@@ -104,7 +106,7 @@ abstract class CreateUpdateAbstract extends ActionAbstract
 
         try {
             return (new IconUpload($this->data['icon'], $this->row->id))->get();
-        } catch (Exception $e) {
+        } catch (Throwable $e) {
             return null;
         }
     }
@@ -149,5 +151,115 @@ abstract class CreateUpdateAbstract extends ActionAbstract
             'app_id' => $this->row->id,
             'user_from_id' => $this->auth->id,
         ])->create();
+    }
+
+    /**
+     * @return void
+     */
+    protected function files(): void
+    {
+        foreach ($this->filesInput() as $file) {
+            try {
+                $this->file($file);
+            } catch (Throwable $e) {
+            }
+        }
+    }
+
+    /**
+     * @return array
+     */
+    protected function filesInput(): array
+    {
+        return array_slice($this->request->all('files')['files'] ?? [], 0, 6);
+    }
+
+    /**
+     * @param \Illuminate\Http\UploadedFile $file
+     *
+     * @return void
+     */
+    protected function file(array $file): void
+    {
+        if (empty($file['id'])) {
+            $this->fileCreate($file);
+        } elseif (empty($file['delete'])) {
+            $this->fileUpdate($file);
+        } else {
+            $this->fileDelete($file);
+        }
+    }
+
+    /**
+     * @param array $file
+     *
+     * @return void
+     */
+    protected function fileCreate(array $file): void
+    {
+        if (empty($file['file'])) {
+            return;
+        }
+
+        $this->factory('File')->action($this->fileCreateData($file))->create();
+    }
+
+    /**
+     * @param array $file
+     *
+     * @return array
+     */
+    protected function fileCreateData(array $file): array
+    {
+        return [
+            'file' => $file['file'],
+            'app_id' => $this->row->id,
+        ];
+    }
+
+    /**
+     * @param array $file
+     *
+     * @return void
+     */
+    protected function fileUpdate(array $file): void
+    {
+        if (empty($file['file'])) {
+            return;
+        }
+
+        $this->factory('File', $this->fileRow($file))->action($this->fileUpdateData($file))->update();
+    }
+
+    /**
+     * @param array $file
+     *
+     * @return array
+     */
+    protected function fileUpdateData(array $file): array
+    {
+        return [
+            'file' => $file['file'],
+        ];
+    }
+
+    /**
+     * @param \Illuminate\Http\UploadedFile $file
+     *
+     * @return void
+     */
+    protected function fileDelete(array $file): void
+    {
+        $this->factory('File', $this->fileRow($file))->action()->delete();
+    }
+
+    /**
+     * @param array $file
+     *
+     * @return \App\Domains\File\Model\File
+     */
+    protected function fileRow(array $file): FileModel
+    {
+        return FileModel::byAppId($this->row->id)->byId((int)$file['id'])->firstOrFail();
     }
 }

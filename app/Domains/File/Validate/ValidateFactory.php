@@ -13,4 +13,12 @@ class ValidateFactory extends ValidateFactoryAbstract
     {
         return $this->handle(Create::class);
     }
+
+    /**
+     * @return array
+     */
+    public function update(): array
+    {
+        return $this->handle(Update::class);
+    }
 }

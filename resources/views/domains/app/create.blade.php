@@ -56,6 +56,21 @@
         <div class="pr-2 text-right text-gray-600 text-xs mt-0.5">{{ __('app-create.fields-encrypted') }}</div>
     </div>
 
+    <div class="box p-5 mt-5 bg-green-50">
+        <div class="lg:grid grid-cols-12 gap-6 p-2">
+            @for ($i = 0; $i < 6; $i++)
+
+            <div class="col-span-4">
+                <label for="files-{{ $i }}-file" class="form-label">{{ __('app-create.attachments') }}</label>
+                <input type="file" name="files[{{ $i }}][file]" id="files-{{ $i }}-file" class="form-control form-control-lg bg-white" />
+            </div>
+
+            @endfor
+        </div>
+
+        <div class="pr-2 text-right text-gray-600 text-xs mt-0.5">{{ __('app-update.fields-encrypted') }}</div>
+    </div>
+
     @if (empty($AUTH->readonly))
 
     <div class="box p-5 mt-5">

@@ -36,12 +36,16 @@ return new class extends MigrationAbstract
             $table->id();
 
             $table->string('name')->index();
-            $table->string('file');
+            $table->string('path');
 
             $this->timestamps($table);
 
             $table->unsignedBigInteger('app_id')->index();
             $table->unsignedBigInteger('user_id')->nullable()->index();
+        });
+
+        Schema::table('log', function (Blueprint $table) {
+            $table->unsignedBigInteger('file_id')->nullable()->index();
         });
     }
 
@@ -54,6 +58,10 @@ return new class extends MigrationAbstract
             $this->foreignOnDeleteCascade($table, 'app');
             $this->foreignOnDeleteSetNull($table, 'user');
         });
+
+        Schema::table('log', function (Blueprint $table) {
+            $this->foreignOnDeleteSetNull($table, 'file');
+        });
     }
 
     /**
@@ -61,6 +69,11 @@ return new class extends MigrationAbstract
      */
     public function down()
     {
+        Schema::table('log', function (Blueprint $table) {
+            $table->dropForeign('log_file_fk');
+            $table->dropColumn('file_id');
+        });
+
         Schema::drop('file');
     }
 };

@@ -1,4 +1,5 @@
 <?php return [
+    'attachments' => 'Pièces jointes',
     'editable' => 'Les autres utilisateurs peuvent éditer cette application',
     'error' => [
         'teams-empty' => 'Voulez-vous choisir certains teams.',

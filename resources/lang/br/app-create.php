@@ -1,4 +1,5 @@
 <?php return [
+    'attachments' => 'Adjuntos',
     'editable' => 'Outros usuários podem editar este aplicativo',
     'error' => [
         'teams-empty' => 'Você precisa escolher algum time.',

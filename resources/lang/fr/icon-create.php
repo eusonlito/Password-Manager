@@ -6,5 +6,5 @@
     'meta-title' => 'Icône',
     'name' => 'Nom',
     'save' => 'Sauver',
-    'success' => 'L\icône a été créée avec succès',
+    'success' => 'L\\icône a été créée avec succès',
 ];

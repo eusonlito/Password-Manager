@@ -1,4 +1,5 @@
 <?php return [
+    'attachments' => 'Anhänge',
     'editable' => 'Andere Benutzer können diesen Account bearbeiten',
     'error' => [
         'teams-empty' => 'Möchten Sie ein Team wählen.',
