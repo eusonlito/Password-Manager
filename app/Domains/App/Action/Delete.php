@@ -12,7 +12,7 @@ class Delete extends ActionAbstract
     public function handle(): void
     {
         $this->check();
-        $this->save();
+        $this->delete();
         $this->log();
     }
 
@@ -26,7 +26,27 @@ class Delete extends ActionAbstract
     /**
      * @return void
      */
-    protected function save(): void
+    protected function delete(): void
+    {
+        $this->deleteRelations();
+        $this->deleteRow();
+    }
+
+    /**
+     * @return void
+     */
+    protected function deleteRelations(): void
+    {
+        $this->row->files()
+            ->withApp()
+            ->get()
+            ->each(fn ($file) => $this->factory('File', $file)->action()->delete());
+    }
+
+    /**
+     * @return void
+     */
+    protected function deleteRow(): void
     {
         $this->row->delete();
     }

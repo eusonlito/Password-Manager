@@ -3,6 +3,7 @@
 namespace App\Domains\File\Model;
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Filesystem\FilesystemAdapter;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Support\Facades\Storage;
 use App\Domains\File\Model\Builder\File as Builder;
@@ -59,7 +60,7 @@ class File extends ModelAbstract
      */
     public function fileExists(): bool
     {
-        return Storage::disk('private')->exists($this->path);
+        return static::storage()->exists($this->path);
     }
 
     /**
@@ -67,7 +68,7 @@ class File extends ModelAbstract
      */
     public function fileContentsGet(): string
     {
-        return Crypt::decrypt(Storage::disk('private')->get($this->path));
+        return Crypt::decrypt(static::storage()->get($this->path));
     }
 
     /**
@@ -78,7 +79,7 @@ class File extends ModelAbstract
      */
     public static function fileContentsSet(string $path, string $contents): void
     {
-        Storage::disk('private')->put($path, Crypt::encrypt($contents));
+        static::storage()->put($path, Crypt::encrypt($contents));
     }
 
     /**
@@ -86,6 +87,14 @@ class File extends ModelAbstract
      */
     public function fileDelete(): void
     {
-        Storage::disk('private')->delete($this->path);
+        static::storage()->delete($this->path);
+    }
+
+    /**
+     * @return \Illuminate\Filesystem\FilesystemAdapter
+     */
+    protected static function storage(): FilesystemAdapter
+    {
+        return Storage::disk('private');
     }
 }

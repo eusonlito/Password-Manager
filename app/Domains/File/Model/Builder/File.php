@@ -15,4 +15,12 @@ class File extends BuilderAbstract
     {
         return $this->where('app_id', $app_id);
     }
+
+    /**
+     * @return self
+     */
+    public function withApp(): self
+    {
+        return $this->with('app');
+    }
 }
