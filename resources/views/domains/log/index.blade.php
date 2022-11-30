@@ -16,9 +16,10 @@
             <tr>
                 <th class="w-1">{{ __('log-index.id') }}</th>
                 <th>{{ __('log-index.created_at') }}</th>
+                <th>{{ __('log-index.table') }}</th>
                 <th class="text-left">{{ __('log-index.action') }}</th>
                 <th class="text-left">{{ __('log-index.payload') }}</th>
-                <th class="text-left">{{ __('log-index.user') }}</th>
+                <th>{{ __('log-index.user') }}</th>
                 <th>{{ __('log-index.app') }}</th>
             </tr>
         </thead>
@@ -27,18 +28,19 @@
             @foreach ($list as $row)
 
             <tr>
-                <td class="w-1"><span class="block text-center whitespace-nowrap">{{ $row->id }}</span></td>
-                <td><span class="block text-center whitespace-nowrap">@datetime($row->created_at)</span></td>
+                <td class="w-1"><span class="block whitespace-nowrap">{{ $row->id }}</span></td>
+                <td><span class="block whitespace-nowrap">@datetime($row->created_at)</span></td>
+                <td><span class="block whitespace-nowrap">{{ $row->table }}</span></td>
                 <td><span class="block text-left whitespace-nowrap">{{ $row->action }}</span></td>
                 <td><span class="block text-left whitespace-nowrap">{{ $row->payload() }}</span></td>
                 <td>
                     @if ($row->userFrom)
 
-                    <a href="{{ route('user.update', $row->userFrom->id) }}" class="block text-left whitespace-nowrap">{{ $row->userFrom->name }}</a>
+                    <a href="{{ route('user.update', $row->userFrom->id) }}" class="block whitespace-nowrap">{{ $row->userFrom->name }}</a>
 
                     @else
 
-                    <span class="block text-left whitespace-nowrap">{{ $row->user_from_id }}</span>
+                    <span class="block whitespace-nowrap">{{ $row->user_from_id }}</span>
 
                     @endif
                 </td>
@@ -53,7 +55,7 @@
 
                     @else
 
-                    <span class="block text-left whitespace-nowrap">{{ $row->app_id }}</span>
+                    <span class="block whitespace-nowrap">{{ $row->app_id }}</span>
 
                     @endif
                 </td>

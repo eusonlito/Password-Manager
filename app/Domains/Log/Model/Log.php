@@ -72,10 +72,13 @@ class Log extends ModelAbstract
     public function payload(): string
     {
         return match ($this->attributes['table'].'.'.$this->attributes['action']) {
+            'app.create' => ($this->payload->name ?? ''),
             'app.delete' => ($this->payload->name ?? ''),
             'app.search' => ($this->payload->q ?? ''),
             'app.search-url' => ($this->payload->host ?? ''),
+            'app.update' => ($this->payload->name ?? ''),
             'app.view-key' => ($this->payload->key ?? ''),
+            'file.delete' => ($this->payload->name ?? ''),
             default => ''
         };
     }
