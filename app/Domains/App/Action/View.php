@@ -33,6 +33,7 @@ class View extends ActionAbstract
         $this->factory('Log')->action([
             'table' => 'app',
             'action' => 'view',
+            'payload' => $this->row->only('id', 'name', 'created_at'),
             'app_id' => $this->row->id,
             'user_from_id' => $this->auth->id,
         ])->create();

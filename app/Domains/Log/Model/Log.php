@@ -77,6 +77,7 @@ class Log extends ModelAbstract
             'app.search' => ($this->payload->q ?? ''),
             'app.search-url' => ($this->payload->host ?? ''),
             'app.update' => ($this->payload->name ?? ''),
+            'app.view' => ($this->payload->name ?? ''),
             'app.view-key' => ($this->payload->key ?? ''),
             'file.delete' => ($this->payload->name ?? ''),
             default => ''
