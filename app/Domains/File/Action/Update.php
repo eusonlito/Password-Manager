@@ -12,7 +12,6 @@ class Update extends ActionAbstract
     public function handle(): Model
     {
         $this->data();
-        $this->check();
         $this->save();
         $this->log();
 
@@ -33,24 +32,6 @@ class Update extends ActionAbstract
     protected function dataName(): void
     {
         $this->data['name'] = $this->data['file']->getClientOriginalName();
-    }
-
-    /**
-     * @return void
-     */
-    protected function check(): void
-    {
-        $this->checkFileExtension();
-    }
-
-    /**
-     * @return void
-     */
-    protected function checkFileExtension(): void
-    {
-        if (Model::fileExtensionIsValid($this->data['name']) === false) {
-            throw new NotAllowedException(__('file-create.error.extension'));
-        }
     }
 
     /**

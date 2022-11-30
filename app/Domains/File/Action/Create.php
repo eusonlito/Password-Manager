@@ -20,7 +20,6 @@ class Create extends ActionAbstract
     {
         $this->app();
         $this->data();
-        $this->check();
         $this->save();
         $this->log();
 
@@ -60,24 +59,6 @@ class Create extends ActionAbstract
     protected function dataPath(): void
     {
         $this->data['path'] = $this->app->id.'/'.helper()->uniqidReal(48);
-    }
-
-    /**
-     * @return void
-     */
-    protected function check(): void
-    {
-        $this->checkFileExtension();
-    }
-
-    /**
-     * @return void
-     */
-    protected function checkFileExtension(): void
-    {
-        if (Model::fileExtensionIsValid($this->data['name']) === false) {
-            throw new NotAllowedException(__('file-create.error.extension'));
-        }
     }
 
     /**

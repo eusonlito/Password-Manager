@@ -46,16 +46,6 @@ class File extends ModelAbstract
     }
 
     /**
-     * @param string $file
-     *
-     * @return bool
-     */
-    public static function fileExtensionIsValid(string $file): bool
-    {
-        return (bool)preg_match('/\.(csv|doc|docx|jpg|pdf|png|odt|ods|txt|xls|xlsx|zip)$/i', $file);
-    }
-
-    /**
      * @return bool
      */
     public function fileExists(): bool
