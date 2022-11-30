@@ -162,6 +162,7 @@ abstract class CreateUpdateAbstract extends ActionAbstract
             try {
                 $this->file($file);
             } catch (Throwable $e) {
+                report($e);
             }
         }
     }
