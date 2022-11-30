@@ -56,7 +56,7 @@ class Delete extends ActionAbstract
         $this->factory('Log')->action([
             'table' => 'file',
             'action' => 'delete',
-            'payload' => $this->row->toArray(),
+            'payload' => $this->row->only('id', 'name', 'created_at'),
             'app_id' => $this->row->app->id,
             'file_id' => $this->row->id,
             'user_from_id' => $this->auth->id,

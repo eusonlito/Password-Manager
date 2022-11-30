@@ -2,6 +2,7 @@
 
 namespace App\Domains\App\Action;
 
+use ReflectionClass;
 use Throwable;
 use App\Domains\App\Model\App as Model;
 use App\Domains\App\Service\Icon\Upload as IconUpload;
@@ -147,7 +148,8 @@ abstract class CreateUpdateAbstract extends ActionAbstract
     {
         $this->factory('Log')->action([
             'table' => 'app',
-            'action' => strtolower((new \ReflectionClass($this))->getShortName()),
+            'action' => strtolower((new ReflectionClass($this))->getShortName()),
+            'payload' => $this->row->only('id', 'name'),
             'app_id' => $this->row->id,
             'user_from_id' => $this->auth->id,
         ])->create();
