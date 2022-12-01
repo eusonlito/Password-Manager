@@ -15,3 +15,4 @@ import './dropdown';
 import './tooltip';
 import './alert';
 import './modal';
+import './input-file-custom';

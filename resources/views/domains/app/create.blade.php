@@ -61,8 +61,14 @@
             @for ($i = 0; $i < 6; $i++)
 
             <div class="col-span-4">
-                <label for="files-{{ $i }}-file" class="form-label">{{ __('app-create.attachments') }}</label>
-                <input type="file" name="files[{{ $i }}][file]" id="files-{{ $i }}-file" class="form-control form-control-lg bg-white" />
+                <label for="files-{{ $i }}-file" class="form-label truncate">{{ __('app-create.add-attachemnt') }}</label>
+
+                <div class="input-group input-file-custom" data-input-file-custom>
+                    <input type="file" name="files[{{ $i }}][file]" id="files-{{ $i }}-file" class="hidden" />
+                    <input type="text" class="form-control form-control-lg truncate" readonly />
+
+                    <label for="files-{{ $i }}-file" class="input-group-text input-group-text-lg border-0">@icon('upload', 'w-5 h-5')</label>
+                </div>
             </div>
 
             @endfor

@@ -1,5 +1,5 @@
 <?php return [
-    'attachments' => 'Attachments',
+    'add-attachemnt' => 'Add File',
     'editable' => 'Other users can edit this application',
     'error' => [
         'teams-empty' => 'Do you need to choose some team.',

@@ -6,5 +6,6 @@
     'id' => 'ID',
     'meta-title' => 'Registros',
     'payload' => 'Detalle',
+    'table' => 'Tabla',
     'user' => 'Usuario',
 ];

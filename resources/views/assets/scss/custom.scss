@@ -1,3 +1,15 @@
+.input-file-custom {
+    input {
+        background-color: white !important;
+        cursor: pointer !important;
+        border-right: 0 !important;
+    }
+
+    label {
+        cursor: pointer !important;
+    }
+}
+
 .table .w-1 {
     width: 1%;
     white-space: nowrap;

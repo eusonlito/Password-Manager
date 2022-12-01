@@ -66,11 +66,15 @@
             @foreach ($files as $i => $each)
 
             <div class="col-span-4">
-                <label for="files-{{ $i }}-file" class="form-label">{{ $each->name }}</label>
+                <label for="files-{{ $i }}-file" class="form-label truncate">{{ $each->name }}</label>
 
-                <div class="input-group">
+                <div class="input-group input-file-custom" data-input-file-custom>
                     <input type="hidden" name="files[{{ $i }}][id]" value="{{ $each->id }}" />
-                    <input type="file" name="files[{{ $i }}][file]" id="files-{{ $i }}-file" class="form-control form-control-lg bg-white" />
+
+                    <input type="file" name="files[{{ $i }}][file]" id="files-{{ $i }}-file" class="hidden" />
+                    <input type="text" value="{{ $each->name }}" class="form-control form-control-lg truncate" readonly />
+
+                    <label for="files-{{ $i }}-file" class="input-group-text input-group-text-lg border-0">@icon('upload', 'w-5 h-5')</label>
 
                     <a href="{{ route('app.file', [$row->id, $each->id]) }}" class="input-group-text input-group-text-lg" target="_blank" tabindex="-1">@icon('external-link', 'w-5 h-5')</a>
 
@@ -86,8 +90,14 @@
             @for ($i = $files->count(); $i < 6; $i++)
 
             <div class="col-span-4">
-                <label for="files-{{ $i }}-file" class="form-label">{{ __('app-create.attachments') }}</label>
-                <input type="file" name="files[{{ $i }}][file]" id="files-{{ $i }}-file" class="form-control form-control-lg bg-white" />
+                <label for="files-{{ $i }}-file" class="form-label truncate">{{ __('app-create.add-attachemnt') }}</label>
+
+                <div class="input-group input-file-custom" data-input-file-custom>
+                    <input type="file" name="files[{{ $i }}][file]" id="files-{{ $i }}-file" class="hidden" />
+                    <input type="text" class="form-control form-control-lg truncate" readonly />
+
+                    <label for="files-{{ $i }}-file" class="input-group-text input-group-text-lg border-0">@icon('upload', 'w-5 h-5')</label>
+                </div>
             </div>
 
             @endfor

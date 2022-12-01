@@ -1,5 +1,5 @@
 <?php return [
-    'attachments' => 'Pièces jointes',
+    'add-attachemnt' => 'Ajouter un fichier',
     'editable' => 'Les autres utilisateurs peuvent éditer cette application',
     'error' => [
         'teams-empty' => 'Voulez-vous choisir certains teams.',

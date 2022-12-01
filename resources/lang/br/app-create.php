@@ -1,5 +1,5 @@
 <?php return [
-    'attachments' => 'Adjuntos',
+    'add-attachemnt' => 'Adicionar Ficheiro',
     'editable' => 'Outros usuários podem editar este aplicativo',
     'error' => [
         'teams-empty' => 'Você precisa escolher algum time.',
