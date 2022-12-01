@@ -66,7 +66,7 @@
             @foreach ($files as $i => $each)
 
             <div class="col-span-4">
-                <label for="files-{{ $i }}-file" class="form-label truncate">{{ $each->name }}</label>
+                <label for="files-{{ $i }}-file" class="form-label block truncate">{{ $each->name }}</label>
 
                 <div class="input-group input-file-custom" data-input-file-custom>
                     <input type="hidden" name="files[{{ $i }}][id]" value="{{ $each->id }}" />
@@ -90,7 +90,7 @@
             @for ($i = $files->count(); $i < 6; $i++)
 
             <div class="col-span-4">
-                <label for="files-{{ $i }}-file" class="form-label truncate">{{ __('app-create.add-attachemnt') }}</label>
+                <label for="files-{{ $i }}-file" class="form-label block truncate">{{ __('app-create.add-attachemnt') }}</label>
 
                 <div class="input-group input-file-custom" data-input-file-custom>
                     <input type="file" name="files[{{ $i }}][file]" id="files-{{ $i }}-file" class="hidden" />
