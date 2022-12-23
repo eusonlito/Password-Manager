@@ -12,7 +12,7 @@ use App\Services\Request\Logger;
 class Handler extends HandlerVendor
 {
     /**
-     * @var array
+     * @var array<int, class-string<Throwable>>
      */
     protected $dontReport = [
         \Illuminate\Auth\Access\AuthorizationException::class,

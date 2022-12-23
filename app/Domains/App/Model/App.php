@@ -46,7 +46,7 @@ class App extends ModelAbstract
     ];
 
     /**
-     * @var array
+     * @var array<string, string>
      */
     protected $casts = [
         'user_id' => 'integer',

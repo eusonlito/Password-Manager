@@ -4,7 +4,6 @@ namespace App\Domains\File\Action;
 
 use App\Domains\App\Model\App as AppModel;
 use App\Domains\File\Model\File as Model;
-use App\Exceptions\NotAllowedException;
 
 class Create extends ActionAbstract
 {

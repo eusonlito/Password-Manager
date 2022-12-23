@@ -26,7 +26,7 @@ class Log extends ModelAbstract
     public const FOREIGN = 'log_id';
 
     /**
-     * @var array
+     * @var array<string, string>
      */
     protected $casts = [
         'payload' => 'object',

@@ -30,7 +30,7 @@ class Team extends ModelAbstract
     public const FOREIGN = 'team_id';
 
     /**
-     * @var array
+     * @var array<string, string>
      */
     protected $casts = [
         'default' => 'boolean',

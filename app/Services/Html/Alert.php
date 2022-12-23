@@ -8,7 +8,6 @@ use LogicException;
 use RuntimeException;
 use Throwable;
 use Illuminate\Http\Request;
-use Symfony\Component\Debug\Exception\FatalThrowableError;
 use App\Services\Request\Response;
 
 class Alert
@@ -157,7 +156,6 @@ class Alert
     {
         return ($e instanceof Error)
             || ($e instanceof ErrorException)
-            || ($e instanceof FatalThrowableError)
             || ($e instanceof LogicException)
             || ($e instanceof RuntimeException);
     }

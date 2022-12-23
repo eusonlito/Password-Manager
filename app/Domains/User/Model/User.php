@@ -34,7 +34,7 @@ class User extends ModelAbstract implements Authenticatable
     public const FOREIGN = 'user_id';
 
     /**
-     * @var array
+     * @var array<string, string>
      */
     protected $casts = [
         'password_enabled' => 'boolean',
@@ -45,7 +45,7 @@ class User extends ModelAbstract implements Authenticatable
     ];
 
     /**
-     * @var array
+     * @var array<int, string>
      */
     protected $hidden = ['password'];
 

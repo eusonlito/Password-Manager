@@ -178,7 +178,7 @@ abstract class CreateUpdateAbstract extends ActionAbstract
     }
 
     /**
-     * @param \Illuminate\Http\UploadedFile $file
+     * @param array $file
      *
      * @return void
      */
@@ -247,7 +247,7 @@ abstract class CreateUpdateAbstract extends ActionAbstract
     }
 
     /**
-     * @param \Illuminate\Http\UploadedFile $file
+     * @param array $file
      *
      * @return void
      */

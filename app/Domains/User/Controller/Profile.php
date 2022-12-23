@@ -33,7 +33,7 @@ class Profile extends ControllerAbstract
         return [
             'row' => $this->row,
             'certificate_enabled' => config('auth.certificate.enabled'),
-            'tfa_enabled' => ($enabled = $this->row->tfaAvailable()),
+            'tfa_enabled' => $this->row->tfaAvailable(),
         ];
     }
 

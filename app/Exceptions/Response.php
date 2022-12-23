@@ -10,7 +10,6 @@ use Throwable;
 use Illuminate\Auth\AuthenticationException as AuthenticationExceptionVendor;
 use Illuminate\Database\QueryException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Symfony\Component\Debug\Exception\FatalThrowableError;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
 
@@ -179,7 +178,6 @@ class Response
     {
         return ($e instanceof Error)
             || ($e instanceof ErrorException)
-            || ($e instanceof FatalThrowableError)
             || ($e instanceof LogicException)
             || ($e instanceof RuntimeException);
     }

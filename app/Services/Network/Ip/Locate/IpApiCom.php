@@ -47,7 +47,7 @@ class IpApiCom extends LocateAbstract
             throw new Exception(sprintf('No Locate available to IP %s.', $ip));
         }
 
-        return [
+        return (object)[
             'ip' => ($response->query ?? null),
             'city_name' => ($response->city ?? null),
             'region_name' => ($response->regionName ?? null),
