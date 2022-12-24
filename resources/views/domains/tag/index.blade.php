@@ -20,6 +20,7 @@
             <tr>
                 <th class="w-1">{{ __('tag-index.id') }}</th>
                 <th class="text-left">{{ __('tag-index.name') }}</th>
+                <th class="text-center">{{ __('tag-index.apps') }}</th>
                 <th class="text-center">{{ __('tag-index.color') }}</th>
             </tr>
         </thead>
@@ -32,6 +33,7 @@
             <tr>
                 <td class="w-1"><a href="{{ $link }}" class="block text-center font-semibold whitespace-nowrap">{{ $row->id }}</a></td>
                 <td><a href="{{ $link }}" class="block text-left font-semibold whitespace-nowrap">{{ $row->name }}</a></td>
+                <td><a href="{{ route('app.index', ['tag' => $row->code]) }}" class="block text-center font-semibold whitespace-nowrap">{{ $row->apps_count }}</a></td>
                 <td class="text-center"><a href="{{ $link }}" class="text-xs py-1 px-2 rounded-lg" style="@backgroundColor($row->color)">{{ $row->color }}</a></td>
             </tr>
 

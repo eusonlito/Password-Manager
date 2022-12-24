@@ -22,6 +22,14 @@ class ActionFactory extends ActionFactoryAbstract
     }
 
     /**
+     * @return void
+     */
+    public function delete(): void
+    {
+        $this->actionHandle(Delete::class);
+    }
+
+    /**
      * @return \Illuminate\Support\Collection
      */
     public function getOrCreate(): Collection

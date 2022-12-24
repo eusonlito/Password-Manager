@@ -26,6 +26,7 @@ class Update extends ControllerAbstract
 
         return $this->page('tag.update', [
             'row' => $this->row,
+            'apps_count' => $this->row->apps()->count(),
         ]);
     }
 

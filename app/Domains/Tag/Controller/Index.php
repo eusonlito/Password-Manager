@@ -15,7 +15,7 @@ class Index extends ControllerAbstract
         $this->meta('title', __('tag-index.meta-title'));
 
         return $this->page('tag.index', [
-            'list' => Model::list()->get(),
+            'list' => Model::list()->withAppsCount()->get(),
         ]);
     }
 }

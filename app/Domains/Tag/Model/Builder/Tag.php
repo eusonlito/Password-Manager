@@ -43,4 +43,12 @@ class Tag extends BuilderAbstract
     {
         return $this->orderBy('name', 'ASC');
     }
+
+    /**
+     * @return self
+     */
+    public function withAppsCount(): self
+    {
+        return $this->withCount('apps');
+    }
 }

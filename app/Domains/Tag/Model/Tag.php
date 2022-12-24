@@ -3,6 +3,8 @@
 namespace App\Domains\Tag\Model;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use App\Domains\App\Model\App as AppModel;
 use App\Domains\Tag\Model\Builder\Tag as Builder;
 use App\Domains\Tag\Test\Factory\Tag as TestFactory;
 use App\Domains\Shared\Model\ModelAbstract;
@@ -42,5 +44,13 @@ class Tag extends ModelAbstract
     protected static function newFactory()
     {
         return TestFactory::new();
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function apps(): BelongsToMany
+    {
+        return $this->belongsToMany(AppModel::class, TagApp::TABLE);
     }
 }

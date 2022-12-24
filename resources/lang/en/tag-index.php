@@ -1,4 +1,5 @@
 <?php return [
+    'apps' => 'Apps',
     'color' => 'Color',
     'create' => 'Create',
     'filter' => 'Filter Tags...',
