@@ -21,7 +21,7 @@ class Create extends FeatureAbstract
      */
     protected array $validation = [
         'name' => ['bail', 'required', 'string'],
-        'default' => ['bail', 'boolean'],
+        'color' => ['bail', 'string', 'required', 'regex:/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/'],
     ];
 
     /**

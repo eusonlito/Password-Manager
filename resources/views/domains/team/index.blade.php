@@ -23,6 +23,7 @@
                 <th class="text-center">{{ __('team-index.color') }}</th>
                 <th>{{ __('team-index.default') }}</th>
                 <th>{{ __('team-index.users') }}</th>
+                <th>{{ __('team-index.apps') }}</th>
             </tr>
         </thead>
 
@@ -36,7 +37,8 @@
                 <td><a href="{{ $link }}" class="block text-left font-semibold whitespace-nowrap">{{ $row->name }}</a></td>
                 <td class="text-center"><a href="{{ $link }}" class="text-xs py-1 px-2 rounded-lg" style="@backgroundColor($row->color)">{{ $row->color }}</a></td>
                 <td data-table-sort-value="{{ (int)$row->default }}"><a href="{{ route('team.update.boolean', [$row->id, 'default']) }}" data-link-boolean="default">@status($row->default)</a></td>
-                <td>{{ $row->teams_users_count }}</td>
+                <td>{{ $row->users_count }}</td>
+                <td><a href="{{ route('app.index', ['team' => $row->code]) }}" class="block text-center font-semibold whitespace-nowrap">{{ $row->apps_count }}</a></td>
             </tr>
 
             @endforeach

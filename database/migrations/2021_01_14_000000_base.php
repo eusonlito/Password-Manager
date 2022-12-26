@@ -62,6 +62,7 @@ return new class extends MigrationAbstract
 
             $table->unsignedBigInteger('app_id')->nullable()->index();
             $table->unsignedBigInteger('tag_id')->nullable()->index();
+            $table->unsignedBigInteger('team_id')->nullable()->index();
             $table->unsignedBigInteger('user_from_id')->nullable()->index();
             $table->unsignedBigInteger('user_id')->nullable()->index();
         });

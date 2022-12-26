@@ -1,4 +1,5 @@
 <?php return [
+    'apps' => 'Aplicaciones',
     'color' => 'Color',
     'create' => 'Crear',
     'default' => 'Principal',

@@ -23,6 +23,14 @@ class ActionFactory extends ActionFactoryAbstract
     /**
      * @return void
      */
+    public function delete(): void
+    {
+        $this->actionHandle(Delete::class);
+    }
+
+    /**
+     * @return void
+     */
     public function updateApp(): void
     {
         $this->actionHandle(UpdateApp::class, $this->validate()->updateApp());

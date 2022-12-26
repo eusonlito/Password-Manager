@@ -5,6 +5,7 @@ namespace App\Domains\Team\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use App\Domains\App\Model\App as AppModel;
 use App\Domains\Shared\Model\ModelAbstract;
 use App\Domains\Team\Model\Builder\Team as Builder;
 use App\Domains\Team\Test\Factory\Team as TestFactory;
@@ -52,6 +53,14 @@ class Team extends ModelAbstract
     protected static function newFactory()
     {
         return TestFactory::new();
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function apps(): BelongsToMany
+    {
+        return $this->belongsToMany(AppModel::class, 'team_app');
     }
 
     /**

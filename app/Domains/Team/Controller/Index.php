@@ -15,7 +15,7 @@ class Index extends ControllerAbstract
         $this->meta('title', __('team-index.meta-title'));
 
         return $this->page('team.index', [
-            'list' => Model::list()->withTeamsUsersCount()->get(),
+            'list' => Model::list()->withAppsCount()->withUsersCount()->get(),
         ]);
     }
 }

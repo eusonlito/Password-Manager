@@ -112,7 +112,7 @@ class Delete extends FeatureAbstract
         $this->followingRedirects()
             ->post($this->route(null, $row->id), $this->action())
             ->assertStatus(200)
-            ->assertSee('La aplicación ha sido borrada correctament')
+            ->assertSee('La aplicación ha sido borrada correctamente')
             ->assertDontSee($row->name);
 
         $row = $this->rowCreateWithUserAndTeam();
@@ -124,7 +124,7 @@ class Delete extends FeatureAbstract
         $this->followingRedirects()
             ->post($this->route(null, $row->id), $this->action())
             ->assertStatus(200)
-            ->assertSee('La aplicación ha sido borrada correctament')
+            ->assertSee('La aplicación ha sido borrada correctamente')
             ->assertDontSee($row->name);
     }
 }

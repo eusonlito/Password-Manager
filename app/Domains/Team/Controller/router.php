@@ -11,4 +11,5 @@ Route::group(['middleware' => ['user-auth', 'user.admin']], static function () {
     Route::any('/team/{id}/user', UpdateUser::class)->name('team.update.user');
     Route::any('/team/{id}/app', UpdateApp::class)->name('team.update.app');
     Route::post('/team/{id}/boolean/{column}', UpdateBoolean::class)->name('team.update.boolean');
+    Route::post('/team/{id}/delete', Delete::class)->name('team.delete');
 });

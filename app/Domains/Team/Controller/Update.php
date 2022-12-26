@@ -26,6 +26,8 @@ class Update extends ControllerAbstract
 
         return $this->page('team.update', [
             'row' => $this->row,
+            'apps_count' => $this->row->apps()->count(),
+            'users_count' => $this->row->users()->count(),
         ]);
     }
 

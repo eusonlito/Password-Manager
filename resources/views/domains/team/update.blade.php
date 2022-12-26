@@ -26,9 +26,35 @@
 
     <div class="box p-5 mt-5">
         <div class="text-right">
+            <a href="javascript:;" data-toggle="modal" data-target="#delete-modal" class="btn btn-outline-danger mr-5">{{ __('team-update.delete.button') }}</a>
             <button type="submit" class="btn btn-primary">{{ __('team-update.save') }}</button>
         </div>
     </div>
 </form>
+
+<div id="delete-modal" class="modal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body p-0">
+                <form action="{{ route('team.delete', $row->id) }}" method="post">
+                    <input type="hidden" name="_action" value="delete" />
+
+                    <div class="p-5 text-center">
+                        @icon('x-circle', 'w-16 h-16 text-theme-24 mx-auto mt-3')
+                        <div class="text-3xl mt-5">{{ __('team-update.delete.title') }}</div>
+                        <div class="text-gray-600 mt-2">
+                            {!! __('team-update.delete.message', ['users' => $users_count, 'apps' => $apps_count]) !!}
+                        </div>
+                    </div>
+
+                    <div class="px-5 pb-8 text-center">
+                        <button type="button" data-dismiss="modal" class="btn btn-outline-secondary w-24 mr-1">{{ __('team-update.delete.cancel') }}</button>
+                        <button type="submit" class="btn btn-danger w-24">{{ __('team-update.delete.delete') }}</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
 @stop

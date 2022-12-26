@@ -5,8 +5,8 @@
         'button' => 'Borrar',
         'cancel' => 'Cancelar',
         'delete' => 'Sí, Borrar',
-        'message' => 'Este tag es usado por :count Aplicaciones. Estás seguro de querer borrarlo? Esta acción no se puede deshacer.',
-        'message-empty' => 'Este tag no está siendo usado por ninguna Aplicación. Estás seguro de querer borrarlo? Esta acción no se puede deshacer.',
+        'message' => 'Esta etiqueta es usada por :count Aplicaciones. Estás seguro de querer borrarla? Esta acción no se puede deshacer.',
+        'message-empty' => 'Esta etiqueta no está siendo usada por ninguna Aplicación. Estás seguro de querer borrarla? Esta acción no se puede deshacer.',
         'title' => 'Eliminar Tag',
     ],
     'error' => [

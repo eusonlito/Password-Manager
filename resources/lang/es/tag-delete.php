@@ -1,3 +1,3 @@
 <?php return [
-    'success' => 'El tag ha sido borrado correctamente',
+    'success' => 'La etiqueta ha sido borrada correctamente',
 ];

@@ -73,9 +73,9 @@ class Team extends BuilderAbstract
     /**
      * @return self
      */
-    public function withCountUsers(): self
+    public function withAppsCount(): self
     {
-        return $this->withCount('users');
+        return $this->withCount('apps');
     }
 
     /**
@@ -102,6 +102,14 @@ class Team extends BuilderAbstract
     public function withTeamsUsersCount(): self
     {
         return $this->withCount('teamsUsers');
+    }
+
+    /**
+     * @return self
+     */
+    public function withUsersCount(): self
+    {
+        return $this->withCount('users');
     }
 
     /**
