@@ -2,8 +2,6 @@
 
 namespace App\Domains\Team\Test\Feature;
 
-use App\Domains\Team\Model\Team as Model;
-
 class Delete extends FeatureAbstract
 {
     /**

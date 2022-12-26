@@ -2,8 +2,6 @@
 
 namespace App\Domains\Tag\Test\Feature;
 
-use App\Domains\Tag\Model\Tag as Model;
-
 class Delete extends FeatureAbstract
 {
     /**
