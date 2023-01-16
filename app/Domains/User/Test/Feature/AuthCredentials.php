@@ -119,7 +119,7 @@ class AuthCredentials extends FeatureAbstract
         $ipLock = $ipLock->first();
 
         $this->assertEquals($ip, $ipLock->ip);
-        $this->assertEquals(date('Y-m-d H:i:s', strtotime('+'.$authLockCheck.' seconds')), $ipLock->end_at);
+        $this->assertEquals($authLockCheck, strtotime($ipLock->end_at) - time());
     }
 
     /**
