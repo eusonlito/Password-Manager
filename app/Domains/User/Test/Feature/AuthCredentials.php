@@ -2,6 +2,7 @@
 
 namespace App\Domains\User\Test\Feature;
 
+use App\Domains\IpLock\Model\IpLock as IpLockModel;
 use App\Domains\User\Model\User as Model;
 
 class AuthCredentials extends FeatureAbstract
@@ -89,9 +90,15 @@ class AuthCredentials extends FeatureAbstract
      */
     public function testPostLockedFail(): void
     {
+        $authLockAllowed = intval(config('auth.lock.allowed'));
+        $authLockCheck = intval(config('auth.lock.check'));
+        $ip = '127.0.0.1';
+
+        $this->serverVariables = ['REMOTE_ADDR' => $ip];
+
         $data = $this->factoryWhitelist(Model::class, ['email', 'password']);
 
-        for ($i = 0; $i < 3; $i++) {
+        for ($i = 0; $i < $authLockAllowed; $i++) {
             $this->post($this->route(), $data)
                 ->assertStatus(401)
                 ->assertDontSee('validation.')
@@ -104,6 +111,15 @@ class AuthCredentials extends FeatureAbstract
             ->assertDontSee('validation.')
             ->assertDontSee('validator.')
             ->assertSee('IP Bloqueada');
+
+        $ipLock = IpLockModel::get();
+
+        $this->assertEquals(1, $ipLock->count());
+
+        $ipLock = $ipLock->first();
+
+        $this->assertEquals($ip, $ipLock->ip);
+        $this->assertEquals(date('Y-m-d H:i:s', strtotime('+'.$authLockCheck.' seconds')), $ipLock->end_at);
     }
 
     /**
