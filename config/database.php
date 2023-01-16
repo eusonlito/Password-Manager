@@ -50,6 +50,7 @@ return [
             'timezone' => null,
             'options' => [],
             'log' => env('DB_LOG', false),
+            'log_backtrace' => (bool)env('DB_LOG_BACKTRACE'),
         ],
 
         'test' => [

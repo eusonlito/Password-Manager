@@ -49,7 +49,7 @@ class Debug extends ServiceProvider
      */
     protected function loggingDatabase(): void
     {
-        LoggerDatabase::listen();
+        LoggerDatabase::new()->listen();
     }
 
     /**
