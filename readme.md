@@ -1,3 +1,5 @@
+[Castellano](readme.es.md)
+
 ### Password Manager
 
 This application allows complete password management for multiple types of services (web, ssh, phones, wifi, etc ...).
