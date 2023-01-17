@@ -17,3 +17,5 @@
 <link rel="icon" href="@asset('favicon.ico')" type="image/png">
 
 <script>const WWW = '{{ rtrim(asset('/'), '/') }}';</script>
+
+@laravelPWA
