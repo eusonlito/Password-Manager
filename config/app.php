@@ -196,7 +196,9 @@ return [
     */
 
     'aliases' => [
+        'Config' => Illuminate\Support\Facades\Config::class,
         'Html' => App\Services\Html\Html::class,
+        'Route' => Illuminate\Support\Facades\Route::class,
     ],
 
 ];
