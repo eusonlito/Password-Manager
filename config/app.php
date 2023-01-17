@@ -67,7 +67,7 @@ return [
     |
     */
 
-    'timezone' => 'Europe/Madrid',
+    'timezone' => env('APP_TIMEZONE', 'Europe/Madrid'),
 
     /*
     |--------------------------------------------------------------------------
@@ -81,13 +81,14 @@ return [
     */
 
     'locale' => env('APP_LOCALE', 'es'),
-    'locales' => ['es', 'en', 'de', 'fr', 'br'],
+    'locales' => ['es', 'en', 'de', 'fr', 'br', 'it'],
     'locale_system' => [
         'es' => 'es_ES.UTF-8',
         'en' => 'en_US.UTF-8',
         'de' => 'de_DE.UTF-8',
         'fr' => 'fr_FR.UTF-8',
         'br' => 'pt_BR.UTF-8',
+        'it' => 'it_IT.UTF-8',
     ],
 
     /*
@@ -101,7 +102,7 @@ return [
     |
     */
 
-    'fallback_locale' => 'es',
+    'fallback_locale' => env('APP_FALLBACK_LOCALE', 'es'),
 
     /*
     |--------------------------------------------------------------------------
@@ -114,7 +115,7 @@ return [
     |
     */
 
-    'faker_locale' => 'es_ES',
+    'faker_locale' => env('APP_FAKER_LOCALE', 'es_ES'),
 
     /*
     |--------------------------------------------------------------------------

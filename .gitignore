@@ -12,3 +12,5 @@
 .php-cs-fixer.cache
 
 *.sh
+
+.idea/
