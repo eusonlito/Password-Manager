@@ -102,14 +102,9 @@
             "@php artisan view:cache --ansi"
         ],
 
-        "env-version": [
-            "sed -i 's/CACHE_VERSION=.*/CACHE_VERSION='$(head -c 16 /dev/urandom | md5sum | head -c 32)'/' .env"
-        ],
-
         "deploy": [
             "git checkout .",
             "git pull",
-            "@composer env-version --ansi",
             "@composer install --no-dev --no-scripts",
             "@composer install --no-dev --optimize-autoloader --classmap-authoritative --ansi",
             "@php artisan migrate --force --ansi",
