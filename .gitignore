@@ -1,3 +1,4 @@
+/.idea
 /node_modules
 /public/hot
 /public/storage
@@ -12,5 +13,3 @@
 .php-cs-fixer.cache
 
 *.sh
-
-.idea/
