@@ -1,0 +1,23 @@
+<?php return [
+    'admin' => 'Admin',
+    'apps' => 'Applicazioni',
+    'certificate' => 'Certificato',
+    'data' => 'Data',
+    'email' => 'Email',
+    'enabled' => 'Abilitato',
+    'error' => [
+        'admin-own' => 'Non è possibile disabilitare l\'opzione amministratore sul proprio utente',
+        'certificate-exists' => 'Esiste già un altro utente con lo stesso certificato',
+        'certificate-password-empty' => 'Non è possibile disattivare l\'accesso tramite password se non è definito un certificato',
+        'email-exists' => 'Esiste già un altro utente con la stessa email',
+        'enabled-own' => 'Non è possibile disattivare il proprio utente',
+        'readonly-own' => 'Non è possibile impostare l\'opzione di sola lettura per il proprio utente',
+    ],
+    'name' => 'Nome',
+    'password' => 'Password',
+    'password_enabled' => 'Abilita autenticazione con password',
+    'readonly' => 'Solo-lettura',
+    'save' => 'Salva',
+    'success' => 'I dati utente sono stati aggiornati correttamente',
+    'teams' => 'Squadra',
+];

@@ -15,7 +15,8 @@
         "laravel/helpers": "^1.2",
         "pragmarx/google2fa-qrcode": "master-dev",
         "predis/predis": "^2.0",
-        "sentry/sentry-laravel": "^2.0"
+        "sentry/sentry-laravel": "^2.0",
+        "silviolleite/laravelpwa": "^2.0"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.2",
