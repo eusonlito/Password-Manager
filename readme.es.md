@@ -37,7 +37,6 @@ Este proyecto dispone de una extensión para Google Chrome que puedes descargar 
 Recuerda que si PHP 8 no es la versión por defecto del sistema, siempre debes usar el prefijo de versión, tanto para `composer` como para `artisan`, por ejemplo:
 
 ```bash
-php8.0 /usr/local/bin/composer install --no-scripts --no-dev
 php8.0 /usr/local/bin/composer install --no-dev --optimize-autoloader --classmap-authoritative --ansi
 ```
 

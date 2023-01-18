@@ -37,7 +37,6 @@ This project has an extension for Google Chrome that you can download at https:/
 If PHP 8 is not the default PHP version on your system you must use the binary prefix to exeucte `composer` and `artisan`, for example:
 
 ```bash
-php8.0 /usr/local/bin/composer install --no-scripts --no-dev
 php8.0 /usr/local/bin/composer install --no-dev --optimize-autoloader --classmap-authoritative --ansi
 ```
 
