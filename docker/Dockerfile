@@ -18,7 +18,6 @@ RUN cp -n ./docker/.env .
 
 COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
 
-RUN composer install --no-scripts --no-dev
 RUN composer install --no-dev --optimize-autoloader --classmap-authoritative
 
 CMD ["./docker/init.sh"]

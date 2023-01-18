@@ -57,16 +57,16 @@ php8.0 artisan key:generate
 git clone https://github.com/eusonlito/Password-Manager.git
 ```
 
-3. Install composer dependencies (remember that we always use the PHP 8.0 binary).
-
-```bash
-composer install --no-scripts --no-dev && composer install --no-dev --optimize-autoloader --classmap-authoritative --ansi
-```
-
-4. Configure the file `.env` with the necessary data.
+3. Copy the `.env.example` file as `.env` and fill in the necessary variables.
 
 ```bash
 cp .env.example .env
+```
+
+4. Install composer dependencies (remember that we always use the PHP 8.0 binary).
+
+```bash
+composer install --no-dev --optimize-autoloader --classmap-authoritative --ansi
 ```
 
 5. Generate the application key. Remember to backup this key in a secure location (`.env` > `APP_KEY`).
@@ -150,10 +150,8 @@ This command performs the following actions:
 ```
 "git checkout .",
 "git pull",
-"@composer env-version --ansi",
 "@composer install --no-dev --optimize-autoloader --classmap-authoritative --ansi",
 "@php artisan migrate --force --ansi",
-"@php ./vendor/bin/php-cs-fixer fix --ansi --quiet",
 "@php artisan maintenance:opcache:preload"
 ```
 
