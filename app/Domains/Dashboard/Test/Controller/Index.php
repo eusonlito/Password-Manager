@@ -1,13 +1,13 @@
 <?php declare(strict_types=1);
 
-namespace App\Domains\PWA\Test\Feature;
+namespace App\Domains\Dashboard\Test\Controller;
 
-class Index extends FeatureAbstract
+class Index extends ControllerAbstract
 {
     /**
      * @var string
      */
-    protected string $route = 'pwa.index';
+    protected string $route = 'dashboard.index';
 
     /**
      * @return void
@@ -15,8 +15,8 @@ class Index extends FeatureAbstract
     public function testGetUnauthorizedFail(): void
     {
         $this->get($this->route())
-            ->assertStatus(200)
-            ->assertViewIs('domains.pwa.index');
+            ->assertStatus(302)
+            ->assertRedirect(route('user.auth.credentials'));
     }
 
     /**
@@ -36,7 +36,7 @@ class Index extends FeatureAbstract
         $this->authUser();
 
         $this->get($this->route())
-            ->assertStatus(200)
-            ->assertViewIs('domains.pwa.index');
+            ->assertStatus(302)
+            ->assertRedirect(route('app.index'));
     }
 }

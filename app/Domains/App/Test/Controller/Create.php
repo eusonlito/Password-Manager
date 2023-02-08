@@ -1,13 +1,13 @@
 <?php declare(strict_types=1);
 
-namespace App\Domains\App\Test\Feature;
+namespace App\Domains\App\Test\Controller;
 
 use Illuminate\Http\UploadedFile;
 use App\Domains\App\Model\App as Model;
 use App\Domains\Team\Model\Team as TeamModel;
 use App\Domains\User\Model\User as UserModel;
 
-class Create extends FeatureAbstract
+class Create extends ControllerAbstract
 {
     /**
      * @var string

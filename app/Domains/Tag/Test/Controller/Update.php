@@ -1,26 +1,26 @@
 <?php declare(strict_types=1);
 
-namespace App\Domains\Tag\Test\Feature;
+namespace App\Domains\Tag\Test\Controller;
 
 use App\Domains\Tag\Model\Tag as Model;
 
-class Create extends FeatureAbstract
+class Update extends ControllerAbstract
 {
     /**
      * @var string
      */
-    protected string $route = 'tag.create';
+    protected string $route = 'tag.update';
 
     /**
      * @var string
      */
-    protected string $action = 'create';
+    protected string $action = 'update';
 
     /**
      * @var array
      */
     protected array $validation = [
-        'name' => ['bail', 'required', 'string'],
+        'name' => ['bail', 'string', 'required'],
         'color' => ['bail', 'string', 'required', 'regex:/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/'],
     ];
 
@@ -29,7 +29,7 @@ class Create extends FeatureAbstract
      */
     public function testGetUnauthorizedFail(): void
     {
-        $this->get($this->route())
+        $this->get($this->route(null, $this->factoryCreate(Model::class)->id))
             ->assertStatus(302)
             ->assertRedirect(route('user.auth.credentials'));
     }
@@ -39,7 +39,7 @@ class Create extends FeatureAbstract
      */
     public function testPostUnauthorizedFail(): void
     {
-        $this->post($this->route())
+        $this->post($this->route(null, $this->factoryCreate(Model::class)->id))
             ->assertStatus(302)
             ->assertRedirect(route('user.auth.credentials'));
     }
@@ -47,23 +47,25 @@ class Create extends FeatureAbstract
     /**
      * @return void
      */
-    public function testGetNotAdminFail(): void
+    public function testGetNoAdminFail(): void
     {
         $this->authUserAdmin(false);
 
-        $this->get($this->route())
-            ->assertStatus(302);
+        $this->get($this->route(null, $this->factoryCreate(Model::class)->id))
+            ->assertStatus(302)
+            ->assertRedirect(route('dashboard.index'));
     }
 
     /**
      * @return void
      */
-    public function testPostNotAdminFail(): void
+    public function testPostNoAdminFail(): void
     {
         $this->authUserAdmin(false);
 
-        $this->post($this->route())
-            ->assertStatus(302);
+        $this->post($this->route(null, $this->factoryCreate(Model::class)->id))
+            ->assertStatus(302)
+            ->assertRedirect(route('dashboard.index'));
     }
 
     /**
@@ -73,9 +75,9 @@ class Create extends FeatureAbstract
     {
         $this->authUserAdmin();
 
-        $this->get($this->route())
+        $this->get($this->route(null, $this->factoryCreate(Model::class)->id))
             ->assertStatus(200)
-            ->assertViewIs('domains.tag.create');
+            ->assertViewIs('domains.tag.update');
     }
 
     /**
@@ -85,9 +87,9 @@ class Create extends FeatureAbstract
     {
         $this->authUserAdmin();
 
-        $this->post($this->route())
+        $this->post($this->route(null, $this->factoryCreate(Model::class)->id))
             ->assertStatus(200)
-            ->assertViewIs('domains.tag.create');
+            ->assertViewIs('domains.tag.update');
     }
 
     /**
@@ -97,7 +99,7 @@ class Create extends FeatureAbstract
     {
         $this->authUserAdmin();
 
-        $this->post($this->route(), $this->action())
+        $this->post($this->route(null, $this->factoryCreate(Model::class)->id), $this->action())
             ->assertStatus(422)
             ->assertDontSee('validation.')
             ->assertDontSee('validator.');
@@ -110,9 +112,11 @@ class Create extends FeatureAbstract
     {
         $this->authUserAdmin();
 
-        $this->post($this->route(), $this->factoryWhitelist(Model::class, ['name'], false))
+        $id = $this->factoryCreate(Model::class)->id;
+
+        $this->post($this->route(null, $id), $this->factoryWhitelist(Model::class, ['name'], false))
             ->assertStatus(200)
-            ->assertViewIs('domains.tag.create');
+            ->assertViewIs('domains.tag.update');
     }
 
     /**
@@ -125,23 +129,14 @@ class Create extends FeatureAbstract
         $data = $this->factoryMake(Model::class)->toArray();
 
         $this->followingRedirects()
-            ->post($this->route(), $data + $this->action())
+            ->post($this->route(null, $this->factoryCreate(Model::class)->id), $data + $this->action())
             ->assertStatus(200)
-            ->assertSee('La Etiqueta ha sido creada correctamente')
+            ->assertSee('La Etiqueta ha sido actualizada correctamente')
             ->assertSee($data['name']);
 
         $row = $this->rowLast(Model::class);
 
         $this->assertEquals($row->name, $data['name']);
         $this->assertEquals($row->color, $data['color']);
-
-        $new = $this->factoryMake(Model::class)->toArray();
-        $new['name'] = $row->name;
-
-        $this->post($this->route(), $new + $this->action())
-            ->assertStatus(422)
-            ->assertDontSee('validation.')
-            ->assertDontSee('validator.')
-            ->assertSee('El código ya existe para otra Etiqueta');
     }
 }

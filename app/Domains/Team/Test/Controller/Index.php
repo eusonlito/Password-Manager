@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace App\Domains\Team\Test\Feature;
+namespace App\Domains\Team\Test\Controller;
 
-class Index extends FeatureAbstract
+class Index extends ControllerAbstract
 {
     /**
      * @var string

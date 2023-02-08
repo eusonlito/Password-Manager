@@ -1,11 +1,11 @@
 <?php declare(strict_types=1);
 
-namespace App\Domains\App\Test\Feature;
+namespace App\Domains\App\Test\Controller;
 
 use App\Domains\App\Model\App as Model;
 use App\Domains\User\Model\User as UserModel;
 
-class Index extends FeatureAbstract
+class Index extends ControllerAbstract
 {
     /**
      * @var string

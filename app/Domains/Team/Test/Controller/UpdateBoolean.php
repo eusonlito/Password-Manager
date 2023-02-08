@@ -1,11 +1,11 @@
 <?php declare(strict_types=1);
 
-namespace App\Domains\Team\Test\Feature;
+namespace App\Domains\Team\Test\Controller;
 
 use App\Domains\Team\Model\Team as Model;
 use App\Services\Validator\Exception as ValidatorServiceException;
 
-class UpdateBoolean extends FeatureAbstract
+class UpdateBoolean extends ControllerAbstract
 {
     /**
      * @var string

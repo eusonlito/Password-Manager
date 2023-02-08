@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace App\Domains\Team\Test\Feature;
+namespace App\Domains\Team\Test\Controller;
 
-class Delete extends FeatureAbstract
+class Delete extends ControllerAbstract
 {
     /**
      * @var string
