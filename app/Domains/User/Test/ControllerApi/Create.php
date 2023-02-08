@@ -1,10 +1,10 @@
 <?php declare(strict_types=1);
 
-namespace App\Domains\User\Test\Feature;
+namespace App\Domains\User\Test\ControllerApi;
 
 use App\Domains\User\Model\User as Model;
 
-class ApiCreate extends ApiAbstract
+class Create extends ControllerApiAbstract
 {
     /**
      * @var string
@@ -38,6 +38,32 @@ class ApiCreate extends ApiAbstract
 
         $this->getJson($this->route(), $this->apiAuthorization())
             ->assertStatus(405);
+    }
+
+    /**
+     * @return void
+     */
+    public function testPostUnauthorizedFail(): void
+    {
+        $this->postJsonAuthorized($this->route(), $this->factoryWhitelist(Model::class, ['email', 'password', 'password_enabled'], false))
+            ->assertStatus(401);
+
+        $this->postJsonAuthorized($this->route(), $this->factoryWhitelist(Model::class, ['name', 'password', 'password_enabled'], false))
+            ->assertStatus(401);
+    }
+
+    /**
+     * @return void
+     */
+    public function testPostUserUnauthorizedFail(): void
+    {
+        $this->authUser();
+
+        $this->postJsonAuthorized($this->route(), $this->factoryWhitelist(Model::class, ['email', 'password', 'password_enabled'], false))
+            ->assertStatus(401);
+
+        $this->postJsonAuthorized($this->route(), $this->factoryWhitelist(Model::class, ['name', 'password', 'password_enabled'], false))
+            ->assertStatus(401);
     }
 
     /**

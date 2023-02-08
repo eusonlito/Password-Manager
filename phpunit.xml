@@ -24,7 +24,8 @@
             <directory suffix=".php">./app/Domains/PWA/Test/Feature</directory>
             <directory suffix=".php">./app/Domains/Tag/Test/Feature</directory>
             <directory suffix=".php">./app/Domains/Team/Test/Feature</directory>
-            <directory suffix=".php">./app/Domains/User/Test/Feature</directory>
+            <directory suffix=".php">./app/Domains/User/Test/Controller</directory>
+            <directory suffix=".php">./app/Domains/User/Test/ControllerApi</directory>
         </testsuite>
 
         <testsuite name="Unit">

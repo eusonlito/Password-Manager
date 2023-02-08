@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace App\Domains\User\Test\Feature;
+namespace App\Domains\User\Test\ControllerApi;
 
-class ApiMiddleware extends ApiAbstract
+class Middleware extends ControllerApiAbstract
 {
     /**
      * @var string

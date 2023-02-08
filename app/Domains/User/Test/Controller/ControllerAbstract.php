@@ -1,12 +1,12 @@
 <?php declare(strict_types=1);
 
-namespace App\Domains\User\Test\Feature;
+namespace App\Domains\User\Test\Controller;
 
 use App\Domains\App\Model\App as AppModel;
-use App\Domains\Shared\Test\Feature\FeatureAbstract as FeatureAbstractShared;
+use App\Domains\Shared\Test\Feature\FeatureAbstract;
 use App\Domains\Team\Model\Team as TeamModel;
 
-abstract class FeatureAbstract extends FeatureAbstractShared
+abstract class ControllerAbstract extends FeatureAbstract
 {
     /**
      * @return \App\Domains\App\Model\App

@@ -1,10 +1,11 @@
 <?php declare(strict_types=1);
 
-namespace App\Domains\User\Test\Feature;
+namespace App\Domains\User\Test\ControllerApi;
 
 use Illuminate\Testing\TestResponse;
+use App\Domains\User\Test\Controller\ControllerAbstract;
 
-abstract class ApiAbstract extends FeatureAbstract
+abstract class ControllerApiAbstract extends ControllerAbstract
 {
     /**
      * @param string $route

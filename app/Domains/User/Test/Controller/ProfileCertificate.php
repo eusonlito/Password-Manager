@@ -1,10 +1,10 @@
 <?php declare(strict_types=1);
 
-namespace App\Domains\User\Test\Feature;
+namespace App\Domains\User\Test\Controller;
 
 use App\Domains\User\Model\User as Model;
 
-class ProfileCertificate extends FeatureAbstract
+class ProfileCertificate extends ControllerAbstract
 {
     /**
      * @var string

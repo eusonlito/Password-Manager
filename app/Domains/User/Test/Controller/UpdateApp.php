@@ -1,12 +1,12 @@
 <?php declare(strict_types=1);
 
-namespace App\Domains\User\Test\Feature;
+namespace App\Domains\User\Test\Controller;
 
 use App\Domains\App\Model\App as AppModel;
 use App\Domains\Team\Model\Team as TeamModel;
 use App\Domains\User\Model\User as Model;
 
-class UpdateApp extends FeatureAbstract
+class UpdateApp extends ControllerAbstract
 {
     /**
      * @var string

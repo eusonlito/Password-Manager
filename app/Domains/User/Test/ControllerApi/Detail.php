@@ -1,12 +1,12 @@
 <?php declare(strict_types=1);
 
-namespace App\Domains\User\Test\Feature;
+namespace App\Domains\User\Test\ControllerApi;
 
 use App\Domains\App\Model\App as AppModel;
 use App\Domains\Team\Model\Team as TeamModel;
 use App\Domains\User\Model\User as Model;
 
-class ApiDetail extends ApiAbstract
+class Detail extends ControllerApiAbstract
 {
     /**
      * @var string
@@ -25,6 +25,36 @@ class ApiDetail extends ApiAbstract
 
         $this->getJson($this->route(null, $auth->id), $this->apiAuthorization())
             ->assertStatus(405);
+    }
+
+    /**
+     * @return void
+     */
+    public function testPostUnauthorizedFail(): void
+    {
+        $id = $this->factoryCreate(Model::class)->id;
+
+        $this->postJsonAuthorized($this->route(null, $id), $this->factoryWhitelist(Model::class, ['email', 'password', 'password_enabled'], false))
+            ->assertStatus(401);
+
+        $this->postJsonAuthorized($this->route(null, $id), $this->factoryWhitelist(Model::class, ['name', 'password', 'password_enabled'], false))
+            ->assertStatus(401);
+    }
+
+    /**
+     * @return void
+     */
+    public function testPostUserUnauthorizedFail(): void
+    {
+        $this->authUser();
+
+        $id = $this->factoryCreate(Model::class)->id;
+
+        $this->postJsonAuthorized($this->route(null, $id), $this->factoryWhitelist(Model::class, ['email', 'password', 'password_enabled'], false))
+            ->assertStatus(401);
+
+        $this->postJsonAuthorized($this->route(null, $id), $this->factoryWhitelist(Model::class, ['name', 'password', 'password_enabled'], false))
+            ->assertStatus(401);
     }
 
     /**

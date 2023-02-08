@@ -1,10 +1,10 @@
 <?php declare(strict_types=1);
 
-namespace App\Domains\User\Test\Feature;
+namespace App\Domains\User\Test\Controller;
 
 use Illuminate\Testing\TestResponse;
 
-class AuthCountry extends FeatureAbstract
+class AuthCountry extends ControllerAbstract
 {
     /**
      * @var string

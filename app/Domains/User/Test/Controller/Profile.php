@@ -1,11 +1,11 @@
 <?php declare(strict_types=1);
 
-namespace App\Domains\User\Test\Feature;
+namespace App\Domains\User\Test\Controller;
 
 use Illuminate\Support\Facades\Hash;
 use App\Domains\User\Model\User as Model;
 
-class Profile extends FeatureAbstract
+class Profile extends ControllerAbstract
 {
     /**
      * @var string

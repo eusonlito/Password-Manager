@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace App\Domains\User\Test\Feature;
+namespace App\Domains\User\Test\Controller;
 
-class Logout extends FeatureAbstract
+class Logout extends ControllerAbstract
 {
     /**
      * @var string
