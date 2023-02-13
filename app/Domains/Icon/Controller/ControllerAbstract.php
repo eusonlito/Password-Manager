@@ -20,6 +20,7 @@ abstract class ControllerAbstract extends ControllerWebAbstract
      */
     protected function row(string $name): void
     {
-        $this->row = Model::byName($name) ?: throw new NotFoundException(__('icon.error.not-found'));
+        $this->row = Model::byName($name)
+            ?: throw new NotFoundException(__('icon.error.not-found'));
     }
 }

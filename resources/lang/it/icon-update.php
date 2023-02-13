@@ -1,5 +1,16 @@
 <?php return [
     'data' => 'Data',
+    'delete' => [
+        'button' => '',
+        'cancel' => '',
+        'delete' => '',
+        'message' => '',
+        'title' => '',
+    ],
+    'delete-apps' => [
+        'message' => '',
+        'title' => '',
+    ],
     'icon' => 'Icona',
     'name' => 'Nome',
     'save' => 'Salva',

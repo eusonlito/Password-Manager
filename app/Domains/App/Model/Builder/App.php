@@ -13,6 +13,16 @@ use App\Domains\User\Model\User as UserModel;
 class App extends BuilderAbstract
 {
     /**
+     * @param string $icon
+     *
+     * @return self
+     */
+    public function byIcon(string $icon): self
+    {
+        return $this->where('icon', $icon);
+    }
+
+    /**
      * @param string $name
      *
      * @return self

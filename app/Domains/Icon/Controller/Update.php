@@ -26,6 +26,7 @@ class Update extends ControllerAbstract
 
         return $this->page('icon.update', [
             'row' => $this->row,
+            'apps_count' => $this->row->appsCount(),
         ]);
     }
 

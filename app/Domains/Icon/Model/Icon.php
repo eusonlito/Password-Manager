@@ -2,10 +2,16 @@
 
 namespace App\Domains\Icon\Model;
 
+use App\Domains\App\Model\App as AppModel;
 use App\Domains\Shared\Model\ModelAbstract;
 
 class Icon extends ModelAbstract
 {
+    /**
+     * @var array
+     */
+    protected $guarded = [];
+
     /**
      * @const string
      */
@@ -74,5 +80,21 @@ class Icon extends ModelAbstract
             'public' => (static::PATH.$basename),
             'name' => str_replace('.png', '', $basename),
         ];
+    }
+
+    /**
+     * @return int
+     */
+    public function appsCount(): int
+    {
+        return AppModel::byIcon($this->public)->count();
+    }
+
+    /**
+     * @return void
+     */
+    public function delete(): void
+    {
+        unlink($this->file);
     }
 }
