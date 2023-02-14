@@ -30,18 +30,18 @@ Este proyecto dispone de una extensión para Google Chrome que puedes descargar 
 ### Requisitos
 
 - Apache2 (nginx no soporta autenticación con certificado limitado a ciertas rutas)
-- PHP 8.0 o superior (php-curl php-imagick php-mbstring php-mysql php-zip)
+- PHP 8.1 o superior (php-curl php-imagick php-mbstring php-mysql php-zip)
 - MySQL 8.0
 - ImageMagick
 
 Recuerda que si PHP 8 no es la versión por defecto del sistema, siempre debes usar el prefijo de versión, tanto para `composer` como para `artisan`, por ejemplo:
 
 ```bash
-php8.0 /usr/local/bin/composer install --no-dev --optimize-autoloader --classmap-authoritative --ansi
+php /usr/local/bin/composer install --no-dev --optimize-autoloader --classmap-authoritative --ansi
 ```
 
 ```bash
-php8.0 artisan key:generate
+php artisan key:generate
 ```
 
 ### Instalación
@@ -62,7 +62,7 @@ git clone https://github.com/eusonlito/Password-Manager.git
 cp .env.example .env
 ```
 
-4. Realizamos la primera instalación (recuerda que siempre usando el binario de PHP 8.0).
+4. Realizamos la primera instalación (recuerda que siempre usando el binario de PHP 8.1).
 
 ```bash
 composer install --no-dev --optimize-autoloader --classmap-authoritative --ansi

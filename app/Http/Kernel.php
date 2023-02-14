@@ -41,7 +41,7 @@ class Kernel extends KernelVendor
     /**
      * @var array
      */
-    protected $routeMiddleware = [
+    protected $middlewareAliases = [
         'user.admin' => UserAdmin::class,
         'user.auth' => UserAuth::class,
         'user.auth.api' => UserAuthApi::class,

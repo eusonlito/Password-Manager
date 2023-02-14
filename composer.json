@@ -1,35 +1,33 @@
 {
     "name": "eusonlito/password-manager",
     "type": "project",
-    "description": "Password Manager",
+    "description": "Self-hosted Password Manager based on Laravel 10 + PHP 8 + MySQL 8. Gestor de Contraseñas basado en Laravel 10 + PHP 8 + MySQL 8.",
     "license": "MIT",
     "require": {
-        "php": "^8.0",
+        "php": "^8.1",
         "bacon/bacon-qr-code": "master-dev",
         "composer/composer": "^2.2",
         "doctrine/dbal": "^3.0",
         "eusonlito/disposable-email-validator": "^0.1",
         "eusonlito/laravel-meta": "^3.1",
         "eusonlito/laravel-packer": "^2.2",
-        "laravel/framework": "^9.5",
+        "laravel/framework": "^10.0",
         "laravel/helpers": "^1.2",
         "pragmarx/google2fa-qrcode": "master-dev",
         "predis/predis": "^2.0",
-        "sentry/sentry-laravel": "^2.0"
+        "sentry/sentry-laravel": "^3.2"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.2",
-        "brianium/paratest": "^6.4",
         "fakerphp/faker": "^1.13",
         "friendsofphp/php-cs-fixer": "^3.9",
         "laravel/pint": "^1.0",
         "mockery/mockery": "^1.4.2",
-        "nunomaduro/collision": "^6.1",
+        "nunomaduro/collision": "^7.0",
         "nunomaduro/larastan": "^2.0",
-        "nunomaduro/phpinsights": "dev-master",
         "phpstan/phpstan": "^1.4",
-        "phpunit/phpunit": "^9.5",
-        "spatie/laravel-ignition": "^1.0"
+        "phpunit/phpunit": "^10.0",
+        "spatie/laravel-ignition": "^2.0"
     },
     "config": {
         "optimize-autoloader": true,
@@ -58,16 +56,12 @@
             "Tests\\": "tests/"
         }
     },
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "prefer-stable": true,
     "scripts": {
         "post-install-cmd": [
-            "@composer artisan-cache --ansi",
-            "@php artisan queue:restart --ansi"
-        ],
-
-        "post-update-cmd": [
-            "@php artisan maintenance:opcache:preload"
+            "@composer dump-autoload",
+            "@composer artisan-cache --ansi"
         ],
 
         "post-autoload-dump": [
@@ -80,15 +74,23 @@
         ],
 
         "artisan-cache": [
-            "@php artisan optimize --ansi",
-            "@php artisan view:cache --ansi"
+            "@php artisan optimize --ansi"
         ],
 
         "deploy": [
+            "rm -f bootstrap/cache/*.php",
             "git checkout .",
             "git pull",
             "@composer install --no-dev --optimize-autoloader --classmap-authoritative --ansi",
             "@php artisan migrate --force --ansi",
+            "@php artisan maintenance:opcache:preload"
+        ],
+
+        "deploy-docker": [
+            "rm -f bootstrap/cache/*.php",
+            "@composer install --no-dev --optimize-autoloader --classmap-authoritative --ansi",
+            "@php artisan migrate --force --ansi",
+            "@php artisan db:seed --class=\"Database\\Seeders\\Database\" --force",
             "@php artisan maintenance:opcache:preload"
         ],
 

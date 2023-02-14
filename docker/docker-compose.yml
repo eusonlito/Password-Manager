@@ -27,6 +27,7 @@ services:
     passwordmanager:
         image: passwordmanager:latest
         container_name: passwordmanager
+        restart: always
         depends_on:
             mariadb:
                 condition: service_healthy
@@ -35,9 +36,8 @@ services:
             dockerfile: ./docker/Dockerfile
         ports:
             - "8080:80"
-        volumes:
-            - ./../storage:/var/www/passwordmanager/storage
-            - ./../public/storage:/var/www/passwordmanager/public/storage
+        expose:
+            - "8080"
         networks:
             - app
         tty: true

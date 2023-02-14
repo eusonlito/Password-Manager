@@ -4,9 +4,8 @@ if [ "$APP_KEY" == "base64:YDd7vBg1pOO9e44ROzZT9MUkfB4p6aKBswlyuNJrxQo=" ]; then
     echo -e "\e[41m WARNING: YOU ARE USING THE DEFAULT APP_KEY VALUE. PLEASE UPDATE THIS KEY ON FILE .env BEFORE ADD YOUR FIRST APP \e[0m"
 fi
 
-composer artisan-cache
+COMPOSER_ALLOW_SUPERUSER=1 composer deploy-docker
 
-php artisan migrate --force
-php artisan db:seed --force --class=Database\\Seeders\\Database
+cron
 
 php artisan serve --host=0.0.0.0 --port=80
