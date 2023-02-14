@@ -90,8 +90,7 @@
             "rm -f bootstrap/cache/*.php",
             "@composer install --no-dev --optimize-autoloader --classmap-authoritative --ansi",
             "@php artisan migrate --force --ansi",
-            "@php artisan db:seed --class=\"Database\\Seeders\\Database\" --force",
-            "@php artisan maintenance:opcache:preload"
+            "@php artisan db:seed --class=\"Database\\Seeders\\Database\" --force"
         ],
 
         "fix": [
