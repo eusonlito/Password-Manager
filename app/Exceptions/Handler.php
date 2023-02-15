@@ -5,7 +5,9 @@ namespace App\Exceptions;
 use Throwable;
 use Illuminate\Foundation\Exceptions\Handler as HandlerVendor;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Response as HttpResponse;
 use Symfony\Component\HttpFoundation\Response as ResponseSymfony;
+use Sentry;
 use App\Domains\Error\Controller\Index as ErrorController;
 use App\Services\Request\Logger;
 
@@ -24,19 +26,13 @@ class Handler extends HandlerVendor
     ];
 
     /**
-     * @param \Throwable $e
-     *
      * @return void
      */
-    public function report(Throwable $e)
+    public function register(): void
     {
-        $this->reportRequest($e);
-
-        parent::report($e);
-
-        if ($this->shouldReport($e)) {
-            $this->reportSentry($e);
-        }
+        $this->reportable(static function (Throwable $e) {
+            Sentry\captureException($e);
+        });
     }
 
     /**
@@ -44,22 +40,31 @@ class Handler extends HandlerVendor
      *
      * @return void
      */
-    protected function reportRequest(Throwable $e)
+    public function report(Throwable $e): void
+    {
+        $this->reportParent($e);
+        $this->reportRequest($e);
+    }
+
+    /**
+     * @param \Throwable $e
+     *
+     * @return void
+     */
+    protected function reportParent(Throwable $e): void
+    {
+        parent::report($e);
+    }
+
+    /**
+     * @param \Throwable $e
+     *
+     * @return void
+     */
+    protected function reportRequest(Throwable $e): void
     {
         if (config('logging.channels.request.enabled')) {
             Logger::fromException(request(), $e);
-        }
-    }
-
-    /**
-     * @param \Throwable $e
-     *
-     * @return void
-     */
-    protected function reportSentry(Throwable $e)
-    {
-        if (app()->bound('sentry')) {
-            app('sentry')->captureException($e);
         }
     }
 
@@ -69,7 +74,7 @@ class Handler extends HandlerVendor
      *
      * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\Response
      */
-    public function render($request, Throwable $e)
+    public function render($request, Throwable $e): JsonResponse|HttpResponse
     {
         if (config('app.debug')) {
             return $this->renderDebug($request, $e);
