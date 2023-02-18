@@ -1,4 +1,8 @@
 <?php return [
+    'archived' => 'Archived',
+    'archived-all' => 'All',
+    'archived-no' => 'Not Archived',
+    'archived-yes' => 'Archived',
     'create' => 'Create',
     'editable' => 'Editable',
     'filter' => 'Filter Apps...',

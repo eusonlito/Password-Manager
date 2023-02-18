@@ -8,6 +8,7 @@
         'title' => 'Icon Deletion',
     ],
     'delete-apps' => [
+        'cancel' => 'Cancel',
         'message' => 'It is not possible to delete an icon with related Applications',
         'title' => 'Delete Icon',
     ],

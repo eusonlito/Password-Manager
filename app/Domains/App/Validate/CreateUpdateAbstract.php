@@ -23,6 +23,7 @@ abstract class CreateUpdateAbstract extends ValidateAbstract
 
             'shared' => ['bail', 'boolean'],
             'editable' => ['bail', 'boolean'],
+            'archived' => ['bail', 'boolean'],
 
             'payload' => ['bail', 'array'],
         ];

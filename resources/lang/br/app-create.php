@@ -1,5 +1,6 @@
 <?php return [
     'add-attachemnt' => 'Adicionar Ficheiro',
+    'archived' => 'Encolhido (não será acessível através da API)',
     'editable' => 'Outros usuários podem editar este aplicativo',
     'error' => [
         'teams-empty' => 'Você precisa escolher algum time.',

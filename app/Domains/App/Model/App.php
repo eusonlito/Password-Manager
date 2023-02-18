@@ -49,6 +49,9 @@ class App extends ModelAbstract
      * @var array<string, string>
      */
     protected $casts = [
+        'shared' => 'boolean',
+        'editable' => 'boolean',
+        'archived' => 'boolean',
         'user_id' => 'integer',
     ];
 

@@ -1,4 +1,5 @@
 <?php return [
+    'archived' => 'Encolhido (não será acessível através da API)',
     'delete' => [
         'button' => 'Deletar',
         'cancel' => 'Cancelar',

@@ -8,6 +8,7 @@
         'title' => 'Supprimer l\'icône',
     ],
     'delete-apps' => [
+        'cancel' => 'Annuler',
         'message' => 'Il n\'est pas possible de supprimer une icône avec des applications connexes',
         'title' => 'Supprimer l\'icône',
     ],

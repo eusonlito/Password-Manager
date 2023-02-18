@@ -168,6 +168,34 @@ class ApiPayloadKey extends ControllerAbstract
     /**
      * @return void
      */
+    public function testPostArchivedFail(): void
+    {
+        $user = $this->authUser();
+        $row = $this->rowCreateWithUser();
+
+        $this->postAuthorized($row, 'user')
+            ->assertStatus(200)
+            ->assertExactJson(['value' => $row->payloadEncoded('user')]);
+
+        $this->postJsonAuthorized($row, 'user')
+            ->assertStatus(200)
+            ->assertExactJson(['value' => $row->payloadEncoded('user')]);
+
+        $row->archived = true;
+        $row->save();
+
+        $this->postAuthorized($row, 'user')
+            ->assertStatus(404)
+            ->assertSee('La aplicación solicitada no está disponible en estos momentos.');
+
+        $this->postJsonAuthorized($row, 'user')
+            ->assertStatus(404)
+            ->assertExactJson(json_decode('{"code":404,"status":"error","message":"La aplicación solicitada no está disponible en estos momentos."}', true));
+    }
+
+    /**
+     * @return void
+     */
     public function testPostInvalidFail(): void
     {
         $user = $this->authUser();

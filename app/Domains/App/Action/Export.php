@@ -81,7 +81,7 @@ class Export extends ActionAbstract
      */
     protected function mapRowData(Model $row): array
     {
-        return $row->only('id', 'type', 'name', 'created_at');
+        return $row->only('id', 'type', 'name', 'shared', 'editable', 'archived', 'created_at', 'updated_at');
     }
 
     /**

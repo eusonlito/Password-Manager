@@ -1,5 +1,6 @@
 <?php return [
     'add-attachemnt' => 'Ajouter un fichier',
+    'archived' => 'Shrunk (ne sera pas accessible via l\'API)',
     'editable' => 'Les autres utilisateurs peuvent éditer cette application',
     'error' => [
         'teams-empty' => 'Voulez-vous choisir certains teams.',

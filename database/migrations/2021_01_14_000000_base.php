@@ -31,6 +31,7 @@ return new class extends MigrationAbstract
 
             $table->boolean('shared')->default(0);
             $table->boolean('editable')->default(0);
+            $table->boolean('archived')->default(0);
 
             $table->string('remote_provider')->nullable()->index();
             $table->string('remote_id')->nullable()->index();

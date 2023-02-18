@@ -128,7 +128,15 @@ class App extends BuilderAbstract
         }
 
         if (strlen($filter = $filters['shared'] ?? '')) {
-            $this->where('shared', (int)$filter);
+            $this->whereShared((bool)$filter);
+        }
+
+        $archived = $filters['archived'] ?? '';
+
+        if (strlen($archived) && ($archived !== 'all')) {
+            $this->whereArchived((bool)$archived);
+        } elseif ($archived !== 'all') {
+            $this->whereArchived(false);
         }
 
         return $this;
@@ -195,5 +203,15 @@ class App extends BuilderAbstract
     public function whereShared(bool $shared = true): self
     {
         return $this->where('shared', $shared);
+    }
+
+    /**
+     * @param bool $archived = false
+     *
+     * @return self
+     */
+    public function whereArchived(bool $archived = false): self
+    {
+        return $this->where('archived', $archived);
     }
 }

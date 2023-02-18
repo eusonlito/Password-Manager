@@ -1,4 +1,8 @@
 <?php return [
+    'archived' => 'Archiviert',
+    'archived-all' => 'Alle',
+    'archived-no' => 'Nicht archiviert',
+    'archived-yes' => 'Archiviert',
     'create' => 'Erstellen',
     'editable' => 'bearbeitbar',
     'filter' => 'Accounts filtern...',

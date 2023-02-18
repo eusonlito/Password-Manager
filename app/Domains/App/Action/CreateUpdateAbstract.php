@@ -58,10 +58,21 @@ abstract class CreateUpdateAbstract extends ActionAbstract
         $this->data['type'] = $this->type->code();
         $this->data['payload'] = $this->type->payload();
 
-        if ($this->auth->readonly) {
-            $this->data['shared'] = $this->row->shared ?? false;
-            $this->data['editable'] = $this->row->editable ?? false;
+        $this->dataReadOnly();
+    }
+
+    /**
+     * @return void
+     */
+    protected function dataReadOnly(): void
+    {
+        if (empty($this->auth->readonly)) {
+            return;
         }
+
+        $this->data['shared'] = $this->row->shared ?? false;
+        $this->data['editable'] = $this->row->editable ?? false;
+        $this->data['archived'] = $this->row->archived ?? false;
     }
 
     /**

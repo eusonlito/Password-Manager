@@ -1,4 +1,5 @@
 <?php return [
+    'archived' => '',
     'delete' => [
         'button' => 'Elimina',
         'cancel' => 'Annulla',

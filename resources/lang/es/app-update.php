@@ -1,4 +1,5 @@
 <?php return [
+    'archived' => 'Achivada (no será accesible a través de la API)',
     'delete' => [
         'button' => 'Borrar',
         'cancel' => 'Cancelar',

@@ -8,6 +8,7 @@
         'title' => 'Symbol löschen',
     ],
     'delete-apps' => [
+        'cancel' => 'Abbrechen',
         'message' => 'Es ist nicht möglich, ein Symbol mit zugehörigen Anwendungen zu löschen',
         'title' => 'Symbol löschen',
     ],

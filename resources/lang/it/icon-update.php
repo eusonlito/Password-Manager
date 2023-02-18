@@ -8,6 +8,7 @@
         'title' => '',
     ],
     'delete-apps' => [
+        'cancel' => '',
         'message' => '',
         'title' => '',
     ],

@@ -26,11 +26,22 @@ class Update extends CreateUpdateAbstract
         $this->row->payload = $this->data['payload'];
         $this->row->updated_at = date('Y-m-d H:i:s');
 
-        if ($this->row->user_id === $this->auth->id) {
-            $this->row->shared = $this->data['shared'];
-            $this->row->editable = $this->data['editable'];
-        }
+        $this->saveOwner();
 
         $this->row->save();
+    }
+
+    /**
+     * @return void
+     */
+    protected function saveOwner(): void
+    {
+        if ($this->row->user_id !== $this->auth->id) {
+            return;
+        }
+
+        $this->row->shared = $this->data['shared'];
+        $this->row->editable = $this->data['editable'];
+        $this->row->archived = $this->data['archived'];
     }
 }

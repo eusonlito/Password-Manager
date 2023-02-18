@@ -1,5 +1,6 @@
 <?php return [
     'add-attachemnt' => 'Añadir Fichero',
+    'archived' => 'Achivada (no será accesible a través de la API)',
     'editable' => 'Los demás usuarios pueden editar esta aplicación',
     'error' => [
         'teams-empty' => 'Es necesario seleccionar algún equipo.',

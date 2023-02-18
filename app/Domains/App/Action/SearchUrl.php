@@ -51,6 +51,7 @@ class SearchUrl extends ActionAbstract
     {
         $this->list = Model::byUserAllowed($this->auth)
             ->byType('website')
+            ->whereArchived(false)
             ->get()
             ->filter(fn ($value) => $this->listFilter($value));
     }

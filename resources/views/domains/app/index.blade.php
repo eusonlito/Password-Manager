@@ -25,6 +25,14 @@
             </select>
         </div>
 
+        <div class="sm:ml-4 mt-2 sm:mt-0">
+            <select name="archived" class="form-select form-select-lg bg-white" data-change-submit>
+                <option value="0" {{ ($filters['archived'] === '0') ? 'selected' : '' }}>{{ __('app-index.archived-no') }}</option>
+                <option value="1" {{ ($filters['archived'] === '1') ? 'selected' : '' }}>{{ __('app-index.archived-yes') }}</option>
+                <option value="all" {{ ($filters['archived'] === 'all') ? 'selected' : '' }}>{{ __('app-index.archived-all') }}</option>
+            </select>
+        </div>
+
         @if ($tags->count() > 1)
         <div class="sm:ml-4 mt-2 sm:mt-0">
             <x-select name="tag" value="code" :text="['name']" :options="$tags->toArray()" :placeholder="__('app-index.tag')" :selected="$filters['tag']" data-change-submit></x-select>

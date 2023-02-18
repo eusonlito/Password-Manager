@@ -16,6 +16,7 @@ class Create extends CreateUpdateAbstract
             'name' => $this->data['name'],
             'shared' => $this->data['shared'],
             'editable' => $this->data['editable'],
+            'archived' => $this->data['archived'],
             'payload' => $this->data['payload'],
 
             'created_at' => date('Y-m-d H:i:s'),

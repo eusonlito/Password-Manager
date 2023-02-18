@@ -175,6 +175,45 @@ class ApiSearch extends ControllerAbstract
     /**
      * @return void
      */
+    public function testPostArchivedFail(): void
+    {
+        $this->authUser();
+
+        $row = $this->rowCreateWithUser();
+
+        $query = ['q' => $row->payload('url')];
+
+        $this->postJsonAuthorized($query)
+            ->assertStatus(200)
+            ->assertExactJson([$row->only('id', 'name')]);
+
+        $this->post($this->route(), $query, $this->apiAuthorization())
+            ->assertStatus(200)
+            ->assertExactJson([$row->only('id', 'name')]);
+
+        $this->postJson($this->route(), $query, $this->apiAuthorization())
+            ->assertStatus(200)
+            ->assertExactJson([$row->only('id', 'name')]);
+
+        $row->archived = true;
+        $row->save();
+
+        $this->postJsonAuthorized($query)
+            ->assertStatus(200)
+            ->assertExactJson([]);
+
+        $this->post($this->route(), $query, $this->apiAuthorization())
+            ->assertStatus(200)
+            ->assertExactJson([]);
+
+        $this->postJson($this->route(), $query, $this->apiAuthorization())
+            ->assertStatus(200)
+            ->assertExactJson([]);
+    }
+
+    /**
+     * @return void
+     */
     public function testPostInvalidFail(): void
     {
         $user = $this->authUser();

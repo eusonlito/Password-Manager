@@ -47,6 +47,10 @@
                     @if ($row->shared)
                     <span title="{{ $row->editable ? __('app-index.editable') : __('app-index.readonly') }}">@icon($row->editable ? 'edit-2' : 'eye', 'w-4 h-4')</span>
                     @endif
+
+                    @if ($row->archived)
+                    <span title="{{ __('app-index.archived') }}">@icon('archive', 'w-4 h-4')</span>
+                    @endif
                 </td>
             </tr>
 

@@ -75,6 +75,11 @@
             <input type="checkbox" name="editable" value="1" class="form-check-switch" id="app-editable" {{ $REQUEST->input('editable') ? 'checked' : '' }}>
             <label for="app-editable" class="form-check-label">{{ __('app-update.editable') }}</label>
         </div>
+
+        <div class="p-2 form-check">
+            <input type="checkbox" name="archived" value="1" class="form-check-switch" id="app-archived" {{ $REQUEST->input('archived') ? 'checked' : '' }}>
+            <label for="app-archived" class="form-check-label">{{ __('app-update.archived') }}</label>
+        </div>
     </div>
 
     @endif

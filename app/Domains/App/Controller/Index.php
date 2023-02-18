@@ -50,6 +50,7 @@ class Index extends ControllerAbstract
             'tag' => (string)$this->request->input('tag'),
             'team' => (string)$this->request->input('team'),
             'shared' => $this->request->input('shared'),
+            'archived' => $this->request->input('archived'),
         ]);
     }
 }

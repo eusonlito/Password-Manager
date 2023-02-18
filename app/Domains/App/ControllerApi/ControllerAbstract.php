@@ -22,9 +22,13 @@ abstract class ControllerAbstract extends ControllerAbstractShared
      */
     protected function row(int $id): void
     {
-        $this->row = Model::byId($id)->byUserAllowed($this->auth)->byType('website')->firstOr(static function () {
-            throw new NotFoundException(__('app-api.error.not-found'));
-        });
+        $this->row = Model::byId($id)
+            ->byUserAllowed($this->auth)
+            ->whereArchived(false)
+            ->byType('website')
+            ->firstOr(static function () {
+                throw new NotFoundException(__('app-api.error.not-found'));
+            });
 
         try {
             $this->row->payload();

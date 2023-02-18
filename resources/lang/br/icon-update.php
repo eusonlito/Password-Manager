@@ -8,6 +8,7 @@
         'title' => 'Eliminação de Ícones',
     ],
     'delete-apps' => [
+        'cancel' => 'Cancelar',
         'message' => 'Não é possível apagar um ícone com aplicações relacionadas',
         'title' => 'Apagar Ícone',
     ],

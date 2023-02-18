@@ -1,4 +1,5 @@
 <?php return [
+    'archived' => 'Shortened (will not be accessible through the API)',
     'delete' => [
         'button' => 'Delete',
         'cancel' => 'Cancel',

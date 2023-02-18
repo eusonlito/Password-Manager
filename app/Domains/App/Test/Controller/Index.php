@@ -116,6 +116,41 @@ class Index extends ControllerAbstract
     /**
      * @return void
      */
+    public function testGetArchivedSuccess(): void
+    {
+        $user = $this->authUser();
+
+        $row = $this->factoryCreate(Model::class);
+        $row->user_id = $user->id;
+        $row->save();
+
+        $this->get($this->route())
+            ->assertStatus(200)
+            ->assertSee($row->name);
+
+        $row->archived = true;
+        $row->save();
+
+        $this->get($this->route())
+            ->assertStatus(200)
+            ->assertDontSee($row->name);
+
+        $this->get($this->route().'?archived=0')
+            ->assertStatus(200)
+            ->assertDontSee($row->name);
+
+        $this->get($this->route().'?archived=1')
+            ->assertStatus(200)
+            ->assertSee($row->name);
+
+        $this->get($this->route().'?archived=all')
+            ->assertStatus(200)
+            ->assertSee($row->name);
+    }
+
+    /**
+     * @return void
+     */
     public function testGetOthersWithoutUserTeamSuccess(): void
     {
         $user = $this->authUser();

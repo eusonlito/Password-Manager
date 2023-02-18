@@ -1,5 +1,6 @@
 <?php return [
     'add-attachemnt' => 'Datei hinzufügen',
+    'archived' => 'Geschrumpft (wird nicht über die API zugänglich sein)',
     'editable' => 'Andere Benutzer können diesen Account bearbeiten',
     'error' => [
         'teams-empty' => 'Möchten Sie ein Team wählen.',

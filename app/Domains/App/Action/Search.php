@@ -42,6 +42,7 @@ class Search extends ActionAbstract
     {
         $this->list = Model::byUserAllowed($this->auth)
             ->byType('website')
+            ->whereArchived(false)
             ->search($this->data['q'])
             ->orderByName()
             ->limit(10)
