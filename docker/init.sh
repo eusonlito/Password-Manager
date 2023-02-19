@@ -5,6 +5,7 @@ if [ "$APP_KEY" == "base64:YDd7vBg1pOO9e44ROzZT9MUkfB4p6aKBswlyuNJrxQo=" ]; then
 fi
 
 chown -R $USER $HOME/.composer
+chown -R www-data public/storage
 
 su -s /bin/bash -c 'composer deploy-docker' www-data
 
