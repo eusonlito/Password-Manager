@@ -34,14 +34,14 @@ This project has an extension for Google Chrome that you can download at https:/
 - MySQL 8.0
 - ImageMagick
 
-If PHP 8 is not the default PHP version on your system you must use the binary prefix to exeucte `composer` and `artisan`, for example:
+If PHP 8.1 is not the default PHP version on your system you must use the binary prefix to execute `composer` and `artisan`, for example:
 
 ```bash
-php /usr/local/bin/composer install --no-dev --optimize-autoloader --classmap-authoritative --ansi
+php8.1 /usr/local/bin/composer install --no-dev --optimize-autoloader --classmap-authoritative --ansi
 ```
 
 ```bash
-php artisan key:generate
+php8.1 artisan key:generate
 ```
 
 ### Local Installation

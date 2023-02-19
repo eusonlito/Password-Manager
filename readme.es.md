@@ -34,14 +34,14 @@ Este proyecto dispone de una extensión para Google Chrome que puedes descargar 
 - MySQL 8.0
 - ImageMagick
 
-Recuerda que si PHP 8 no es la versión por defecto del sistema, siempre debes usar el prefijo de versión, tanto para `composer` como para `artisan`, por ejemplo:
+Recuerda que si PHP 8.1 no es la versión por defecto del sistema, siempre debes usar el prefijo de versión, tanto para `composer` como para `artisan`, por ejemplo:
 
 ```bash
-php /usr/local/bin/composer install --no-dev --optimize-autoloader --classmap-authoritative --ansi
+php8.1 /usr/local/bin/composer install --no-dev --optimize-autoloader --classmap-authoritative --ansi
 ```
 
 ```bash
-php artisan key:generate
+php8.1 artisan key:generate
 ```
 
 ### Instalación Local
