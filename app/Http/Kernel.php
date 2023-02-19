@@ -10,6 +10,7 @@ use App\Domains\User\Middleware\AuthCountry as UserAuthCountry;
 use App\Domains\User\Middleware\AuthRedirect as UserAuthRedirect;
 use App\Domains\User\Middleware\AuthTFA as UserAuthTFA;
 use App\Domains\User\Middleware\Enabled as UserEnabled;
+use App\Http\Middleware\TrustProxies;
 
 class Kernel extends KernelVendor
 {
@@ -17,6 +18,7 @@ class Kernel extends KernelVendor
      * @var array
      */
     protected $middleware = [
+        TrustProxies::class,
         \Illuminate\Cookie\Middleware\EncryptCookies::class,
         \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
         \Illuminate\Session\Middleware\StartSession::class,
