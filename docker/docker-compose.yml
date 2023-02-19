@@ -5,8 +5,6 @@ services:
         image: mariadb:10.4
         container_name: mariadb
         restart: always
-        ports:
-            - "3307:3306"
         volumes:
             - ./../storage/docker/db:/var/lib/mysql
         environment:
@@ -21,7 +19,7 @@ services:
             - app
         healthcheck:
             test: mysqladmin ping -h localhost --password=root
-            interval: 1s
+            interval: 15s
             retries: 15
 
     passwordmanager:
