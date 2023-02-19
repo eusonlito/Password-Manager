@@ -108,38 +108,6 @@ php artisan user:create --email=user@domain.com --name=Admin --password=StrongPa
 
 12. Profit!
 
-#### Docker Compose
-
-Actualmente debería ser usado únicamente para testing (no soporta autenticación con certificado).
-
-1. Clonamos el repositorio.
-
-```bash
-git clone https://github.com/eusonlito/Password-Manager.git
-```
-
-2. Personalizamos el fichero `docker/.env`
-
-3. Realizamos el build con `docker-compose`
-
-```bash
-sudo docker-compose -f docker/docker-compose.yml build
-```
-
-4. Iniciamos los contenedores
-
-```bash
-sudo docker-compose -f docker/docker-compose.yml up
-```
-
-5. Creamos el usuario principal
-
-```bash
-sudo docker exec -it passwordmanager bash -c "cd /var/www/passwordmanager && php artisan user:create --email=user@domain.com --name=Admin --password=StrongPassword2 --admin"
-```
-
-6. Ya podemos acceder desde http://localhost:8080
-
 ### Actualización
 
 La actualización de la plataforma se puede realizar de manera sencilla con el comando `composer deploy` ejecutado por el usuario que gestiona ese projecto (normalmente `www-data`).
@@ -153,6 +121,70 @@ Este comando realiza las siguientes acciones:
 "@php artisan migrate --force --ansi",
 "@php artisan maintenance:opcache:preload"
 ```
+
+#### Instalación vía Docker
+
+Actualmente debería ser usado únicamente para testing (no soporta autenticación con certificado).
+
+1. Clonamos el repositorio.
+
+```bash
+git clone https://github.com/eusonlito/Password-Manager.git
+```
+
+2. Copiamos el fichero `docker/.env` en la raíz del proyecto como `.env`
+
+```bash
+cp docker/.env .env
+```
+
+3. Actualizamos el fichero `.env` con la configuración personalizada
+
+```bash
+vi .env
+```
+
+4. Realizamos el build con `docker-compose`
+
+```bash
+sudo docker-compose -f docker/docker-compose.yml build
+```
+
+5. Iniciamos los contenedores
+
+```bash
+sudo docker-compose -f docker/docker-compose.yml up
+```
+
+6. Creamos el usuario principal
+
+```bash
+sudo docker exec -it passwordmanager bash -c "cd /var/www/passwordmanager && php artisan user:create --email=user@domain.com --name=Admin --password=StrongPassword2 --admin"
+```
+
+7. Ya podemos acceder desde http://localhost:8080
+
+#### Actualización de Docker
+
+1. Actualizamos el código del proyecto
+
+```bash
+git pull
+```
+
+2. Realizamos de nuevo el build
+
+```bash
+sudo docker-compose -f docker/docker-compose.yml build
+```
+
+3. Iniciamos los contenedores
+
+```bash
+sudo docker-compose -f docker/docker-compose.yml up
+```
+
+4. Ya podemos acceder desde http://localhost:8080
 
 ### Autenticación con Certificado
 

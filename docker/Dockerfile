@@ -24,8 +24,6 @@ WORKDIR /var/www/passwordmanager
 
 COPY ./ /var/www/passwordmanager
 
-RUN cp -n ./docker/.env .
-
 COPY --from=composer:2.5 /usr/bin/composer /usr/local/bin/composer
 
 RUN COMPOSER_ALLOW_SUPERUSER=1 composer install --no-dev --optimize-autoloader --classmap-authoritative

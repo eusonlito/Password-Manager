@@ -108,39 +108,7 @@ php artisan user:create --email=user@domain.com --name=Admin --password=StrongPa
 
 12. Profit!
 
-#### Docker Compose
-
-Currently only for testing (no certificate support).
-
-1. Clone the repository.
-
-```bash
-git clone https://github.com/eusonlito/Password-Manager.git
-```
-
-2. Adapt file `docker/.env`
-
-3. Build docker images
-
-```bash
-sudo docker-compose -f docker/docker-compose.yml build
-```
-
-4. Start containers
-
-```bash
-sudo docker-compose -f docker/docker-compose.yml up
-```
-
-5. Create the admin user
-
-```bash
-sudo docker exec -it passwordmanager bash -c "cd /var/www/passwordmanager && php artisan user:create --email=user@domain.com --name=Admin --password=StrongPassword2 --admin"
-```
-
-6. Open your web browser and goto http://localhost:8080
-
-### Update
+### Upgrade
 
 The platform update can be done easily with the `composer deploy` command executed by the user who manages that project (usually` www-data`).
 
@@ -153,6 +121,70 @@ This command performs the following actions:
 "@php artisan migrate --force --ansi",
 "@php artisan maintenance:opcache:preload"
 ```
+
+#### Docker Installation
+
+Currently only for testing (no certificate support).
+
+1. Clone the repository.
+
+```bash
+git clone https://github.com/eusonlito/Password-Manager.git
+```
+
+2. Copy the file `docker/.env` in project root as `.env`
+
+```bash
+cp docker/.env .env
+```
+
+3. Update `.env` with your custom config
+
+```bash
+vi .env
+```
+
+4. Build docker images
+
+```bash
+sudo docker-compose -f docker/docker-compose.yml build
+```
+
+5. Start containers
+
+```bash
+sudo docker-compose -f docker/docker-compose.yml up
+```
+
+6. Create the admin user
+
+```bash
+sudo docker exec -it passwordmanager bash -c "cd /var/www/passwordmanager && php artisan user:create --email=user@domain.com --name=Admin --password=StrongPassword2 --admin"
+```
+
+7. Open your web browser and goto http://localhost:8080
+
+#### Docker Upgrade
+
+1. Update the project code.
+
+```bash
+git pull
+```
+
+2. Build again the docker instance.
+
+```bash
+sudo docker-compose -f docker/docker-compose.yml build
+```
+
+3. Start containers
+
+```bash
+sudo docker-compose -f docker/docker-compose.yml up
+```
+
+4. Open your web browser and goto http://localhost:8080
 
 ### Certificate Authentication
 
