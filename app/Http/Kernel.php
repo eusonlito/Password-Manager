@@ -18,6 +18,7 @@ class Kernel extends KernelVendor
      */
     protected $middleware = [
         Middleware\TrustProxies::class,
+        Middleware\Https::class,
         \Illuminate\Cookie\Middleware\EncryptCookies::class,
         \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
         \Illuminate\Session\Middleware\StartSession::class,

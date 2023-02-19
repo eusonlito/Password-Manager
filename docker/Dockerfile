@@ -1,6 +1,7 @@
 FROM php:8.1
 
-RUN apt-get update -y && apt-get upgrade -y
+RUN apt-get update -y
+RUN apt-get upgrade -y
 
 RUN apt install -yqq --no-install-recommends \
     cron default-mysql-client \
@@ -20,12 +21,20 @@ COPY ./docker/php.ini /usr/local/etc/php/
 
 COPY ./docker/crontab /etc/cron.d/crontab
 
-WORKDIR /var/www/passwordmanager
-
-COPY ./ /var/www/passwordmanager
+RUN crontab -u www-data /etc/cron.d/crontab
 
 COPY --from=composer:2.5 /usr/bin/composer /usr/local/bin/composer
 
-RUN COMPOSER_ALLOW_SUPERUSER=1 composer install --no-dev --optimize-autoloader --classmap-authoritative
+USER www-data
+
+WORKDIR /app
+
+COPY --chown=www-data:www-data ./ /app
+
+RUN composer install --no-dev --optimize-autoloader --classmap-authoritative
+
+USER root
+
+RUN install -d /app/storage/docker
 
 CMD ["./docker/init.sh"]

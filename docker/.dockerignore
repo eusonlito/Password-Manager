@@ -1,2 +1,4 @@
-!.env
-!init.sh
+.env
+docker-compose.yml
+
+!*.sh

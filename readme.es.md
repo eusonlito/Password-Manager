@@ -44,9 +44,7 @@ php /usr/local/bin/composer install --no-dev --optimize-autoloader --classmap-au
 php artisan key:generate
 ```
 
-### Instalación
-
-## Instalación Local
+### Instalación Local
 
 1. Creamos la base de datos en MySQL.
 
@@ -108,21 +106,11 @@ php artisan user:create --email=user@domain.com --name=Admin --password=StrongPa
 
 12. Profit!
 
-### Actualización
+#### Actualización
 
 La actualización de la plataforma se puede realizar de manera sencilla con el comando `composer deploy` ejecutado por el usuario que gestiona ese projecto (normalmente `www-data`).
 
-Este comando realiza las siguientes acciones:
-
-```
-"git checkout .",
-"git pull",
-"@composer install --no-dev --optimize-autoloader --classmap-authoritative --ansi",
-"@php artisan migrate --force --ansi",
-"@php artisan maintenance:opcache:preload"
-```
-
-#### Instalación vía Docker
+### Instalación vía Docker
 
 Actualmente debería ser usado únicamente para testing (no soporta autenticación con certificado).
 
@@ -132,39 +120,41 @@ Actualmente debería ser usado únicamente para testing (no soporta autenticaci�
 git clone https://github.com/eusonlito/Password-Manager.git
 ```
 
-2. Copiamos el fichero `docker/.env` en la raíz del proyecto como `.env`
+2. [OPCIONAL] Copia el fichero `docker/.env.example` en `.env` y configura tus propios ajustes
 
 ```bash
-cp docker/.env .env
+cp docker/.env.example .env
 ```
 
-3. Actualizamos el fichero `.env` con la configuración personalizada
+3. [OPCIONAL] Copia el fichero `docker/docker-compose.yml.example` en `docker/docker-compose.yml` y configura tus propios ajustes
 
 ```bash
-vi .env
+cp docker/docker-compose.yml.example docker/docker-compose.yml
 ```
 
-4. Realizamos el build con `docker-compose`
+4. Realizamos el build (pedirá la contraseña de sudo)
 
 ```bash
-sudo docker-compose -f docker/docker-compose.yml build
+./docker/build.sh
 ```
 
-5. Iniciamos los contenedores
+5. Iniciamos los contenedores (pedirá la contraseña de sudo)
 
 ```bash
-sudo docker-compose -f docker/docker-compose.yml up
+./docker/run.sh
 ```
 
-6. Creamos el usuario principal
+6. Creamos el usuario principal (pedirá la contraseña de sudo)
 
 ```bash
-sudo docker exec -it passwordmanager bash -c "cd /var/www/passwordmanager && php artisan user:create --email=user@domain.com --name=Admin --password=StrongPassword2 --admin"
+./docker/user.sh
 ```
 
 7. Ya podemos acceder desde http://localhost:8080
 
-#### Actualización de Docker
+8. Recuerda añadir un servidor web (apache2, nginx, etc...) como proxy para añadir funcionalidades como SSL.
+
+#### Actualización
 
 1. Actualizamos el código del proyecto
 
@@ -172,16 +162,16 @@ sudo docker exec -it passwordmanager bash -c "cd /var/www/passwordmanager && php
 git pull
 ```
 
-2. Realizamos de nuevo el build
+2. Realizamos el build (pedirá la contraseña de sudo)
 
 ```bash
-sudo docker-compose -f docker/docker-compose.yml build
+./docker/build.sh
 ```
 
-3. Iniciamos los contenedores
+3. Iniciamos los contenedores (pedirá la contraseña de sudo)
 
 ```bash
-sudo docker-compose -f docker/docker-compose.yml up
+./docker/run.sh
 ```
 
 4. Ya podemos acceder desde http://localhost:8080

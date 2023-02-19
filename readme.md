@@ -44,9 +44,7 @@ php /usr/local/bin/composer install --no-dev --optimize-autoloader --classmap-au
 php artisan key:generate
 ```
 
-### Installation
-
-#### Local Installation
+### Local Installation
 
 1. Create the database in MySQL.
 
@@ -108,80 +106,72 @@ php artisan user:create --email=user@domain.com --name=Admin --password=StrongPa
 
 12. Profit!
 
-### Upgrade
+#### Upgrade
 
 The platform update can be done easily with the `composer deploy` command executed by the user who manages that project (usually` www-data`).
 
-This command performs the following actions:
-
-```
-"git checkout .",
-"git pull",
-"@composer install --no-dev --optimize-autoloader --classmap-authoritative --ansi",
-"@php artisan migrate --force --ansi",
-"@php artisan maintenance:opcache:preload"
-```
-
-#### Docker Installation
+### Docker Installation
 
 Currently only for testing (no certificate support).
 
-1. Clone the repository.
+1. Clone the repository
 
 ```bash
 git clone https://github.com/eusonlito/Password-Manager.git
 ```
 
-2. Copy the file `docker/.env` in project root as `.env`
+2. [OPTIONAL] Copy file `docker/.env.example` to `.env` and configure your own settings
 
 ```bash
-cp docker/.env .env
+cp docker/.env.example .env
 ```
 
-3. Update `.env` with your custom config
+3. [OPTIONAL] Copy file `docker/docker-compose.yml.example` to `docker/docker-compose.yml` and configure your own settings
 
 ```bash
-vi .env
+cp docker/docker-compose.yml.example docker/docker-compose.yml
 ```
 
-4. Build docker images
+4. Build docker images (will ask for the sudo password)
 
 ```bash
-sudo docker-compose -f docker/docker-compose.yml build
+./docker/build.sh
 ```
 
-5. Start containers
+5. Start containers (will ask for the sudo password)
 
 ```bash
-sudo docker-compose -f docker/docker-compose.yml up
+./docker/run.sh
 ```
 
-6. Create the admin user
+6. Create the admin user (will ask for the sudo password)
 
 ```bash
-sudo docker exec -it passwordmanager bash -c "cd /var/www/passwordmanager && php artisan user:create --email=user@domain.com --name=Admin --password=StrongPassword2 --admin"
+./docker/user.sh
 ```
 
 7. Open your web browser and goto http://localhost:8080
 
-#### Docker Upgrade
+8. Remember to add a web server (apache2, nginx, etc...) as a proxy to add features as SSL.
 
-1. Update the project code.
+#### Upgrade
+
+1. Update the project source
 
 ```bash
 git pull
 ```
 
-2. Build again the docker instance.
+2. Build docker images (will ask for the sudo password)
 
 ```bash
-sudo docker-compose -f docker/docker-compose.yml build
+./docker/build.sh
 ```
 
-3. Start containers
+3. Start containers (will ask for the sudo password)
 
 ```bash
-sudo docker-compose -f docker/docker-compose.yml up
+./docker/run.sh
 ```
 
 4. Open your web browser and goto http://localhost:8080
