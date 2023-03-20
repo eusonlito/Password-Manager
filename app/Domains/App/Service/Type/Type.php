@@ -9,7 +9,10 @@ class Type
     /**
      * @const
      */
-    protected const FORMATS = ['card', 'phone', 'ssh', 'server', 'text', 'website', 'wifi'];
+    protected const FORMATS = [
+        'card', 'password', 'phone', 'ssh', 'server', 'text',
+        'user-password', 'website', 'wifi',
+    ];
 
     /**
      * @return array
@@ -18,10 +21,12 @@ class Type
     {
         return [
             'card' => __('app-type.card'),
+            'password' => __('app-type.password'),
             'phone' => __('app-type.phone'),
             'ssh' => __('app-type.ssh'),
             'server' => __('app-type.server'),
             'text' => __('app-type.text'),
+            'user-password' => __('app-type.user-password'),
             'website' => __('app-type.website'),
             'wifi' => __('app-type.wifi'),
         ];
@@ -57,10 +62,12 @@ class Type
     {
         return match ($code) {
             'card' => $this->classFormat('Card'),
+            'password' => $this->classFormat('Password'),
             'phone' => $this->classFormat('Phone'),
             'ssh' => $this->classFormat('SSH'),
             'server' => $this->classFormat('Server'),
             'text' => $this->classFormat('Text'),
+            'user-password' => $this->classFormat('UserPassword'),
             'website' => $this->classFormat('Website'),
             'wifi' => $this->classFormat('Wifi'),
             default => throw new UnexpectedValueException(__('app-type.error.invalid')),

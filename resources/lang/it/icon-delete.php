@@ -1,6 +1,6 @@
 <?php return [
     'error' => [
-        'apps' => '',
+        'apps' => 'Impossibile eliminare un\'icona con le Applicazioni correlate',
     ],
-    'success' => '',
+    'success' => 'L\'icona è stata eliminata con successo',
 ];

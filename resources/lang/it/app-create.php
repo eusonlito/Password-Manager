@@ -1,6 +1,6 @@
 <?php return [
     'add-attachemnt' => 'Aggiungi File',
-    'archived' => '',
+    'archived' => 'Ridotto (non sarà accessibile tramite API)',
     'editable' => 'Altri utenti possono modificare questa applicazione',
     'error' => [
         'teams-empty' => 'Devi scegliere una squadra.',

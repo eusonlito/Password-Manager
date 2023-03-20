@@ -1,8 +1,8 @@
 <?php return [
-    'archived' => '',
-    'archived-all' => '',
-    'archived-no' => '',
-    'archived-yes' => '',
+    'archived' => 'Archiviato',
+    'archived-all' => 'Tutti',
+    'archived-no' => 'Non archiviati',
+    'archived-yes' => 'Archiviato',
     'create' => 'Creare',
     'editable' => 'Modificabile',
     'filter' => 'Filtra le app...',

@@ -1,5 +1,5 @@
 <?php return [
-    'archived' => '',
+    'archived' => 'Ridotto (non sarà accessibile tramite l\'API)',
     'delete' => [
         'button' => 'Elimina',
         'cancel' => 'Annulla',

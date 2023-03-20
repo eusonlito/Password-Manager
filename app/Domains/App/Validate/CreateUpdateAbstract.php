@@ -12,7 +12,7 @@ abstract class CreateUpdateAbstract extends ValidateAbstract
     protected function rulesDefault(): array
     {
         return [
-            'type' => ['bail', 'required', 'in:card,phone,ssh,server,text,website,wifi'],
+            'type' => ['bail', 'required', 'in:card,password,phone,ssh,server,text,user-password,website,wifi'],
 
             'name' => ['bail', 'required', 'string'],
             'icon' => ['bail', 'file', 'mimetypes:image/png'],
