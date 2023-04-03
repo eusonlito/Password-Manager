@@ -25,7 +25,7 @@ class Helper
         }
 
         try {
-            mkdir($dir, 0755, true);
+            mkdir($dir, 0o755, true);
         } catch (Exception $e) {
             report($e);
         }

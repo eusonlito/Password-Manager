@@ -70,7 +70,7 @@ class Directory
         clearstatcache(true, $dir);
 
         if (is_dir($dir) === false) {
-            mkdir($dir, 0755, true);
+            mkdir($dir, 0o755, true);
         }
 
         return $dir;

@@ -42,7 +42,7 @@ class Cache
         clearstatcache(true, $this->path);
 
         if (is_dir($this->path) === false) {
-            mkdir($this->path, 0755, true);
+            mkdir($this->path, 0o755, true);
         }
 
         return $this;
