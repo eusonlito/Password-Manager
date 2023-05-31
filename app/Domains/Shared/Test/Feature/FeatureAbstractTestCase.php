@@ -2,9 +2,9 @@
 
 namespace App\Domains\Shared\Test\Feature;
 
-use App\Domains\Shared\Test\TestAbstract;
+use App\Domains\Shared\Test\TestAbstractTestCase;
 
-abstract class FeatureAbstract extends TestAbstract
+abstract class FeatureAbstractTestCase extends TestAbstractTestCase
 {
     /**
      * @var string

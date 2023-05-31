@@ -4,7 +4,7 @@ namespace App\Domains\User\Test\Controller;
 
 use Illuminate\Testing\TestResponse;
 
-class AuthCountry extends ControllerAbstract
+class AuthCountry extends ControllerAbstractTestCase
 {
     /**
      * @var string

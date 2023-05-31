@@ -11,10 +11,10 @@ use App\Domains\Shared\Model\ModelAbstract;
 use App\Domains\Shared\Traits\Factory;
 use App\Domains\User\Model\User as UserModel;
 use Database\Seeders\Database as DatabaseSeed;
-use Tests\TestsAbstract;
+use Tests\TestsAbstractTestCase;
 use Tests\CreatesApplication;
 
-abstract class TestAbstract extends TestsAbstract
+abstract class TestAbstractTestCase extends TestsAbstractTestCase
 {
     use CreatesApplication;
     use Factory;

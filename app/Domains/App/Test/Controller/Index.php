@@ -5,7 +5,7 @@ namespace App\Domains\App\Test\Controller;
 use App\Domains\App\Model\App as Model;
 use App\Domains\User\Model\User as UserModel;
 
-class Index extends ControllerAbstract
+class Index extends ControllerAbstractTestCase
 {
     /**
      * @var string

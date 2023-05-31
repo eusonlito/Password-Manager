@@ -2,7 +2,7 @@
 
 namespace App\Domains\User\Test\ControllerApi;
 
-class Middleware extends ControllerApiAbstract
+class Middleware extends ControllerApiAbstractTestCase
 {
     /**
      * @var string

@@ -2,7 +2,7 @@
 
 namespace App\Domains\User\Test\Controller;
 
-class AuthCertificate extends ControllerAbstract
+class AuthCertificate extends ControllerAbstractTestCase
 {
     /**
      * @var string

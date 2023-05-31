@@ -4,7 +4,7 @@ namespace App\Domains\Team\Test\Controller;
 
 use App\Domains\Team\Model\Team as Model;
 
-class Create extends ControllerAbstract
+class Create extends ControllerAbstractTestCase
 {
     /**
      * @var string

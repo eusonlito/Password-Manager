@@ -2,7 +2,7 @@
 
 namespace App\Domains\Tag\Test\Controller;
 
-class Index extends ControllerAbstract
+class Index extends ControllerAbstractTestCase
 {
     /**
      * @var string

@@ -6,7 +6,7 @@ use App\Domains\App\Model\App as Model;
 use App\Domains\Team\Model\Team as TeamModel;
 use App\Domains\User\Model\User as UserModel;
 
-class PayloadKey extends ControllerAbstract
+class PayloadKey extends ControllerAbstractTestCase
 {
     /**
      * @var string

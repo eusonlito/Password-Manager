@@ -6,7 +6,7 @@ use App\Domains\Team\Model\Team as Model;
 use App\Domains\Team\Model\TeamApp as TeamAppModel;
 use App\Domains\App\Model\App as AppModel;
 
-class UpdateApp extends ControllerAbstract
+class UpdateApp extends ControllerAbstractTestCase
 {
     /**
      * @var string

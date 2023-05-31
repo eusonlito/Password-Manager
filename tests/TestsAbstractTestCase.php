@@ -6,7 +6,7 @@ use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Foundation\Testing\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-abstract class TestsAbstract extends TestCase
+abstract class TestsAbstractTestCase extends TestCase
 {
     use RefreshDatabase;
 

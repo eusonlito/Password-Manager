@@ -5,7 +5,7 @@ namespace App\Domains\Team\Test\Controller;
 use App\Domains\Team\Model\Team as Model;
 use App\Services\Validator\Exception as ValidatorServiceException;
 
-class UpdateBoolean extends ControllerAbstract
+class UpdateBoolean extends ControllerAbstractTestCase
 {
     /**
      * @var string

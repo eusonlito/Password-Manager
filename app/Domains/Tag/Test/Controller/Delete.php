@@ -2,7 +2,7 @@
 
 namespace App\Domains\Tag\Test\Controller;
 
-class Delete extends ControllerAbstract
+class Delete extends ControllerAbstractTestCase
 {
     /**
      * @var string

@@ -6,7 +6,7 @@ use App\Domains\User\Model\User as Model;
 use App\Exceptions\ValidatorException;
 use App\Services\Validator\Exception as ValidatorServiceException;
 
-class UpdateBoolean extends ControllerAbstract
+class UpdateBoolean extends ControllerAbstractTestCase
 {
     /**
      * @var string

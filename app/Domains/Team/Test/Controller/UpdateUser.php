@@ -6,7 +6,7 @@ use App\Domains\Team\Model\Team as Model;
 use App\Domains\Team\Model\TeamUser as TeamUserModel;
 use App\Domains\User\Model\User as UserModel;
 
-class UpdateUser extends ControllerAbstract
+class UpdateUser extends ControllerAbstractTestCase
 {
     /**
      * @var string

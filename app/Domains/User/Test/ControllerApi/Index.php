@@ -4,7 +4,7 @@ namespace App\Domains\User\Test\ControllerApi;
 
 use App\Domains\User\Model\User as Model;
 
-class Index extends ControllerApiAbstract
+class Index extends ControllerApiAbstractTestCase
 {
     /**
      * @var string

@@ -7,7 +7,7 @@ use App\Domains\App\Model\App as Model;
 use App\Domains\Team\Model\Team as TeamModel;
 use App\Domains\User\Model\User as UserModel;
 
-class ApiPayloadKey extends ControllerAbstract
+class ApiPayloadKey extends ControllerAbstractTestCase
 {
     /**
      * @var string
