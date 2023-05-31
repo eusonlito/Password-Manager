@@ -4,7 +4,7 @@ namespace App\Domains\Tag\Test\Controller;
 
 use App\Domains\Tag\Model\Tag as Model;
 
-class Update extends ControllerAbstractTestCase
+class Update extends ControllerAbstract
 {
     /**
      * @var string

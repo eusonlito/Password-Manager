@@ -6,7 +6,7 @@ use App\Domains\App\Model\App as Model;
 use App\Domains\Team\Model\Team as TeamModel;
 use App\Domains\User\Model\User as UserModel;
 
-class Delete extends ControllerAbstractTestCase
+class Delete extends ControllerAbstract
 {
     /**
      * @var string

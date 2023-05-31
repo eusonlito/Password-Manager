@@ -10,9 +10,19 @@
       <directory suffix=".php">./app/Domains/Team/Test/Controller</directory>
       <directory suffix=".php">./app/Domains/User/Test/Controller</directory>
       <directory suffix=".php">./app/Domains/User/Test/ControllerApi</directory>
+
+      <exclude>./app/Domains/App/Test/Controller/ControllerAbstract.php</exclude>
+      <exclude>./app/Domains/Dashboard/Test/Controller/ControllerAbstract.php</exclude>
+      <exclude>./app/Domains/PWA/Test/Controller/ControllerAbstract.php</exclude>
+      <exclude>./app/Domains/Tag/Test/Controller/ControllerAbstract.php</exclude>
+      <exclude>./app/Domains/Team/Test/Controller/ControllerAbstract.php</exclude>
+      <exclude>./app/Domains/User/Test/Controller/ControllerAbstract.php</exclude>
+      <exclude>./app/Domains/User/Test/ControllerApi/ControllerApiAbstract.php</exclude>
     </testsuite>
+
     <testsuite name="Unit">
       <directory suffix=".php">./app/Domains/Tag/Test/Unit</directory>
+      <exclude>./app/Domains/Tag/Test/Unit/UnitAbstract.php</exclude>
     </testsuite>
   </testsuites>
   <php>

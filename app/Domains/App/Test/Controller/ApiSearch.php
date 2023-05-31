@@ -7,7 +7,7 @@ use App\Domains\App\Model\App as Model;
 use App\Domains\Team\Model\Team as TeamModel;
 use App\Domains\User\Model\User as UserModel;
 
-class ApiSearch extends ControllerAbstractTestCase
+class ApiSearch extends ControllerAbstract
 {
     /**
      * @var string

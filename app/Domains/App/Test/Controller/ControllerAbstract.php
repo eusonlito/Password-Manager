@@ -3,10 +3,10 @@
 namespace App\Domains\App\Test\Controller;
 
 use App\Domains\App\Model\App as Model;
-use App\Domains\Shared\Test\Feature\FeatureAbstractTestCase;
+use App\Domains\Shared\Test\Feature\FeatureAbstract;
 use App\Domains\Team\Model\Team as TeamModel;
 
-abstract class ControllerAbstractTestCase extends FeatureAbstractTestCase
+abstract class ControllerAbstract extends FeatureAbstract
 {
     /**
      * @return \App\Domains\App\Model\App

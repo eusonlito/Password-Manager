@@ -2,7 +2,7 @@
 
 namespace App\Domains\User\Test\Controller;
 
-class Disabled extends ControllerAbstractTestCase
+class Disabled extends ControllerAbstract
 {
     /**
      * @var string

@@ -2,7 +2,7 @@
 
 namespace App\Domains\User\Test\Controller;
 
-class Logout extends ControllerAbstractTestCase
+class Logout extends ControllerAbstract
 {
     /**
      * @var string

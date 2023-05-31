@@ -4,7 +4,7 @@ namespace App\Domains\Team\Test\Controller;
 
 use App\Domains\Team\Model\Team as Model;
 
-class Update extends ControllerAbstractTestCase
+class Update extends ControllerAbstract
 {
     /**
      * @var string

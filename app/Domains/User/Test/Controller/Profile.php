@@ -5,7 +5,7 @@ namespace App\Domains\User\Test\Controller;
 use Illuminate\Support\Facades\Hash;
 use App\Domains\User\Model\User as Model;
 
-class Profile extends ControllerAbstractTestCase
+class Profile extends ControllerAbstract
 {
     /**
      * @var string

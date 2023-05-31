@@ -2,7 +2,7 @@
 
 namespace App\Domains\User\Test\Controller;
 
-class AuthTFA extends ControllerAbstractTestCase
+class AuthTFA extends ControllerAbstract
 {
     /**
      * @var string

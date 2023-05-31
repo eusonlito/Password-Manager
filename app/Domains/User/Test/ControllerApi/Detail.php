@@ -6,7 +6,7 @@ use App\Domains\App\Model\App as AppModel;
 use App\Domains\Team\Model\Team as TeamModel;
 use App\Domains\User\Model\User as Model;
 
-class Detail extends ControllerApiAbstractTestCase
+class Detail extends ControllerApiAbstract
 {
     /**
      * @var string

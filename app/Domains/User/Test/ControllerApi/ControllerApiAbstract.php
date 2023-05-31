@@ -3,9 +3,9 @@
 namespace App\Domains\User\Test\ControllerApi;
 
 use Illuminate\Testing\TestResponse;
-use App\Domains\User\Test\Controller\ControllerAbstractTestCase;
+use App\Domains\User\Test\Controller\ControllerAbstract;
 
-abstract class ControllerApiAbstractTestCase extends ControllerAbstractTestCase
+abstract class ControllerApiAbstract extends ControllerAbstract
 {
     /**
      * @param string $route

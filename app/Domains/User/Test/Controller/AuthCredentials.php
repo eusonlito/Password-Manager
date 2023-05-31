@@ -5,7 +5,7 @@ namespace App\Domains\User\Test\Controller;
 use App\Domains\IpLock\Model\IpLock as IpLockModel;
 use App\Domains\User\Model\User as Model;
 
-class AuthCredentials extends ControllerAbstractTestCase
+class AuthCredentials extends ControllerAbstract
 {
     /**
      * @var string

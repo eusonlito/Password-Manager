@@ -4,7 +4,7 @@ namespace App\Domains\Tag\Test\Unit;
 
 use App\Domains\Tag\Model\Tag as Model;
 
-class GetOrCreate extends UnitAbstractTestCase
+class GetOrCreate extends UnitAbstract
 {
     /**
      * @var array
