@@ -25,7 +25,7 @@ abstract class CommandAbstract extends Command
 
     /**
      * @param mixed $string
-     * @param int|string|null $verbosity = false
+     * @param int|string|bool|null $verbosity = false
      *
      * @return void
      */
@@ -40,7 +40,7 @@ abstract class CommandAbstract extends Command
 
     /**
      * @param mixed $string
-     * @param int|string|null $verbosity = false
+     * @param int|string|bool|null $verbosity = false
      *
      * @return void
      */

@@ -2,6 +2,8 @@
 
 namespace App\Domains\Icon\Action;
 
+use App\Exceptions\ValidatorException;
+
 class Delete extends ActionAbstract
 {
     /**

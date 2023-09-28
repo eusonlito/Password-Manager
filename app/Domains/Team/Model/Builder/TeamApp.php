@@ -17,13 +17,13 @@ class TeamApp extends BuilderAbstract
     }
 
     /**
-     * @param int $app_id
+     * @param int $user_id
      *
      * @return self
      */
-    public function byUserId(int $app_id): self
+    public function byUserId(int $user_id): self
     {
-        return $this->where('app_id', $app_id);
+        return $this->where('user_id', $user_id);
     }
 
     /**

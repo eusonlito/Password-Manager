@@ -76,6 +76,8 @@ abstract class ValidatorAbstract
     }
 
     /**
+     * @phpcsSuppress SlevomatCodingStandard.Functions.UnusedParameter
+     *
      * @param \Illuminate\Support\MessageBag $errors
      *
      * @return void

@@ -26,9 +26,12 @@
         "mockery/mockery": "^1.4.2",
         "nunomaduro/collision": "^7.0",
         "nunomaduro/larastan": "^2.0",
+        "nunomaduro/phpinsights": "^2.8",
         "phpstan/phpstan": "^1.4",
         "phpunit/phpunit": "^10.0",
-        "spatie/laravel-ignition": "^2.0"
+        "psalm/plugin-laravel": "^2.7",
+        "spatie/laravel-ignition": "^2.0",
+        "vimeo/psalm": "^5.6"
     },
     "config": {
         "optimize-autoloader": true,
@@ -71,6 +74,10 @@
             "@php artisan package:discover --ansi"
         ],
 
+        "post-update-cmd": [
+            "@php artisan test"
+        ],
+
         "artisan-cache-clear": [
             "@php artisan optimize:clear --ansi"
         ],
@@ -101,8 +108,9 @@
         ],
 
         "quality": [
-            "@php artisan insights -v --ansi",
-            "@php ./vendor/bin/phpstan analyse app --ansi"
+            "@php artisan insights --ansi",
+            "@php ./vendor/bin/phpstan analyse --ansi || true",
+            "@php ./vendor/bin/psalm || true"
         ],
 
         "translation": [

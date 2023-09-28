@@ -8,7 +8,7 @@ use App\Domains\Shared\Model\ModelAbstract;
 class Icon extends ModelAbstract
 {
     /**
-     * @var array
+     * @var array<string>|bool
      */
     protected $guarded = [];
 

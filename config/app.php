@@ -196,6 +196,7 @@ return [
     */
 
     'aliases' => [
+        'Eloquent' => Illuminate\Database\Eloquent\Model::class,
         'Html' => App\Services\Html\Html::class,
     ],
 

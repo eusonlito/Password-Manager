@@ -2,6 +2,7 @@
 
 namespace App\Services\Helper;
 
+use Exception;
 use App\Exceptions\NotFoundException;
 
 class Helper

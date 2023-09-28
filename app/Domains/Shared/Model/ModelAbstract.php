@@ -24,7 +24,7 @@ abstract class ModelAbstract extends Model
     public $timestamps = false;
 
     /**
-     * @var array
+     * @var array<string>|bool
      */
     protected $guarded = ['id'];
 

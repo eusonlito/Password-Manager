@@ -39,7 +39,7 @@ abstract class TestAbstract extends TestsAbstract
      *
      * @return self
      */
-    protected function auth(Authenticatable $user = null): self
+    protected function auth(?Authenticatable $user = null): self
     {
         $this->auth = $user ?: $this->user();
 
