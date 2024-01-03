@@ -7,7 +7,7 @@ fi
 chown -R $USER $HOME/.composer
 chown -R www-data public/storage
 
-su -s /bin/bash -c 'composer deploy-docker' www-data
+su -s /bin/bash -c './composer deploy-docker' www-data
 
 cron
 
