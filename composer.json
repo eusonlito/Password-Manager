@@ -6,7 +6,6 @@
     "require": {
         "php": "^8.1",
         "bacon/bacon-qr-code": "master-dev",
-        "composer/composer": "^2.2",
         "doctrine/dbal": "^3.0",
         "eusonlito/disposable-email-validator": "^0.1",
         "eusonlito/laravel-meta": "^3.3",

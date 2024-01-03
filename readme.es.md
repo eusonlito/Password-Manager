@@ -34,10 +34,10 @@ Este proyecto dispone de una extensión para Google Chrome que puedes descargar 
 - MySQL 8.0
 - ImageMagick
 
-Recuerda que si PHP 8.1 no es la versión por defecto del sistema, siempre debes usar el prefijo de versión, tanto para `composer` como para `artisan`, por ejemplo:
+Si la versión por defecto de tu servidor es inferior a PHP 8.1 siempre debes usar el prefijo de versión, tanto para `composer` como para `artisan`, por ejemplo:
 
 ```bash
-php8.1 /usr/local/bin/composer install --no-dev --optimize-autoloader --classmap-authoritative --ansi
+php8.1 ./composer install --no-dev --optimize-autoloader --classmap-authoritative --ansi
 ```
 
 ```bash
@@ -63,7 +63,7 @@ cp .env.example .env
 4. Realizamos la primera instalación (recuerda que siempre usando el binario de PHP 8.1).
 
 ```bash
-composer install --no-dev --optimize-autoloader --classmap-authoritative --ansi
+./composer install --no-dev --optimize-autoloader --classmap-authoritative --ansi
 ```
 
 5. Generamos la clave de aplicación. Recuerda guardar una copia de seguridad de esta clave (`.env` > `APP_KEY`).
@@ -75,7 +75,7 @@ php artisan key:generate
 6. Regeneramos las cachés.
 
 ```bash
-composer artisan-cache
+./composer artisan-cache
 ```
 
 7. Lanzamos la migración inicial.
