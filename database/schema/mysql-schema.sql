@@ -267,11 +267,11 @@ CREATE TABLE `user_session` (
 /*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
-INSERT INTO `migrations` VALUES (1,'2021_01_14_000000_base',1);
-INSERT INTO `migrations` VALUES (2,'2021_09_14_130000_user_api_secret',1);
-INSERT INTO `migrations` VALUES (3,'2022_05_24_170000_tag_color',1);
-INSERT INTO `migrations` VALUES (4,'2022_05_25_100000_team_color',1);
-INSERT INTO `migrations` VALUES (5,'2022_11_29_180000_file',1);
-INSERT INTO `migrations` VALUES (6,'2022_11_30_210000_log_payload',1);
-INSERT INTO `migrations` VALUES (7,'2022_12_26_130000_log_team_id',1);
-INSERT INTO `migrations` VALUES (8,'2023_02_18_130000_app_archived',1);
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (1,'2021_01_14_000000_base',1);
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (2,'2021_09_14_130000_user_api_secret',1);
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (3,'2022_05_24_170000_tag_color',1);
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (4,'2022_05_25_100000_team_color',1);
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (5,'2022_11_29_180000_file',1);
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (6,'2022_11_30_210000_log_payload',1);
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (7,'2022_12_26_130000_log_team_id',1);
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES (8,'2023_02_18_130000_app_archived',1);
